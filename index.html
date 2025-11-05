@@ -68,7 +68,7 @@
     font-style: italic;
     letter-spacing: 0.5px;
     text-shadow: 0 0 10px rgba(255,182,193,0.3);
-    animation: aparecer 20s ease-in-out;
+    animation: aparecer 10s ease-in-out;
     z-index: 10;
 }
 
@@ -284,6 +284,17 @@
         <button onclick="iniciar()">Primeiro na Cartinha</button>
     </div>
 
+        <button id="cartinha" onclick="abrirCartinha()">💌</button>
+    <div id="textoCartinha">
+        <p>
+            Meu amor,<br>
+            Você me faz acreditar no amor de verdade — aquele que é leve, divertido e forte o bastante pra durar uma
+            vida.<br><br>
+            Eu sonho com o dia em que vou te ver de branco e poder dizer: “Agora é pra sempre, minha Nanda.” 💍<br><br>
+            Eu te amo mais do que palavras podem dizer.
+        </p>
+    </div>
+
     <!-- Temporizador -->
     <div id="contador">
         <h2>Estamos juntos há...</h2>
@@ -327,17 +338,7 @@
             <img src="IMAGENS/12.jpg" class="foto">
             <div class="legenda" id="legenda"></div>
         </div>
-            <!-- Cartinha -->
-    <button id="cartinha" onclick="abrirCartinha()">💌</button>
-    <div id="textoCartinha">
-        <p>
-            Meu amor,<br>
-            Você me faz acreditar no amor de verdade — aquele que é leve, divertido e forte o bastante pra durar uma
-            vida.<br><br>
-            Eu sonho com o dia em que vou te ver de branco e poder dizer: “Agora é pra sempre, minha Nanda.” 💍<br><br>
-            Eu te amo mais do que palavras podem dizer.
-        </p>
-    </div>
+
 
         <!-- 💌 Texto bonitinho abaixo do carrossel -->
 <p id="fraseFinal">“Meu amor,
@@ -349,7 +350,12 @@ Você é minha paz, minha bagunça favorita e o motivo do meu sorriso todos os d
 Obrigado por ser exatamente quem você é — carinhosa, linda, divertida e a pessoa que mais me entende nesse mundo.
 
 Mal posso esperar pra casar com você, dividir uma vida, uma casa, uma história que vai ser só nossa.
-Te amo mais do que palavras conseguem explicar. 💍❤️” 💞</p>
+Te amo mais do que palavras conseguem explicar. 💍❤️” 💞
+
+Ei amor sobe um pouco a tela de novo, reparou no coração pulsando? clica nele. te amo ❤️
+
+
+</p>
 
     </div>
 
@@ -362,17 +368,17 @@ Te amo mais do que palavras conseguem explicar. 💍❤️” 💞</p>
         const legenda = document.getElementById("legenda");
 
         const legendas = [
-            "Nosso primeiro sorriso juntos 💖",
-            "Aquele dia inesquecível 🌅",
-            "Você e seu jeitinho que eu amo 💫",
-            "Um momento simples, mas perfeito 💕",
-            "Meu amor, minha paz ❤️",
-            "O abraço que virou meu lar 🤗",
-            "Seu olhar… impossível não sorrir 😍",
-            "Mais um dia com você = dia perfeito 🌸",
-            "Nosso amor é o meu maior presente 🎁",
-            "Rindo à toa contigo 😂💞",
-            "Só você me faz sentir assim 🌹",
+            "Sou apaixonado no seu olhar 💖",
+            "Você tentando me impedir de registrar sua beleza",
+            "Nossa foto pro Sipat na empresa 💫",
+            "Sorriso que me encanta 💕",
+            "Meu amor, timida para foto ❤️",
+            "Um registro de nossas idas e vindas 🤗",
+            "Meu neném, amo tanto 😍",
+            "Mais um dia com você = dia perfeito ❤️",
+            "Amo seu jeitinho ❤️",
+            "Eu tentando fazer algo na bateria kkk💞",
+            "Desde que você chegou, a vida tem mais cor e sentido❤️",
             "Pra sempre nós dois 💍"
         ];
 
