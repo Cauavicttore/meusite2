@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso amor ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2b2b2b);
+            color: #fff;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Tela inicial */
+        #inicio {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        #inicio button {
+            background-color: #ff5f91;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(255, 95, 145, 0.6);
+        }
+
+        #inicio button:hover {
+            background-color: #ff7fac;
+            transform: scale(1.05);
+        }
+
+        /* Temporizador */
+        #contador {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            /* 👈 muda o alinhamento para o topo */
+            padding-top: 60px;
+            /* 👈 ajusta a posição inicial */
+            font-size: 22px;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+#fraseFinal {
+    padding-left: 30%;
+    padding-right: 30%;
+    margin-top: 30px;
+    font-size: 18px;
+    color: #ffcce0;
+    text-align: center;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(255,182,193,0.3);
+    animation: aparecer 3s ease-in-out;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+        #tempo {
+            font-size: 28px;
+            margin-top: 20px;
+            color: #ffb3d9;
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.8);
+        }
+
+        /* Coração pulsante */
+        #coracao {
+            background: none;
+            text-shadow: 0 0 20px rgba(255,105,180,0.6);
+            border: none;
+            cursor: pointer;
+            margin-top: 40px;
+            font-size: 40px;
+            /* 👈 aumenta o tamanho do coração */
+            animation: pulsar 1.2s ease-in-out infinite;
+            /* 👈 pulsar suave */
+            transition: transform 0.3s ease;
+            color: #ff5f91;
+            /* 👈 deixa o tom do coração igual ao tema */
+        }
+
+        #coracao:hover {
+            transform: scale(1.2);
+        }
+
+
+        @keyframes pulsar {
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.15);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+
+            75% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        #mensagem {
+            display: none;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            line-height: 1.6;
+            color: #ffd1dc;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Cartinha */
+        #cartinha {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff5f91;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 95, 145, 0.6);
+        }
+
+        #textoCartinha {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            text-align: left;
+            color: #ffd1dc;
+        }
+
+        #mensagem {
+            display: none;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            line-height: 1.6;
+            color: #ffd1dc;
+            animation: fadeIn 2s;
+            position: relative;
+            z-index: 10;
+            /* 👈 mantém o texto acima das fotos */
+        }
+
+        #carrossel {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .foto {
+            display: none;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
+            margin: 0 auto;
+        }
+
+        .legenda {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #ffcce0;
+        }
+
+
+        /* Corações flutuantes */
+        .coracao {
+            position: fixed;
+            bottom: -10px;
+            color: #ff6fa0;
+            font-size: 20px;
+            animation: subir 6s linear infinite;
+            opacity: 0.8;
+        }
+
+        .imginicial {
+            width: 230px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px 10px rgba(255, 105, 180, 0.4);
+            /* luz rosa suave */
+            transition: 0.6s;
+        }
+
+        .imginicial:hover {
+            box-shadow: 0 0 60px 20px rgba(255, 182, 193, 0.6);
+            /* brilha mais ao passar o mouse */
+            transform: scale(1.03);
+        }
+
+        @keyframes brilho {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(255, 182, 193, 0.6);
+            }
+
+            100% {
+                box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+            }
+        }
+
+
+
+        @keyframes subir {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Tela Inicial -->
+    <div id="inicio">
+        <img class="imginicial" src="IMAGENS/13.jpg" alt="">
+        <h1>💖 Surpresa para Nanda 💖</h1>
+        <button onclick="iniciar()">Primeiro na Cartinha</button>
+    </div>
+
+    <!-- Temporizador -->
+    <div id="contador">
+        <h2>Estamos juntos há...</h2>
+        <div id="tempo"></div>
+        <button id="coracao" onclick="mostrarMensagem()">❤️</button>
+        <div id="mensagem">
+            <p>
+                Nanda,
+                Desde o dia 12 de janeiro de 2025, às 01:24, quando eu assinei aquele “contrato de namoro” que você me
+                mandou (sim, oficialmente registrado 😅), minha vida ficou mais leve, mais bonita e muito mais
+                feliz.<br><br>
+                Eu ainda lembro do nosso primeiro beijo, lá em frente à sua casa… os dois morrendo de vergonha, com medo
+                da sua vó aparecer na janela a qualquer momento 😂. E mesmo com toda aquela timidez, foi um momento
+                perfeito, porque foi o começo de tudo.<br><br>
+                E o primeiro abraço… ah, aquele abraço! Quando te abracei e você saiu correndo pra dentro de casa sem
+                falar nada, eu juro que achei que tinha feito algo errado 😂. Mas o que você não sabe é que aquele
+                abraço foi o melhor da minha vida. Ali, eu senti algo que nunca tinha sentido antes — eu senti meu lar.
+                Foi como se o mundo inteiro tivesse ficado em silêncio só pra eu perceber que o meu lugar é com
+                você.<br><br>
+                Nanda, eu te amo.
+                Você é a minha vida, meu refúgio, minha paz e a razão do meu sorriso.
+                Sou grato por cada momento que a gente vive junto — até pelos silêncios, pelas risadas bobas e pelos
+                abraços demorados que dizem mais do que mil palavras.<br><br>
+                Feliz aniversário, meu amor.
+                Que esse site seja um pedacinho de tudo o que eu sinto por você — e que a cada segundo que o contador
+                marca, o meu amor por você só cresça mais e mais. ❤️
+            </p>
+        </div>
+        <div id="carrossel">
+            <img src="IMAGENS/1.jpg" class="foto">
+            <img src="IMAGENS/2.jpg" class="foto">
+            <img src="IMAGENS/3.jpg" class="foto">
+            <img src="IMAGENS/4.jpg" class="foto">
+            <img src="IMAGENS/5.jpg" class="foto">
+            <img src="IMAGENS/6.jpg" class="foto">
+            <img src="IMAGENS/7.jpg" class="foto">
+            <img src="IMAGENS/8.jpg" class="foto">
+            <img src="IMAGENS/9.jpg" class="foto">
+            <img src="IMAGENS/10.jpg" class="foto">
+            <img src="IMAGENS/11.jpg" class="foto">
+            <img src="IMAGENS/12.jpg" class="foto">
+            <div class="legenda" id="legenda"></div>
+        </div>
+
+        <!-- 💌 Texto bonitinho abaixo do carrossel -->
+<p id="fraseFinal">“Meu amor,
+Cada segundo ao seu lado é um presente que eu nunca imaginei receber.
+Parece que foi ontem que a gente começou essa história, e hoje já temos tantas memórias, risadas e planos juntos.
+Eu me pego sonhando com o nosso futuro, com o dia em que vou te ver vestida de branco, e poder dizer com o coração acelerado: “Agora é pra sempre, minha Nanda.”
+
+Você é minha paz, minha bagunça favorita e o motivo do meu sorriso todos os dias.
+Obrigado por ser exatamente quem você é — carinhosa, linda, divertida e a pessoa que mais me entende nesse mundo.
+
+Mal posso esperar pra casar com você, dividir uma vida, uma casa, uma história que vai ser só nossa.
+Te amo mais do que palavras conseguem explicar. 💍❤️” 💞</p>
+
+    </div>
+
+    <!-- Cartinha -->
+    <button id="cartinha" onclick="abrirCartinha()">💌</button>
+    <div id="textoCartinha">
+        <p>
+            Meu amor,<br>
+            Você me faz acreditar no amor de verdade — aquele que é leve, divertido e forte o bastante pra durar uma
+            vida.<br><br>
+            Eu sonho com o dia em que vou te ver de branco e poder dizer: “Agora é pra sempre, minha Nanda.” 💍<br><br>
+            Eu te amo mais do que palavras podem dizer.
+        </p>
+    </div>
+
+    <audio id="musica" src="Musica/Music.mp3" loop></audio>
+
+    <script>
+
+        let index = 0;
+        const fotos = document.querySelectorAll(".foto");
+        const legenda = document.getElementById("legenda");
+
+        const legendas = [
+            "Nosso primeiro sorriso juntos 💖",
+            "Aquele dia inesquecível 🌅",
+            "Você e seu jeitinho que eu amo 💫",
+            "Um momento simples, mas perfeito 💕",
+            "Meu amor, minha paz ❤️",
+            "O abraço que virou meu lar 🤗",
+            "Seu olhar… impossível não sorrir 😍",
+            "Mais um dia com você = dia perfeito 🌸",
+            "Nosso amor é o meu maior presente 🎁",
+            "Rindo à toa contigo 😂💞",
+            "Só você me faz sentir assim 🌹",
+            "Pra sempre nós dois 💍"
+        ];
+
+        function mostrarFoto() {
+            fotos.forEach(f => f.style.display = "none");
+            fotos[index].style.display = "block";
+            legenda.textContent = legendas[index];
+            index = (index + 1) % fotos.length;
+        }
+
+        function iniciar() {
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("contador").style.display = "flex";
+            document.getElementById("carrossel").style.display = "block";
+            document.getElementById("musica").play();
+            gerarCoracoes();
+            atualizarTempo();
+            setInterval(atualizarTempo, 1000);
+            mostrarFoto();
+            setInterval(mostrarFoto, 3000); // troca a cada 3s
+        }
+
+
+        function atualizarTempo() {
+            const inicio = new Date("2025-01-12T01:24:00");
+            const agora = new Date();
+            const diff = agora - inicio;
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / (1000 * 60)) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
+            document.getElementById("tempo").innerHTML =
+                `💞 ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos de amor 💞`;
+        }
+
+        function mostrarMensagem() {
+            const msg = document.getElementById("mensagem");
+            const carrossel = document.getElementById("carrossel");
+            const visivel = msg.style.display === "none";
+
+            msg.style.display = visivel ? "block" : "none";
+            carrossel.style.opacity = visivel ? "0.4" : "1"; // 👈 deixa o fundo mais suave
+        }
+
+        function abrirCartinha() {
+            const carta = document.getElementById("textoCartinha");
+            carta.style.display = carta.style.display === "none" ? "block" : "none";
+        }
+
+        function gerarCoracoes() {
+            setInterval(() => {
+                const coracao = document.createElement("div");
+                coracao.className = "coracao";
+                coracao.innerHTML = "❤️";
+                coracao.style.left = Math.random() * 100 + "vw";
+                coracao.style.fontSize = Math.random() * 20 + 10 + "px";
+                document.body.appendChild(coracao);
+                setTimeout(() => coracao.remove(), 6000);
+            }, 400);
+        }
+    </script>
+</body>
+
+</html>
