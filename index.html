@@ -326,6 +326,108 @@
             font-size: 18px;
             cursor: pointer;
         }
+
+        /* 🌸 Botão Linha do Tempo */
+        #btnTimeline {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 95, 145, 0.2);
+            border: 1px solid rgba(255, 95, 145, 0.4);
+            color: #ffd1dc;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            z-index: 10;
+        }
+
+        /* 🌷 Overlay */
+        #timelineOverlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 50;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 🌹 Caixa */
+        #timelineBox {
+            background: rgba(34, 34, 34, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            width: 85%;
+            max-width: 500px;
+            color: #ffd1dc;
+            position: relative;
+            animation: fadeIn 1s;
+        }
+
+        /* Botão fechar */
+        .fecharTimeline {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: none;
+            border: none;
+            color: #ff9bbb;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* 📸 Foto pequena */
+        .fotoTimeline {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 12px rgba(255, 105, 180, 0.4);
+        }
+
+        /* Momentos */
+        .momento {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .momento span {
+            font-weight: bold;
+            color: #ff9bbb;
+        }
+
+        .momento p {
+            margin-top: 4px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* 🎞️ Animação */
+        .animado {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .animado.visivel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Destaques */
+        .momento.destaque {
+            background: rgba(255, 95, 145, 0.12);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .momento.futuro {
+            border-left: 3px solid #ff9bbb;
+            padding-left: 10px;
+        }
     </style>
 </head>
 
@@ -418,6 +520,63 @@
 
     <audio id="musica" src="Musica/Music.mp3" loop></audio>
 
+    <!-- 🌸 Botão Linha do Tempo -->
+    <button id="btnTimeline" onclick="abrirTimeline()">1 ano com você 💍</button>
+
+    <!-- 🌷 Linha do Tempo -->
+    <div id="timelineOverlay">
+        <div id="timelineBox">
+            <button class="fecharTimeline" onclick="fecharTimeline()">×</button>
+
+            <h2>Nossa história 💖</h2>
+
+            <div class="momento animado">
+                <img src="IMAGENS/T1.jpeg" class="fotoTimeline">
+                <div>
+                    <span>📜 12/01/2025 — 01:24</span>
+                    <p>O contrato de namoro foi assinado. Sem saber, eu estava assinando o começo da melhor fase da
+                        minha vida.</p>
+                </div>
+            </div>
+
+            <div class="momento animado">
+                <img src="IMAGENS/T2.jpeg" class="fotoTimeline">
+                <div>
+                    <span>💋 O primeiro beijo</span>
+                    <p>Tímidos, nervosos e com medo da sua vó olhar pela janela… mas foi ali que tudo começou.</p>
+                </div>
+            </div>
+
+            <div class="momento animado">
+                <img src="IMAGENS/T3.jpeg" class="fotoTimeline">
+                <div>
+                    <span>🤍 O primeiro abraço</span>
+                    <p>Você correu pra dentro de casa e eu achei que tinha feito algo errado. Mas aquele abraço virou
+                        meu lar.</p>
+                </div>
+            </div>
+
+            <div class="momento animado destaque">
+                <img src="IMAGENS/T4.jpeg" class="fotoTimeline">
+                <div>
+                    <span>🎉 1 ano com você</span>
+                    <p>Um ano depois, eu ainda te escolho todos os dias — e escolherei por toda a vida.</p>
+                </div>
+            </div>
+
+            <div class="momento animado futuro">
+                <img src="IMAGENS/T5.jpeg" class="fotoTimeline">
+                <div>
+                    <span>💍 O que vem pela frente</span>
+                    <p>Eu sonho com o dia em que vou te ver de branco e poder dizer: agora é pra sempre, minha Nanda.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <!-- 🌸 Easter Egg Secreto -->
     <div id="easterEgg" class="egg-hidden">
         <button class="fecharEgg" onclick="fecharEgg()">×</button>
@@ -484,25 +643,25 @@
             document.getElementById("tempo").innerHTML =
                 `💞 ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos de amor 💞`;
         }
-let cliquesCoracao = 0;
+        let cliquesCoracao = 0;
 
-function mostrarMensagem() {
-    const msg = document.getElementById("mensagem");
-    const carrossel = document.getElementById("carrossel");
+        function mostrarMensagem() {
+            const msg = document.getElementById("mensagem");
+            const carrossel = document.getElementById("carrossel");
 
-    // alterna a mensagem principal
-    const visivel = msg.style.display === "none";
-    msg.style.display = visivel ? "block" : "none";
-    carrossel.style.opacity = visivel ? "0.4" : "1";
+            // alterna a mensagem principal
+            const visivel = msg.style.display === "none";
+            msg.style.display = visivel ? "block" : "none";
+            carrossel.style.opacity = visivel ? "0.4" : "1";
 
-    // conta cliques no coração
-    cliquesCoracao++;
+            // conta cliques no coração
+            cliquesCoracao++;
 
-    if (cliquesCoracao === 3) {
-        const egg = document.getElementById("easterEgg");
-        egg.classList.add("mostrar");
-    }
-}
+            if (cliquesCoracao === 3) {
+                const egg = document.getElementById("easterEgg");
+                egg.classList.add("mostrar");
+            }
+        }
 
         function abrirCartinha() {
             const carta = document.getElementById("textoCartinha");
@@ -521,11 +680,28 @@ function mostrarMensagem() {
             }, 400);
         }
 
-function fecharEgg() {
-    const egg = document.getElementById("easterEgg");
-    egg.classList.remove("mostrar");
-}
+        function fecharEgg() {
+            const egg = document.getElementById("easterEgg");
+            egg.classList.remove("mostrar");
+        }
 
+        function abrirTimeline() {
+            document.getElementById("timelineOverlay").style.display = "flex";
+            animarTimeline();
+        }
+
+        function fecharTimeline() {
+            document.getElementById("timelineOverlay").style.display = "none";
+        }
+
+        function animarTimeline() {
+            const momentos = document.querySelectorAll(".animado");
+            momentos.forEach((momento, i) => {
+                setTimeout(() => {
+                    momento.classList.add("visivel");
+                }, i * 400);
+            });
+        }
 
     </script>
 </body>
