@@ -358,9 +358,14 @@
         #timelineBox {
             background: rgba(34, 34, 34, 0.95);
             border-radius: 20px;
-            padding: 30px;
-            width: 85%;
+            padding: 22px;
+            width: 90%;
             max-width: 500px;
+
+            /* 🔥 ESSENCIAL PARA MOBILE */
+            max-height: 85vh;
+            overflow-y: auto;
+
             color: #ffd1dc;
             position: relative;
             animation: fadeIn 1s;
@@ -532,21 +537,23 @@
         }
 
         #finalPromessa {
-            margin-top: 25px;
-            padding: 22px;
+            margin-top: 20px;
+            padding: 20px;
             background: rgba(255, 95, 145, 0.08);
             border-radius: 18px;
-            animation: fadeCap 1s ease;
+
+            /* 👇 importante no mobile */
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         #textoDigitando {
-            font-size: 14px;
-            line-height: 1.7;
+            font-size: 15px;
+            line-height: 1.8;
             color: #ffd1dc;
             white-space: pre-line;
             text-align: left;
         }
-
 
         @keyframes fadeCap {
             from {
