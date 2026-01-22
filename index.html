@@ -428,6 +428,138 @@
             border-left: 3px solid #ff9bbb;
             padding-left: 10px;
         }
+
+        /* ❌ Botão fechar */
+        .fecharTimeline {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: #ff9bbb;
+            font-size: 26px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .fecharTimeline:hover {
+            transform: scale(1.2);
+        }
+
+        /* 🌷 Capítulos */
+        .capitulo {
+            text-align: center;
+            margin-bottom: 26px;
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.9s ease;
+        }
+
+        .capitulo.visivel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .capitulo img {
+            width: 100%;
+            max-width: 240px;
+            border-radius: 18px;
+            box-shadow: 0 0 22px rgba(255, 105, 180, 0.4);
+            margin-bottom: 10px;
+        }
+
+        .capitulo h3 {
+            font-size: 16px;
+            color: #ffb3d9;
+            margin: 6px 0 4px;
+        }
+
+        .capitulo p {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #ffd1dc;
+            padding: 0 8px;
+        }
+
+        /* Destaques */
+        .capitulo.destaque img {
+            box-shadow: 0 0 28px rgba(255, 95, 145, 0.6);
+        }
+
+        .capitulo.futuro {
+            border-top: 1px solid rgba(255, 182, 193, 0.25);
+            padding-top: 20px;
+        }
+
+        .capitulo {
+            display: none;
+            text-align: center;
+            animation: fadeCap 0.8s ease;
+        }
+
+        .capitulo.ativo {
+            display: block;
+        }
+
+        .capitulo img {
+            width: 100%;
+            max-width: 260px;
+            border-radius: 18px;
+            box-shadow: 0 0 22px rgba(255, 105, 180, 0.4);
+            margin-bottom: 12px;
+        }
+
+        .capitulo h3 {
+            color: #ffb3d9;
+            font-size: 16px;
+        }
+
+        .capitulo p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ffd1dc;
+            padding: 0 10px;
+        }
+
+        #btnProximo {
+            background: none;
+            border: none;
+            font-size: 42px;
+            margin-top: 14px;
+            cursor: pointer;
+            animation: pulsar 1.2s infinite;
+            color: #ff5f91;
+        }
+
+        #finalPromessa {
+            margin-top: 25px;
+            padding: 22px;
+            background: rgba(255, 95, 145, 0.08);
+            border-radius: 18px;
+            animation: fadeCap 1s ease;
+        }
+
+        #textoDigitando {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #ffd1dc;
+            white-space: pre-line;
+            text-align: left;
+        }
+
+
+        @keyframes fadeCap {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
     </style>
 </head>
 
@@ -523,187 +655,283 @@
     <!-- 🌸 Botão Linha do Tempo -->
     <button id="btnTimeline" onclick="abrirTimeline()">1 ano com você 💍</button>
 
+
     <!-- 🌷 Linha do Tempo -->
     <div id="timelineOverlay">
         <div id="timelineBox">
             <button class="fecharTimeline" onclick="fecharTimeline()">×</button>
 
-            <h2>Nossa história 💖</h2>
-
-            <div class="momento animado">
-                <img src="IMAGENS/T1.jpeg" class="fotoTimeline">
-                <div>
-                    <span>📜 12/01/2025 — 01:24</span>
-                    <p>O contrato de namoro foi assinado. Sem saber, eu estava assinando o começo da melhor fase da
-                        minha vida.</p>
-                </div>
+            <div class="capitulo ativo">
+                <img src="IMAGENS/T1.jpeg">
+                <h3>📜 12/01/2025 — 01:24</h3>
+                <p>Sem saber, naquele momento eu estava começando a melhor fase da minha vida.</p>
             </div>
 
-            <div class="momento animado">
-                <img src="IMAGENS/T2.jpeg" class="fotoTimeline">
-                <div>
-                    <span>💋 O primeiro beijo</span>
-                    <p>Tímidos, nervosos e com medo da sua vó olhar pela janela… mas foi ali que tudo começou.</p>
-                </div>
+            <div class="capitulo">
+                <img src="IMAGENS/T2.jpeg">
+                <h3>💋 Nosso primeiro beijo</h3>
+                <p>Tímidos, nervosos… mas perfeitos do nosso jeito.</p>
             </div>
 
-            <div class="momento animado">
-                <img src="IMAGENS/T3.jpeg" class="fotoTimeline">
-                <div>
-                    <span>🤍 O primeiro abraço</span>
-                    <p>Você correu pra dentro de casa e eu achei que tinha feito algo errado. Mas aquele abraço virou
-                        meu lar.</p>
-                </div>
+            <div class="capitulo">
+                <img src="IMAGENS/T3.jpeg">
+                <h3>🤍 O abraço que virou lar</h3>
+                <p>Ali eu entendi que o meu lugar sempre foi com você.</p>
             </div>
 
-            <div class="momento animado destaque">
-                <img src="IMAGENS/T4.jpeg" class="fotoTimeline">
-                <div>
-                    <span>🎉 1 ano com você</span>
-                    <p>Um ano depois, eu ainda te escolho todos os dias — e escolherei por toda a vida.</p>
-                </div>
+            <div class="capitulo">
+                <img src="IMAGENS/T4.jpeg">
+                <h3>🎉 1 ano com você</h3>
+                <p>Um ano te escolhendo todos os dias — e ainda quero uma vida inteira.</p>
             </div>
 
-            <div class="momento animado futuro">
-                <img src="IMAGENS/T5.jpeg" class="fotoTimeline">
-                <div>
-                    <span>💍 O que vem pela frente</span>
-                    <p>Eu sonho com o dia em que vou te ver de branco e poder dizer: agora é pra sempre, minha Nanda.
-                    </p>
-                </div>
+            <div class="capitulo">
+                <img src="IMAGENS/T5.jpeg">
+                <h3>💍 Nosso futuro</h3>
+                <p>Eu sonho com o dia de te ver de branco e dizer: agora é pra sempre.</p>
+            </div>
+
+            <button id="btnProximo" onclick="proximoCapitulo()">❤️</button>
+
+            <div id="finalPromessa" style="display:none;">
+                <div id="textoDigitando"></div>
             </div>
 
         </div>
-    </div>
 
 
-    <!-- 🌸 Easter Egg Secreto -->
-    <div id="easterEgg" class="egg-hidden">
-        <button class="fecharEgg" onclick="fecharEgg()">×</button>
-        <img src="IMAGENS/14.jpeg" alt="Nós dois">
-        <p>
-            Esse site não tem fim.<br>
-            Assim como o que eu sinto por você.<br><br>
-            E se um dia você voltar aqui,<br>
-            saiba que eu continuo aqui…<br>
-            te escolhendo todos os dias.
-        </p>
-    </div>
+        <!-- 🌸 Easter Egg Secreto -->
+        <div id="easterEgg" class="egg-hidden">
+            <button class="fecharEgg" onclick="fecharEgg()">×</button>
+            <img src="IMAGENS/14.jpeg" alt="Nós dois">
+            <p>
+                Esse site não tem fim.<br>
+                Assim como o que eu sinto por você.<br><br>
+                E se um dia você voltar aqui,<br>
+                saiba que eu continuo aqui…<br>
+                te escolhendo todos os dias.
+            </p>
+        </div>
 
 
-    <script>
+        <script>
 
-        let index = 0;
-        const fotos = document.querySelectorAll(".foto");
-        const legenda = document.getElementById("legenda");
+            let index = 0;
+            const fotos = document.querySelectorAll(".foto");
+            const legenda = document.getElementById("legenda");
 
-        const legendas = [
-            "Sou apaixonado no seu olhar 💖",
-            "Você tentando me impedir de registrar sua beleza",
-            "Nossa foto pro Sipat na empresa 💫",
-            "Sorriso que me encanta 💕",
-            "Meu amor, timida para foto ❤️",
-            "Um registro de nossas idas e vindas 🤗",
-            "Meu neném, amo tanto 😍",
-            "Mais um dia com você = dia perfeito ❤️",
-            "Amo seu jeitinho ❤️",
-            "Eu tentando fazer algo na bateria kkk💞",
-            "Desde que você chegou, a vida tem mais cor e sentido❤️",
-            "Pra sempre nós dois 💍"
-        ];
+            const legendas = [
+                "Sou apaixonado no seu olhar 💖",
+                "Você tentando me impedir de registrar sua beleza",
+                "Nossa foto pro Sipat na empresa 💫",
+                "Sorriso que me encanta 💕",
+                "Meu amor, timida para foto ❤️",
+                "Um registro de nossas idas e vindas 🤗",
+                "Meu neném, amo tanto 😍",
+                "Mais um dia com você = dia perfeito ❤️",
+                "Amo seu jeitinho ❤️",
+                "Eu tentando fazer algo na bateria kkk💞",
+                "Desde que você chegou, a vida tem mais cor e sentido❤️",
+                "Pra sempre nós dois 💍"
+            ];
 
-        function mostrarFoto() {
-            fotos.forEach(f => f.style.display = "none");
-            fotos[index].style.display = "block";
-            legenda.textContent = legendas[index];
-            index = (index + 1) % fotos.length;
-        }
-
-        function iniciar() {
-            document.getElementById("inicio").style.display = "none";
-            document.getElementById("contador").style.display = "flex";
-            document.getElementById("carrossel").style.display = "block";
-            document.getElementById("musica").play();
-            gerarCoracoes();
-            atualizarTempo();
-            setInterval(atualizarTempo, 1000);
-            mostrarFoto();
-            setInterval(mostrarFoto, 3000); // troca a cada 3s
-        }
+            let digitando = false;
+            let typingTimeout = null;
 
 
-        function atualizarTempo() {
-            const inicio = new Date("2025-01-12T01:24:00");
-            const agora = new Date();
-            const diff = agora - inicio;
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutos = Math.floor((diff / (1000 * 60)) % 60);
-            const segundos = Math.floor((diff / 1000) % 60);
-            document.getElementById("tempo").innerHTML =
-                `💞 ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos de amor 💞`;
-        }
-        let cliquesCoracao = 0;
-
-        function mostrarMensagem() {
-            const msg = document.getElementById("mensagem");
-            const carrossel = document.getElementById("carrossel");
-
-            // alterna a mensagem principal
-            const visivel = msg.style.display === "none";
-            msg.style.display = visivel ? "block" : "none";
-            carrossel.style.opacity = visivel ? "0.4" : "1";
-
-            // conta cliques no coração
-            cliquesCoracao++;
-
-            if (cliquesCoracao === 3) {
-                const egg = document.getElementById("easterEgg");
-                egg.classList.add("mostrar");
+            function mostrarFoto() {
+                fotos.forEach(f => f.style.display = "none");
+                fotos[index].style.display = "block";
+                legenda.textContent = legendas[index];
+                index = (index + 1) % fotos.length;
             }
-        }
 
-        function abrirCartinha() {
-            const carta = document.getElementById("textoCartinha");
-            carta.style.display = carta.style.display === "none" ? "block" : "none";
-        }
+            function iniciar() {
+                document.getElementById("inicio").style.display = "none";
+                document.getElementById("contador").style.display = "flex";
+                document.getElementById("carrossel").style.display = "block";
+                document.getElementById("musica").play();
+                gerarCoracoes();
+                atualizarTempo();
+                setInterval(atualizarTempo, 1000);
+                mostrarFoto();
+                setInterval(mostrarFoto, 3000); // troca a cada 3s
+            }
 
-        function gerarCoracoes() {
-            setInterval(() => {
-                const coracao = document.createElement("div");
-                coracao.className = "coracao";
-                coracao.innerHTML = "❤️";
-                coracao.style.left = Math.random() * 100 + "vw";
-                coracao.style.fontSize = Math.random() * 20 + 10 + "px";
-                document.body.appendChild(coracao);
-                setTimeout(() => coracao.remove(), 6000);
-            }, 400);
-        }
 
-        function fecharEgg() {
-            const egg = document.getElementById("easterEgg");
-            egg.classList.remove("mostrar");
-        }
+            function atualizarTempo() {
+                const inicio = new Date("2025-01-12T01:24:00");
+                const agora = new Date();
+                const diff = agora - inicio;
+                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutos = Math.floor((diff / (1000 * 60)) % 60);
+                const segundos = Math.floor((diff / 1000) % 60);
+                document.getElementById("tempo").innerHTML =
+                    `💞 ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos de amor 💞`;
+            }
+            let cliquesCoracao = 0;
 
-        function abrirTimeline() {
-            document.getElementById("timelineOverlay").style.display = "flex";
-            animarTimeline();
-        }
+            function mostrarMensagem() {
+                const msg = document.getElementById("mensagem");
+                const carrossel = document.getElementById("carrossel");
 
-        function fecharTimeline() {
-            document.getElementById("timelineOverlay").style.display = "none";
-        }
+                // alterna a mensagem principal
+                const visivel = msg.style.display === "none";
+                msg.style.display = visivel ? "block" : "none";
+                carrossel.style.opacity = visivel ? "0.4" : "1";
 
-        function animarTimeline() {
-            const momentos = document.querySelectorAll(".animado");
-            momentos.forEach((momento, i) => {
-                setTimeout(() => {
-                    momento.classList.add("visivel");
-                }, i * 400);
-            });
-        }
+                // conta cliques no coração
+                cliquesCoracao++;
 
-    </script>
+                if (cliquesCoracao === 3) {
+                    const egg = document.getElementById("easterEgg");
+                    egg.classList.add("mostrar");
+                }
+            }
+
+            function abrirCartinha() {
+                const carta = document.getElementById("textoCartinha");
+                carta.style.display = carta.style.display === "none" ? "block" : "none";
+            }
+
+            function gerarCoracoes() {
+                setInterval(() => {
+                    const coracao = document.createElement("div");
+                    coracao.className = "coracao";
+                    coracao.innerHTML = "❤️";
+                    coracao.style.left = Math.random() * 100 + "vw";
+                    coracao.style.fontSize = Math.random() * 20 + 10 + "px";
+                    document.body.appendChild(coracao);
+                    setTimeout(() => coracao.remove(), 6000);
+                }, 400);
+            }
+
+            function fecharEgg() {
+                const egg = document.getElementById("easterEgg");
+                egg.classList.remove("mostrar");
+            }
+
+            function abrirTimeline() {
+                document.getElementById("timelineOverlay").style.display = "flex";
+                animarTimeline();
+            }
+
+            function fecharTimeline() {
+                document.getElementById("timelineOverlay").style.display = "none";
+
+                // reset capítulos
+                capituloAtual = 0;
+                capitulos.forEach((c, i) => {
+                    c.classList.remove("ativo");
+                    if (i === 0) c.classList.add("ativo");
+                });
+
+                // reset botão
+                btnProximo.style.display = "block";
+                btnProximo.innerHTML = "❤️";
+                btnProximo.classList.remove("alianca");
+
+                // esconder final
+                document.getElementById("finalPromessa").style.display = "none";
+                document.getElementById("textoDigitando").innerHTML = "";
+
+                // trava digitação
+                digitando = false;
+            }
+
+            function animarTimeline() {
+                const capitulos = document.querySelectorAll(".capitulo");
+                capitulos.forEach((cap, i) => {
+                    setTimeout(() => {
+                        cap.classList.add("visivel");
+                    }, i * 500);
+                });
+            }
+
+            let capituloAtual = 0;
+            const capitulos = document.querySelectorAll(".capitulo");
+            const btnProximo = document.getElementById("btnProximo");
+
+
+            function proximoCapitulo() {
+                capitulos[capituloAtual].classList.remove("ativo");
+                capituloAtual++;
+
+                if (capituloAtual < capitulos.length) {
+                    capitulos[capituloAtual].classList.add("ativo");
+
+                    // quando chegar no último capítulo
+                    if (capituloAtual === capitulos.length - 1) {
+                        btnProximo.innerHTML = "💍";
+                        btnProximo.classList.add("alianca");
+                    }
+
+                } else {
+                    btnProximo.style.display = "none";
+                    mostrarTextoFinal();
+                }
+            }
+
+
+            function mostrarTextoFinal() {
+                if (digitando) return;
+
+                const box = document.getElementById("finalPromessa");
+                const areaTexto = document.getElementById("textoDigitando");
+
+                box.style.display = "block";
+                areaTexto.innerHTML = "";
+
+                let i = 0;
+                digitando = true;
+
+                function digitar() {
+                    if (i < textoFinal.length) {
+                        areaTexto.innerHTML += textoFinal.charAt(i);
+                        i++;
+                        typingTimeout = setTimeout(digitar, 40);
+                    } else {
+                        digitando = false;
+                    }
+                }
+
+                digitar();
+            }
+
+
+            const textoFinal = `
+Nanda, meu amor…
+
+Eu não te escolhi por acaso.
+Eu te escolhi porque em você eu encontrei paz, abrigo e verdade.
+
+Quero ser o seu porto seguro.
+Quero ser aquele lugar onde você descansa quando o mundo pesa,
+onde você se sente protegida, amada e nunca sozinha.
+
+Eu vim pra ficar.
+Nos dias bons, eu vou sorrir com você.
+Nos dias difíceis, eu vou segurar sua mão ainda mais forte.
+Eu prometo estar presente — de corpo, alma e coração.
+
+Quero curar cada ferida que um dia tentaram te deixar.
+Quero construir um amor que não machuca, não some e não falha.
+Um amor que cuida, protege e permanece.
+
+Meu sonho é formar uma família com você.
+Dividir uma vida, uma casa, planos, risadas, desafios e vitórias.
+Te ver vestida de branco e poder dizer:
+“Agora é pra sempre, meu amor.”
+
+Eu te amo com tudo o que sou.
+E vou te amar com tudo o que ainda vamos ser.
+`;
+
+
+
+
+        </script>
 </body>
 
 </html>
