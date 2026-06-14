@@ -39,14 +39,14 @@
             margin: 0;
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #0a0a12, #160e14, #0d0a14);
-            background-size: 400% 400%;
-            animation: gradientShift 25s ease infinite;
+            background-size: 200% 200%;
+            animation: gradientShift 40s ease infinite;
             color: #fff;
             overflow-x: hidden;
             text-align: center;
             min-height: 100vh;
             opacity: 0;
-            animation: entradaPagina 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards, gradientShift 25s ease infinite;
+            animation: entradaPagina 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards, gradientShift 40s ease infinite;
         }
 
         body::after {
@@ -91,6 +91,7 @@
             pointer-events: none;
             z-index: 0;
             animation: twinkle var(--dur) ease-in-out infinite alternate;
+            will-change: opacity, transform;
         }
 
         @keyframes twinkle {
@@ -292,8 +293,8 @@
 
         #fraseFinal {
             background: rgba(30, 30, 40, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             padding: 28px 10%;
             margin: 40px auto 80px;
             font-size: 18px;
@@ -372,8 +373,8 @@
             max-width: 760px;
             margin: 30px auto;
             background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 24px;
             padding: 36px;
@@ -434,8 +435,8 @@
             bottom: 100px;
             right: 30px;
             background: rgba(28, 28, 36, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 182, 193, 0.1);
             border-radius: 20px;
             padding: 24px;
@@ -522,6 +523,7 @@
             pointer-events: none;
             z-index: 0;
             animation: subir var(--dur) linear var(--delay) infinite;
+            will-change: transform, opacity;
         }
 
         @keyframes subir {
@@ -560,8 +562,8 @@
             bottom: 100px;
             right: 30px;
             background: rgba(28, 28, 36, 0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 105, 180, 0.2);
             border-radius: 20px;
             padding: 16px;
@@ -624,25 +626,19 @@
             font-weight: 500;
             font-family: 'Poppins', sans-serif;
             cursor: pointer;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             z-index: 10;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        #btnTimeline:hover {
-            background: rgba(255, 95, 145, 0.18);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(255, 95, 145, 0.2);
         }
 
         #timelineOverlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             z-index: 50;
             justify-content: center;
             align-items: center;
@@ -650,8 +646,8 @@
 
         #timelineBox {
             background: rgba(22, 22, 30, 0.96);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 182, 193, 0.08);
             border-radius: 24px;
             padding: 32px;
@@ -836,7 +832,7 @@
 
         #planeta-marte .planeta-inner {
             background: radial-gradient(circle at 40% 40%, rgba(220, 90, 60, 0.25), rgba(180, 50, 40, 0.1) 50%, transparent 72%);
-            box-shadow: 0 0 140px 60px rgba(220, 90, 60, 0.12);
+            box-shadow: 0 0 80px 30px rgba(220, 90, 60, 0.1);
             animation: pulsarPlaneta 6s ease-in-out infinite;
         }
 
@@ -854,7 +850,7 @@
 
         #planeta-venus .planeta-inner {
             background: radial-gradient(circle at 60% 40%, rgba(220, 180, 100, 0.25), rgba(190, 160, 190, 0.1) 50%, transparent 72%);
-            box-shadow: 0 0 140px 60px rgba(220, 180, 100, 0.12);
+            box-shadow: 0 0 80px 30px rgba(220, 180, 100, 0.1);
             animation: pulsarPlaneta 6s ease-in-out infinite 3s;
         }
 
@@ -1245,7 +1241,7 @@
             let typingTimeout = null;
 
             function gerarEstrelas() {
-                const numEstrelas = 120;
+                const numEstrelas = 50;
                 const container = document.body;
                 for (let i = 0; i < numEstrelas; i++) {
                     const estrela = document.createElement("div");
@@ -1358,20 +1354,21 @@
             function gerarParticulas() {
                 const emojis = ["❤️", "💕", "✨", "🌸", "💖", "🩷"];
                 setInterval(() => {
+                    if (document.querySelectorAll(".particula").length > 15) return;
                     const el = document.createElement("div");
                     el.className = "particula";
                     el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
                     el.style.left = Math.random() * 100 + "%";
-                    const size = Math.random() * 18 + 12;
+                    const size = Math.random() * 14 + 10;
                     el.style.fontSize = size + "px";
                     const dur = Math.random() * 6 + 5;
                     el.style.setProperty("--dur", dur + "s");
                     el.style.setProperty("--delay", "0s");
-                    el.style.setProperty("--op", (Math.random() * 0.4 + 0.6));
+                    el.style.setProperty("--op", (Math.random() * 0.4 + 0.5));
                     el.style.setProperty("--rot", (Math.random() * 360 - 180) + "deg");
                     document.body.appendChild(el);
                     setTimeout(() => el.remove(), dur * 1000);
-                }, 350);
+                }, 600);
             }
 
             function fecharEgg() {
