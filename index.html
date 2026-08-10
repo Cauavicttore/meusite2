@@ -4,11 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosso amor ❤️</title>
+    <title>Ponyo &amp; Sosuke — Nossa História de Amor 🐟❤️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --oceano: #040b16;
+            --oceano2: #0a1f33;
+            --coral: #ff5e7a;
+            --coral2: #ff8a5c;
+            --gold: #ffc24b;
+            --teal: #3fd6c9;
+            --sky: #8fd3ff;
+            --texto: #eef7ff;
+        }
+
         *,
         *::before,
         *::after {
@@ -16,7 +27,7 @@
         }
 
         ::selection {
-            background: #ff5f91;
+            background: var(--coral);
             color: #fff;
         }
 
@@ -27,7 +38,7 @@
             background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 95, 145, 0.4);
+            background: rgba(63, 214, 201, 0.35);
             border-radius: 12px;
         }
 
@@ -38,14 +49,16 @@
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0a0a12, #160e14, #0d0a14);
+            background: linear-gradient(135deg, var(--oceano), #0b1a2e, #05131f);
             background-size: 200% 200%;
             animation: gradientShift 40s ease infinite;
-            color: #fff;
+            color: var(--texto);
             overflow-x: hidden;
             text-align: center;
             min-height: 100vh;
             opacity: 0;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
             animation: entradaPagina 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards, gradientShift 40s ease infinite;
         }
 
@@ -55,947 +68,1619 @@
             inset: 0;
             pointer-events: none;
             z-index: 999;
-            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.55);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                url('IMAGENS/P11.jpg') right center / 50% 100% no-repeat,
+                url('IMAGENS/N4.jpeg') left center / 50% 100% no-repeat;
+            opacity: 0.07;
+            z-index: 0;
+            pointer-events: none;
         }
 
         @keyframes gradientShift {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            33% {
-                background-position: 100% 50%;
-            }
-            66% {
-                background-position: 50% 100%;
-            }
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         @keyframes entradaPagina {
-            0% {
-                opacity: 0;
-                transform: scale(0.97);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-                filter: blur(0);
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
+        h1, h2, h3, p {
+            margin: 0;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+        }
+
+        /* ===== Estrelas ===== */
         .estrela {
             position: fixed;
             border-radius: 50%;
             background: #fff;
+            animation: piscar var(--dur) ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes piscar {
+            0%, 100% { opacity: var(--op-min); }
+            50% { opacity: var(--op-max); }
+        }
+
+        /* ===== Partículas ===== */
+        .particula {
+            position: fixed;
+            bottom: -30px;
+            animation: subir var(--dur) linear forwards;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        @keyframes subir {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: var(--op); }
+            90% { opacity: var(--op); }
+            100% { transform: translateY(-110vh) rotate(var(--rot)); opacity: 0; }
+        }
+
+        /* ===== Ondas ===== */
+        .oceano {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 220px;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .onda {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+        }
+
+        .onda-1 { animation: deslizar 16s linear infinite; }
+        .onda-2 { animation: deslizar 11s linear infinite reverse; }
+        .onda-3 { animation: deslizar 20s linear infinite; }
+
+        @keyframes deslizar {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ===== Peixinho (Ponyo) ===== */
+        .peixinho {
+            position: absolute;
+            width: 84px;
+            bottom: 150px;
+            left: -120px;
+            z-index: 2;
+            filter: drop-shadow(0 4px 10px rgba(255, 94, 122, 0.35));
+            animation: nadar 22s linear infinite;
+        }
+
+        @keyframes nadar {
+            0% { transform: translateX(0) translateY(0) rotate(4deg); }
+            25% { transform: translateX(32vw) translateY(-14px) rotate(-3deg); }
+            50% { transform: translateX(66vw) translateY(6px) rotate(4deg); }
+            75% { transform: translateX(100vw) translateY(-10px) rotate(-3deg); }
+            100% { transform: translateX(135vw) translateY(0) rotate(4deg); }
+        }
+
+        .bolhas span {
+            position: absolute;
+            bottom: 170px;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle at 30% 30%, #fff, rgba(143, 211, 255, 0.3));
+            border-radius: 50%;
+            opacity: 0;
+            animation: bolha 3s ease-in infinite;
+        }
+
+        .bolhas span:nth-child(1) { left: 20%; animation-delay: 0s; }
+        .bolhas span:nth-child(2) { left: 45%; width: 9px; height: 9px; animation-delay: 1.2s; }
+        .bolhas span:nth-child(3) { left: 70%; animation-delay: 2.1s; }
+
+        @keyframes bolha {
+            0% { transform: translateY(0); opacity: 0; }
+            15% { opacity: 0.7; }
+            100% { transform: translateY(-120px); opacity: 0; }
+        }
+
+        /* ===== Lua ===== */
+        .lua {
+            position: absolute;
+            top: 8%;
+            right: 8%;
+            width: 120px;
+            height: 120px;
+            z-index: 1;
+            filter: drop-shadow(0 0 30px rgba(255, 240, 200, 0.45));
+            animation: boiar 8s ease-in-out infinite;
+        }
+
+        @keyframes boiar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-14px); }
+        }
+
+        /* ===== Fundos temáticos ===== */
+        .bg-foto {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-foto-suave {
+            opacity: 0.3;
+            filter: blur(2px) saturate(1.15);
+        }
+
+        .bg-foto-fraco {
+            opacity: 0.12;
+            filter: blur(3px);
+        }
+
+        .bg-duo {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-repeat: no-repeat;
+            background-size: 50% 100%, 50% 100%;
+            background-position: left center, right center;
+            opacity: 0.32;
+            filter: blur(1.5px) saturate(1.1);
+        }
+
+        .bg-duo-fraco {
+            opacity: 0.16;
+        }
+
+        .bg-escuro {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(4, 11, 22, 0.55), rgba(4, 11, 22, 0.78));
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .cena-svg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
             pointer-events: none;
             z-index: 0;
-            animation: twinkle var(--dur) ease-in-out infinite alternate;
-            will-change: opacity, transform;
+            opacity: 0.32;
         }
 
-        @keyframes twinkle {
-            0% {
-                opacity: var(--op-min);
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: var(--op-max);
-                transform: scale(1.2);
-            }
+        .cena-svg svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
         }
 
-        .simbolos-mv {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 14px;
-            user-select: none;
-        }
-
-        .simbolos-mv .simb-venus {
-            font-size: 32px;
-            color: #ff9bbb;
-            text-shadow: 0 0 24px rgba(255, 155, 187, 0.5);
-            animation: flutuar 4s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        .simbolos-mv .simb-mars {
-            font-size: 32px;
-            color: #ff5f91;
-            text-shadow: 0 0 24px rgba(255, 95, 145, 0.5);
-            animation: flutuar 4s ease-in-out infinite 0.7s;
-            display: inline-block;
-        }
-
-        .simbolos-mv .conector {
-            color: rgba(255, 182, 193, 0.2);
-            font-size: 20px;
-            font-weight: 300;
-            animation: pulsarConector 3s ease-in-out infinite;
-        }
-
-        @keyframes flutuar {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-
-        @keyframes pulsarConector {
-            0%,
-            100% {
-                opacity: 0.15;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.6;
-                transform: scale(1.1);
-            }
-        }
-
-        #inicio {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(ellipse at center, rgba(255, 95, 145, 0.06) 0%, transparent 60%);
+        .inicio-estudio,
+        .inicio-titulo,
+        .inicio-sub,
+        .inicio-tagline,
+        .inicio-carta,
+        .btn-inicio,
+        .inicio-rodape,
+        #contador h2,
+        #contador #tempo,
+        #contador #coracao,
+        #contador #mensagem,
+        #carrossel h2,
+        #carrossel .fotos,
+        #carrossel .legenda,
+        #ponyo .ponyo-titulo,
+        #ponyo .ponyo-frase,
+        #ponyo .ponyo-grid,
+        #ponyo .ponyo-fujimoto {
             position: relative;
             z-index: 1;
         }
 
-        #inicio>* {
-            animation: entradaConteudo 1s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-        #inicio>*:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-        #inicio>*:nth-child(2) {
-            animation-delay: 0.5s;
-        }
-        #inicio>*:nth-child(3) {
-            animation-delay: 0.8s;
+        #creditos {
+            position: relative;
         }
 
-        @keyframes entradaConteudo {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .creditos-texto {
+            position: relative;
+            z-index: 1;
         }
 
-        #inicio h1 {
-            font-weight: 300;
-            font-size: 22px;
-            letter-spacing: 0.5px;
-            line-height: 1.5;
-            max-width: 600px;
-            padding: 0 20px;
-            background: linear-gradient(135deg, #ffd1dc, #ff9bbb, #ffd1dc);
-            background-size: 200% auto;
+        #fraseFinal {
+            position: relative;
+            background:
+                linear-gradient(rgba(4, 11, 22, 0.8), rgba(4, 11, 22, 0.88)),
+                url('IMAGENS/P3.jpg') right center / 50% 100% no-repeat,
+                url('IMAGENS/N3.jpeg') left center / 50% 100% no-repeat;
+        }
+
+        /* ===== Tela Inicial ===== */
+        #inicio {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 1;
+            padding: 40px 5%;
+        }
+
+        .inicio-estudio {
+            font-size: 12px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0;
+            animation: aparecer 1.5s 0.5s ease forwards;
+        }
+
+        .inicio-estudio span {
+            color: var(--teal);
+        }
+
+        .inicio-titulo {
+            font-size: clamp(42px, 9vw, 110px);
+            font-weight: 800;
+            line-height: 0.95;
+            margin: 18px 0 6px;
+            background: linear-gradient(120deg, var(--coral), var(--gold) 55%, var(--teal));
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradText 4s ease infinite;
+            animation: aparecer 1.8s 0.9s ease forwards, corTitulo 6s ease infinite;
+            opacity: 0;
         }
 
-        @keyframes gradText {
-            0%,
-            100% {
-                background-position: 0% center;
-            }
-            50% {
-                background-position: 100% center;
-            }
+        @keyframes corTitulo {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
-        #inicio button {
-            background: linear-gradient(135deg, #ff5f91, #ff8fab);
-            border: none;
-            color: white;
-            padding: 15px 36px;
-            font-size: 18px;
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .inicio-sub {
+            font-size: clamp(13px, 2.5vw, 18px);
+            color: var(--sky);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: aparecer 1.5s 1.3s ease forwards;
+        }
+
+        .inicio-tagline {
+            max-width: 520px;
+            font-size: clamp(13px, 2.4vw, 16px);
+            color: rgba(238, 247, 255, 0.75);
+            line-height: 1.6;
+            margin-top: 18px;
+            opacity: 0;
+            animation: aparecer 1.5s 1.7s ease forwards;
+        }
+
+        .inicio-carta {
+            margin-top: 22px;
+            font-size: 14px;
+            color: var(--gold);
+            opacity: 0;
+            animation: aparecer 1.5s 2s ease forwards;
+        }
+
+        .inicio-carta b {
+            color: var(--coral);
+        }
+
+        .btn-inicio {
+            margin-top: 30px;
+            padding: 16px 44px;
+            font-size: 17px;
             font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 24px rgba(255, 95, 145, 0.3);
-            letter-spacing: 0.5px;
-            position: relative;
-            overflow: hidden;
+            color: #fff;
+            background: linear-gradient(135deg, var(--coral), var(--coral2));
+            border-radius: 60px;
+            box-shadow: 0 8px 28px rgba(255, 94, 122, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            opacity: 0;
+            animation: aparecer 1.5s 2.3s ease forwards;
         }
 
-        #inicio button::before {
+        .btn-inicio:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 36px rgba(255, 94, 122, 0.55);
+        }
+
+        .inicio-rodape {
+            position: absolute;
+            bottom: 26px;
+            left: 0;
+            right: 0;
+            font-size: 11px;
+            color: rgba(238, 247, 255, 0.35);
+            letter-spacing: 2px;
+            z-index: 2;
+        }
+
+        /* ===== Cinema (página do filme) ===== */
+        #cinema {
+            display: none;
+            position: relative;
+            min-height: 100vh;
+            background: #0a0e16;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        #cinema::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-            background-size: 200% 200%;
-            animation: shimmer 3s ease-in-out infinite;
+            background: url('IMAGENS/N1.jpeg') center/cover no-repeat;
+            filter: blur(6px) brightness(0.45) saturate(1.1);
+            transform: scale(1.08);
+        }
+
+        #cinema::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(4, 11, 22, 0.1) 0%, rgba(4, 11, 22, 0.65) 55%, var(--oceano) 100%);
+        }
+
+        .cinema-wrap {
+            position: relative;
+            z-index: 2;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 14vh 5% 8vh;
+            text-align: left;
+        }
+
+        .cinema-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--coral), var(--coral2));
+            border-radius: 6px;
+            animation: aparecer 0.8s 0.2s ease backwards;
+        }
+
+        .cinema-categoria {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: aparecer 0.8s 0.35s ease backwards;
+        }
+
+        .cinema-titulo {
+            margin-top: 6px;
+            font-size: clamp(34px, 7vw, 52px);
+            font-weight: 800;
+            line-height: 1;
+            color: #fff;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+            animation: aparecer 0.8s 0.5s ease backwards;
+        }
+
+        .cinema-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+            animation: aparecer 0.8s 0.65s ease backwards;
+        }
+
+        .tag {
+            padding: 4px 11px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 40px;
+        }
+
+        .tag.star {
+            color: var(--gold);
+            border-color: rgba(255, 194, 75, 0.5);
+        }
+
+        .cinema-desc {
+            margin-top: 16px;
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(238, 247, 255, 0.85);
+            animation: aparecer 0.8s 0.8s ease backwards;
+        }
+
+        .cinema-tempo {
+            margin-top: 14px;
+            font-size: 14px;
+            color: var(--sky);
+            animation: aparecer 0.8s 0.95s ease backwards;
+        }
+
+        .cinema-botoes {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+            animation: aparecer 0.8s 1.1s ease backwards;
+        }
+
+        .btn-assistir {
+            flex: 1;
+            min-width: 180px;
+            padding: 14px 22px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #04101c;
+            background: #fff;
+            border-radius: 10px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-assistir:hover {
+            transform: scale(1.04);
+            background: var(--teal);
+        }
+
+        .btn-lista {
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            transition: background 0.2s;
+        }
+
+        .btn-lista.added {
+            background: rgba(63, 214, 201, 0.2);
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+
+        .cinema-scroll {
+            margin-top: 26px;
+            font-size: 12px;
+            color: rgba(238, 247, 255, 0.45);
+            letter-spacing: 1px;
+            animation: pulsarFade 2s ease-in-out infinite;
+        }
+
+        @keyframes pulsarFade {
+            0%, 100% { opacity: 0.45; }
+            50% { opacity: 1; }
+        }
+
+        .cinema-barco {
+            position: absolute;
+            bottom: 9%;
+            right: 6%;
+            width: 200px;
+            opacity: 0.45;
+            z-index: 1;
             pointer-events: none;
+            animation: boiar 7s ease-in-out infinite;
         }
 
-        @keyframes shimmer {
-            0%,
-            100% {
-                background-position: 200% 50%;
-            }
-            50% {
-                background-position: 0% 50%;
-            }
+        /* ===== O Filme (player) ===== */
+        #filme {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 60;
+            overflow: hidden;
         }
 
-        #inicio button:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 36px rgba(255, 95, 145, 0.5);
+        .filme-cena {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.45s ease;
         }
 
-        #inicio button:active {
-            transform: scale(0.97);
+        .filme-cena.mostrar {
+            opacity: 1;
         }
 
-        #contador {
+        .grao {
+            position: absolute;
+            inset: 0;
+            background-image: repeating-radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.03) 0px, transparent 1px, transparent 3px, rgba(0, 0, 0, 0.06) 4px);
+            background-size: 220px 220px;
+            animation: grau 0.5s steps(4) infinite;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        @keyframes grau {
+            0% { background-position: 0 0; }
+            25% { background-position: -60px 30px; }
+            50% { background-position: 30px -40px; }
+            75% { background-position: -20px -60px; }
+            100% { background-position: 0 0; }
+        }
+
+        .vinheta {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .barra-cinema {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 9vh;
+            background: #000;
+            z-index: 4;
+        }
+
+        .barra-cima { top: 0; }
+        .barra-baixo { bottom: 0; }
+
+        .filme-topo {
+            position: absolute;
+            top: 9vh;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 18px 26px;
+            z-index: 6;
+            opacity: 0;
+            transition: opacity 0.3s;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+        }
+
+        .filme-topo.visivel { opacity: 1; }
+
+        .filme-badge {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .filme-titulo-box {
+            margin-top: 6px;
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+        }
+
+        .filme-titulo-sub {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 1px;
+        }
+
+        .filme-btn {
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .filme-btn:hover {
+            background: var(--coral);
+            transform: scale(1.08);
+        }
+
+        .filme-btn-mini {
+            width: 34px;
+            height: 34px;
+            font-size: 13px;
+        }
+
+        .musica-nome {
+            font-size: 12px;
+            color: var(--teal);
+            max-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .cartao-cap {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.62);
+            backdrop-filter: blur(4px);
+            z-index: 8;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+
+        .cartao-cap.visivel {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cartao-cap-num {
+            font-size: 13px;
+            letter-spacing: 6px;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .cartao-cap-titulo {
+            margin-top: 14px;
+            font-size: clamp(30px, 7vw, 64px);
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .cartao-cap-sub {
+            margin-top: 10px;
+            font-size: clamp(13px, 2.5vw, 18px);
+            color: var(--sky);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .legenda-filme {
+            position: absolute;
+            bottom: 16vh;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
+            max-width: min(82vw, 640px);
+            padding: 9px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            font-size: clamp(13px, 2.4vw, 17px);
+            color: #fff;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .legenda-filme.visivel {
+            opacity: 1;
+        }
+
+        .controles-filme {
+            position: absolute;
+            bottom: 9vh;
+            left: 0;
+            right: 0;
+            padding: 0 26px 20px;
+            z-index: 6;
+            opacity: 0;
+            transition: opacity 0.3s;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+        }
+
+        .controles-filme.visivel { opacity: 1; }
+
+        .filme-bar {
+            position: relative;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .filme-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--coral), var(--gold));
+            border-radius: 4px;
+        }
+
+        .controles-linha {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .filme-tempo {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filme-spacer {
+            flex: 1;
+        }
+
+        .fim-card {
+            position: absolute;
+            inset: 0;
             display: none;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding-top: 60px;
-            font-size: 22px;
-            min-height: 100vh;
+            justify-content: center;
             text-align: center;
+            padding: 20px;
+            background: radial-gradient(ellipse at center, rgba(4, 11, 22, 0.85), rgba(0, 0, 0, 0.95));
+            z-index: 9;
+        }
+
+        .fim-card.mostrar { display: flex; }
+
+        .fim-fim {
+            font-size: clamp(48px, 12vw, 120px);
+            font-weight: 800;
+            color: var(--gold);
+            text-shadow: 0 0 40px rgba(255, 194, 75, 0.4);
+        }
+
+        .fim-txt {
+            margin-top: 16px;
+            font-size: clamp(14px, 2.6vw, 19px);
+            color: #fff;
+            max-width: 460px;
+            line-height: 1.6;
+        }
+
+        .fim-sub {
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--sky);
+        }
+
+        .btn-continuar {
+            margin-top: 28px;
+            padding: 14px 34px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #04101c;
+            background: var(--teal);
+            border-radius: 40px;
+            transition: transform 0.2s;
+        }
+
+        .btn-continuar:hover {
+            transform: scale(1.05);
+        }
+
+        /* ===== Continue assistindo ===== */
+        #posFilme {
+            display: none;
             position: relative;
+            z-index: 1;
+        }
+
+        .retomar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            max-width: 860px;
+            margin: 34px auto 10px;
+            padding: 16px 22px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            text-align: left;
+        }
+
+        .retomar-info {
+            font-size: 14px;
+            color: rgba(238, 247, 255, 0.85);
+        }
+
+        .retomar-info b {
+            color: #fff;
+        }
+
+        .btn-retomar {
+            padding: 10px 22px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, var(--coral), var(--coral2));
+            border-radius: 40px;
+            white-space: nowrap;
+            transition: transform 0.2s;
+        }
+
+        .btn-retomar:hover {
+            transform: scale(1.05);
+        }
+
+        /* ===== Contador ===== */
+        #contador {
+            position: relative;
+            padding: 70px 5% 40px;
             z-index: 1;
         }
 
         #contador h2 {
-            font-weight: 300;
-            letter-spacing: 2px;
-            font-size: 24px;
-            background: linear-gradient(135deg, #ffd1dc, #ff9bbb, #ffd1dc);
-            background-size: 200% auto;
+            font-size: clamp(22px, 4.5vw, 34px);
+            font-weight: 700;
+            background: linear-gradient(120deg, var(--coral), var(--gold));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradText 4s ease infinite;
-            padding: 0 20px;
-        }
-
-        #fraseFinal {
-            background: rgba(30, 30, 40, 0.7);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            padding: 28px 10%;
-            margin: 40px auto 80px;
-            font-size: 18px;
-            color: #ffcce0;
-            text-align: center;
-            font-style: italic;
-            letter-spacing: 0.5px;
-            line-height: 1.8;
-            animation: aparecer 10s ease-in-out;
-            z-index: 10;
-            max-width: 800px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 182, 193, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         #tempo {
-            font-size: 28px;
-            margin-top: 20px;
-            color: #ffb3d9;
-            text-shadow: 0 0 20px rgba(255, 182, 193, 0.4);
-            font-weight: 600;
-            animation: fadeIn 2s ease;
-            padding: 0 20px;
+            margin-top: 12px;
+            font-size: clamp(15px, 3vw, 22px);
+            color: var(--sky);
         }
 
         #coracao {
-            background: none;
-            border: none;
+            margin-top: 26px;
+            font-size: 52px;
+            display: inline-block;
             cursor: pointer;
-            margin-top: 40px;
-            font-size: 48px;
-            animation: pulsar 2s ease-in-out infinite;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            filter: drop-shadow(0 0 16px rgba(255, 95, 145, 0.4));
+            animation: batida 1.3s ease-in-out infinite;
+            filter: drop-shadow(0 0 18px rgba(255, 94, 122, 0.5));
         }
 
-        #coracao:hover {
-            transform: scale(1.3);
-        }
-
-        #coracao:active {
-            transform: scale(0.9);
-        }
-
-        @keyframes pulsar {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            25% {
-                transform: scale(1.1);
-            }
-            50% {
-                transform: scale(1);
-            }
-            75% {
-                transform: scale(1.08);
-            }
+        @keyframes batida {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.15); }
+            40% { transform: scale(1.05); }
+            60% { transform: scale(1.18); }
         }
 
         #mensagem {
             display: none;
-            width: 88%;
-            max-width: 760px;
-            margin: 30px auto;
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            padding: 36px;
-            line-height: 1.8;
-            color: #ffd1dc;
-            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            z-index: 10;
-            text-align: left;
-            font-size: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        #mensagem p {
-            margin: 0;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        #cartinha {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: linear-gradient(135deg, #ff5f91, #ff8fab);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 4px 24px rgba(255, 95, 145, 0.3);
-            z-index: 5;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        #cartinha:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 32px rgba(255, 95, 145, 0.5);
-        }
-
-        #cartinha:active {
-            transform: scale(0.92);
-        }
-
-        #textoCartinha {
-            display: none;
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: rgba(28, 28, 36, 0.94);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 182, 193, 0.1);
-            border-radius: 20px;
-            padding: 24px;
-            width: 340px;
-            max-width: calc(100vw - 60px);
-            text-align: left;
-            color: #ffd1dc;
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 20;
-            line-height: 1.8;
+            max-width: 560px;
+            margin: 24px auto 0;
+            padding: 24px 26px;
             font-size: 15px;
+            line-height: 1.7;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 94, 122, 0.3);
+            border-radius: 18px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
+        /* ===== Galeria / Carrossel ===== */
         #carrossel {
-            display: none;
-            text-align: center;
-            margin-top: 30px;
             position: relative;
+            padding: 40px 5% 20px;
+            transition: opacity 0.4s;
             z-index: 1;
-            transition: opacity 0.6s ease;
+        }
+
+        #carrossel h2 {
+            font-size: clamp(20px, 4vw, 30px);
+            color: var(--teal);
+            margin-bottom: 22px;
+        }
+
+        .fotos {
+            position: relative;
+            max-width: 540px;
+            margin: 0 auto;
         }
 
         .foto {
+            width: 100%;
+            max-height: 68vh;
+            object-fit: cover;
+            border-radius: 20px;
             display: none;
-            width: 85%;
-            max-width: 400px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            margin: 0 auto;
-            border: 3px solid rgba(255, 255, 255, 0.06);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .foto:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 48px rgba(255, 95, 145, 0.2);
-            border-color: rgba(255, 95, 145, 0.15);
+        .legenda {
+            margin-top: 14px;
+            font-size: 16px;
+            color: var(--gold);
         }
 
         .carrossel-dots {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 8px;
             margin-top: 18px;
-            flex-wrap: wrap;
         }
 
         .carrossel-dot {
-            width: 8px;
-            height: 8px;
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
-            background: rgba(255, 182, 193, 0.2);
-            border: none;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(255, 255, 255, 0.25);
             padding: 0;
+            transition: background 0.3s, transform 0.3s;
         }
 
         .carrossel-dot.active {
-            background: #ff5f91;
-            box-shadow: 0 0 12px rgba(255, 95, 145, 0.5);
-            width: 28px;
-            border-radius: 4px;
+            background: var(--coral);
+            transform: scale(1.35);
         }
 
-        .carrossel-dot:hover:not(.active) {
-            background: rgba(255, 182, 193, 0.4);
-            transform: scale(1.3);
-        }
-
-        .legenda {
-            margin-top: 16px;
-            font-size: 17px;
-            color: #ffcce0;
-            font-weight: 300;
-            letter-spacing: 0.3px;
-            animation: fadeIn 0.6s ease;
-        }
-
-        .particula {
-            position: fixed;
-            bottom: -20px;
-            pointer-events: none;
-            z-index: 0;
-            animation: subir var(--dur) linear var(--delay) infinite;
-            will-change: transform, opacity;
-        }
-
-        @keyframes subir {
-            0% {
-                transform: translateY(0) rotate(0deg) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: var(--op);
-                transform: translateY(0) rotate(0deg) scale(1);
-            }
-            90% {
-                opacity: var(--op);
-            }
-            100% {
-                transform: translateY(-110vh) rotate(var(--rot)) scale(0.5);
-                opacity: 0;
-            }
-        }
-
-        .imginicial {
-            width: 230px;
-            border-radius: 20px;
-            box-shadow: 0 0 40px 10px rgba(255, 105, 180, 0.2);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 2px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .imginicial:hover {
-            box-shadow: 0 0 60px 20px rgba(255, 182, 193, 0.4);
-            transform: scale(1.03) rotate(-1deg);
-        }
-
-        #easterEgg {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: rgba(28, 28, 36, 0.92);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 105, 180, 0.2);
-            border-radius: 20px;
-            padding: 16px;
-            width: 240px;
+        /* ===== Planetas ===== */
+        .planeta {
+            position: relative;
+            display: inline-block;
+            margin: 40px 28px 0;
             text-align: center;
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
             opacity: 0;
-            pointer-events: none;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 30;
-            transform: translateY(12px) scale(0.96);
+            transform: scale(0.6);
+            transition: opacity 0.8s, transform 0.8s;
+            z-index: 1;
         }
 
-        #easterEgg.mostrar {
+        .planeta.visivel {
             opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0) scale(1);
+            transform: scale(1);
         }
 
-        #easterEgg img {
-            width: 100%;
-            border-radius: 14px;
-            margin-bottom: 10px;
+        .planeta-orb {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            margin: 0 auto;
+            box-shadow: 0 0 34px currentColor;
         }
 
-        #easterEgg p {
-            font-size: 13px;
-            color: #ffd1dc;
-            line-height: 1.5;
-            margin: 0;
+        .planeta-marte .planeta-orb {
+            background: radial-gradient(circle at 35% 30%, #ffd0a0, #e85a45 60%, #b03a2e);
+            color: #ffc9a8;
         }
 
-        .fecharEgg {
+        .planeta-venus .planeta-orb {
+            background: radial-gradient(circle at 35% 30%, #ffe9c0, #ffd2a0 60%, #dda05c);
+            color: #ffe9c0;
+        }
+
+        .planeta-nome {
+            margin-top: 10px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: rgba(238, 247, 255, 0.7);
+        }
+
+        /* ===== Frase final ===== */
+        #fraseFinal {
+            max-width: 620px;
+            margin: 44px auto 70px;
+            padding: 30px 28px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(238, 247, 255, 0.9);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            white-space: pre-line;
+            z-index: 1;
+        }
+
+        #fraseFinal b {
+            color: var(--coral);
+        }
+
+        /* ===== Ponyo Moments ===== */
+        #ponyo {
+            display: none;
+            position: relative;
+            padding: 70px 5% 90px;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #ponyo::before {
+            content: '';
             position: absolute;
-            top: 6px;
-            right: 10px;
-            background: none;
-            border: none;
-            color: #ff9bbb;
-            font-size: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            padding: 4px;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 160px;
+            background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(63, 214, 201, 0.12), transparent 70%);
         }
 
-        .fecharEgg:hover {
-            transform: scale(1.3);
+        .ponyo-titulo {
+            font-size: clamp(22px, 4.5vw, 34px);
+            font-weight: 700;
+            background: linear-gradient(120deg, var(--teal), var(--sky));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
+        .ponyo-frase {
+            margin-top: 10px;
+            font-size: 14px;
+            color: rgba(238, 247, 255, 0.65);
+            font-style: italic;
+        }
+
+        .ponyo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            max-width: 980px;
+            margin: 34px auto 0;
+        }
+
+        .ponyo-card {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .ponyo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+        }
+
+        .ponyo-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ponyo-card h3 {
+            padding: 14px 16px 4px;
+            font-size: 16px;
+            color: var(--gold);
+        }
+
+        .ponyo-card p {
+            padding: 0 16px 18px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(238, 247, 255, 0.8);
+        }
+
+        .ponyo-fujimoto {
+            position: relative;
+            max-width: 640px;
+            margin: 40px auto 0;
+            padding: 26px 26px;
+            background: linear-gradient(135deg, rgba(255, 94, 122, 0.08), rgba(63, 214, 201, 0.08));
+            border: 1px solid rgba(255, 94, 122, 0.25);
+            border-radius: 18px;
+        }
+
+        .ponyo-fujimoto .emoji-f {
+            font-size: 34px;
+            animation: boiar 4s ease-in-out infinite;
+        }
+
+        .ponyo-fujimoto p {
+            margin-top: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(238, 247, 255, 0.9);
+        }
+
+        .fujimoto-nome {
+            display: block;
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--sky);
+        }
+
+        /* ===== Botão Timeline ===== */
         #btnTimeline {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 95, 145, 0.1);
-            border: 1px solid rgba(255, 95, 145, 0.2);
-            color: #ffd1dc;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 500;
-            font-family: 'Poppins', sans-serif;
-            cursor: pointer;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            z-index: 10;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            top: 18px;
+            right: 18px;
+            z-index: 30;
+            padding: 9px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, var(--coral), var(--coral2));
+            border-radius: 40px;
+            box-shadow: 0 6px 20px rgba(255, 94, 122, 0.4);
+            transition: transform 0.2s;
         }
 
+        #btnTimeline:hover {
+            transform: scale(1.05);
+        }
+
+        /* ===== Timeline ===== */
         #timelineOverlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            z-index: 50;
-            justify-content: center;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+            z-index: 70;
             align-items: center;
+            justify-content: center;
+            padding: 16px;
         }
 
         #timelineBox {
-            background: rgba(22, 22, 30, 0.96);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 182, 193, 0.08);
-            border-radius: 24px;
-            padding: 32px;
-            width: 92%;
-            max-width: 500px;
-            max-height: 85vh;
-            overflow-y: auto;
-            color: #ffd1dc;
             position: relative;
-            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+            max-width: 560px;
+            width: 100%;
+            max-height: 86vh;
+            overflow-y: auto;
+            padding: 28px 26px;
+            text-align: center;
+            background: linear-gradient(160deg, #0d1a2b, #081422);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 22px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+        }
+
+        .fecharTimeline {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 26px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .fecharTimeline:hover {
+            color: var(--coral);
         }
 
         .capitulo-progresso {
             display: flex;
             justify-content: center;
-            gap: 6px;
-            margin-bottom: 22px;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
         .capitulo-progresso .barra {
-            flex: 1;
-            max-width: 60px;
-            height: 3px;
-            border-radius: 2px;
-            background: rgba(255, 182, 193, 0.12);
-            transition: all 0.5s ease;
+            width: 34px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 4px;
         }
 
         .capitulo-progresso .barra.active {
-            background: #ff5f91;
-            box-shadow: 0 0 8px rgba(255, 95, 145, 0.4);
-        }
-
-        .fecharTimeline {
-            position: absolute;
-            top: 14px;
-            right: 16px;
-            background: none;
-            border: none;
-            color: #ff9bbb;
-            font-size: 28px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            z-index: 2;
-            padding: 4px 8px;
-            line-height: 1;
-        }
-
-        .fecharTimeline:hover {
-            transform: scale(1.2) rotate(90deg);
+            background: linear-gradient(90deg, var(--coral), var(--gold));
         }
 
         .capitulo {
             display: none;
-            text-align: center;
-            margin-bottom: 20px;
         }
 
         .capitulo.ativo {
             display: block;
-            animation: fadeCap 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+            animation: aparecer 0.5s ease;
         }
 
         .capitulo img {
-            width: 100%;
-            max-width: 260px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.2);
-            margin-bottom: 16px;
-            transition: transform 0.6s ease;
-            border: 2px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .capitulo img:hover {
-            transform: scale(1.02);
+            max-width: 280px;
+            width: 90%;
+            border-radius: 14px;
+            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
         }
 
         .capitulo h3 {
-            color: #ffb3d9;
+            margin-top: 14px;
             font-size: 17px;
-            font-weight: 600;
-            margin: 8px 0 8px;
-            letter-spacing: 0.3px;
+            color: var(--gold);
         }
 
         .capitulo p {
+            margin-top: 8px;
             font-size: 14px;
-            line-height: 1.7;
-            color: #ffd1dc;
-            padding: 0 12px;
-            font-weight: 300;
+            line-height: 1.6;
+            color: rgba(238, 247, 255, 0.85);
         }
 
         #btnProximo {
-            background: none;
-            border: none;
+            margin-top: 24px;
             font-size: 44px;
-            margin-top: 20px;
-            cursor: pointer;
-            animation: pulsar 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 12px rgba(255, 95, 145, 0.3));
-            transition: transform 0.3s ease;
+            transition: transform 0.2s;
         }
 
         #btnProximo:hover {
-            transform: scale(1.2);
+            transform: scale(1.15);
         }
 
         #finalPromessa {
-            margin-top: 24px;
-            padding: 24px;
-            background: rgba(255, 95, 145, 0.04);
-            border: 1px solid rgba(255, 95, 145, 0.1);
-            border-radius: 20px;
-            max-width: 100%;
-            box-sizing: border-box;
-            animation: fadeIn 0.8s ease;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 94, 122, 0.08);
+            border: 1px solid rgba(255, 94, 122, 0.25);
+            border-radius: 16px;
         }
 
         #textoDigitando {
-            font-size: 15px;
-            line-height: 1.9;
-            color: #ffd1dc;
-            white-space: pre-line;
+            font-size: 14px;
+            line-height: 1.7;
             text-align: left;
+            white-space: pre-line;
+            color: #fff;
         }
 
-        @keyframes fadeCap {
-            0% {
-                opacity: 0;
-                transform: translateY(24px) scale(0.97);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .planeta {
+        /* ===== Cartinha ===== */
+        #cartinha {
             position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .planeta.visivel {
-            opacity: 1;
-        }
-
-        .planeta-inner {
-            width: 300px;
-            height: 300px;
+            bottom: 22px;
+            right: 22px;
+            width: 58px;
+            height: 58px;
+            font-size: 26px;
+            background: linear-gradient(135deg, var(--coral), var(--coral2));
             border-radius: 50%;
-            position: relative;
+            box-shadow: 0 8px 26px rgba(255, 94, 122, 0.45);
+            z-index: 50;
+            transition: transform 0.2s;
+            animation: batida 2.4s ease-in-out infinite;
         }
 
-        .planeta-simbolo {
-            font-size: 36px;
-            font-weight: 300;
-            text-shadow: 0 0 30px currentColor;
-            transition: all 0.6s ease;
+        #cartinha:hover {
+            transform: scale(1.1);
         }
 
-        .planeta-nome {
-            font-size: 13px;
+        #textoCartinha {
+            display: none;
+            position: fixed;
+            bottom: 92px;
+            right: 22px;
+            width: 320px;
+            max-width: calc(100vw - 44px);
+            padding: 20px;
+            text-align: left;
+            background: #0f1e30;
+            border: 1px solid rgba(255, 94, 122, 0.3);
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            z-index: 50;
+        }
+
+        #textoCartinha p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(238, 247, 255, 0.9);
+        }
+
+        /* ===== Player Spotify ===== */
+        #spotify {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #0c1a2b, #10233a);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 20px;
+            z-index: 55;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.45);
+        }
+
+        .spotify-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+            flex-shrink: 1;
+        }
+
+        .spotify-cover {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .spotify-titulo {
+            font-size: 14px;
             font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 170px;
+        }
+
+        .spotify-artista {
+            font-size: 12px;
+            color: var(--teal);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 170px;
+        }
+
+        .spotify-controles {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .spotify-btn {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: #fff;
+            border-radius: 50%;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .spotify-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: scale(1.08);
+        }
+
+        .spotify-btn-play {
+            width: 46px;
+            height: 46px;
+            font-size: 17px;
+            background: #fff;
+            color: #000;
+        }
+
+        .spotify-btn-play:hover {
+            background: var(--teal);
+        }
+
+        .spotify-progresso {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .spotify-progresso span {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .spotify-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .spotify-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--teal);
+            border-radius: 4px;
+        }
+
+        body.com-spotify #cartinha {
+            bottom: 92px;
+        }
+
+        body.com-spotify #textoCartinha {
+            bottom: 162px;
+        }
+
+        body.com-spotify #fraseFinal {
+            margin-bottom: 130px;
+        }
+
+        body.com-spotify #ponyo {
+            padding-bottom: 160px;
+        }
+
+        /* ===== Easter Egg ===== */
+        #easterEgg {
+            position: fixed;
+            width: 300px;
+            right: 20px;
+            bottom: 90px;
+            padding: 16px;
+            text-align: center;
+            background: #0f1e30;
+            border: 1px solid rgba(255, 194, 75, 0.4);
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            z-index: 80;
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            pointer-events: none;
+            transition: opacity 0.4s, transform 0.4s;
+        }
+
+        #easterEgg.mostrar {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        #easterEgg img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        #easterEgg p {
+            margin-top: 12px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--gold);
+        }
+
+        .fecharEgg {
+            position: absolute;
+            top: 6px;
+            right: 12px;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== Créditos finais ===== */
+        #creditos {
+            padding: 30px 5% 60px;
+            font-size: 12px;
+            color: rgba(238, 247, 255, 0.5);
+            letter-spacing: 2px;
+            line-height: 2.2;
+        }
+
+        #creditos b {
+            color: var(--gold);
             letter-spacing: 4px;
-            text-shadow: 0 0 20px currentColor;
         }
 
-        #planeta-marte {
-            left: -40px;
-        }
-
-        #planeta-marte .planeta-inner {
-            background: radial-gradient(circle at 40% 40%, rgba(220, 90, 60, 0.25), rgba(180, 50, 40, 0.1) 50%, transparent 72%);
-            box-shadow: 0 0 80px 30px rgba(220, 90, 60, 0.1);
-            animation: pulsarPlaneta 6s ease-in-out infinite;
-        }
-
-        #planeta-marte .planeta-simbolo {
-            color: #e07050;
-        }
-
-        #planeta-marte .planeta-nome {
-            color: rgba(220, 110, 70, 0.7);
-        }
-
-        #planeta-venus {
-            right: -40px;
-        }
-
-        #planeta-venus .planeta-inner {
-            background: radial-gradient(circle at 60% 40%, rgba(220, 180, 100, 0.25), rgba(190, 160, 190, 0.1) 50%, transparent 72%);
-            box-shadow: 0 0 80px 30px rgba(220, 180, 100, 0.1);
-            animation: pulsarPlaneta 6s ease-in-out infinite 3s;
-        }
-
-        #planeta-venus .planeta-simbolo {
-            color: #e0c080;
-        }
-
-        #planeta-venus .planeta-nome {
-            color: rgba(200, 180, 120, 0.7);
-        }
-
-        @keyframes pulsarPlaneta {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.06); opacity: 1; }
-        }
-
+        /* ===== Responsivo ===== */
         @media (max-width: 768px) {
-            .planeta-inner {
-                width: 180px;
-                height: 180px;
+            .filme-topo {
+                padding: 14px;
             }
-            .planeta-simbolo {
-                font-size: 26px;
-            }
-            .planeta-nome {
-                font-size: 11px;
-                letter-spacing: 3px;
-            }
-            #planeta-marte { left: -30px; }
-            #planeta-venus { right: -30px; }
-        }
 
-        @media (max-width: 768px) {
-            body {
+            .filme-titulo-box {
                 font-size: 15px;
             }
-            #inicio h1 {
-                font-size: 17px;
-                padding: 0 16px;
+
+            .filme-titulo-sub {
+                display: none;
             }
-            #inicio button {
-                font-size: 16px;
-                padding: 14px 28px;
+
+            .controles-filme {
+                padding: 0 12px 12px;
             }
-            .imginicial {
-                width: 170px;
+
+            .controles-linha {
+                gap: 8px;
+                flex-wrap: wrap;
             }
-            #contador {
-                padding-top: 40px;
+
+            .musica-nome {
+                max-width: 100px;
             }
-            #contador h2 {
-                font-size: 20px;
-            }
-            #tempo {
-                font-size: 20px;
-            }
-            #mensagem {
-                width: 92%;
-                padding: 24px 18px;
-                font-size: 15px;
-                border-radius: 18px;
-            }
-            #fraseFinal {
-                padding: 20px 16px;
-                font-size: 15px;
-                margin: 30px 12px 60px;
-                border-radius: 16px;
-            }
-            #cartinha {
-                width: 52px;
-                height: 52px;
-                font-size: 24px;
-                bottom: 18px;
-                right: 18px;
-            }
-            #textoCartinha {
-                width: calc(100vw - 40px);
-                right: 20px;
-                bottom: 80px;
-                padding: 18px;
-                font-size: 14px;
-            }
-            #btnTimeline {
-                font-size: 12px;
+
+            .legenda-filme {
+                bottom: 17vh;
+                max-width: 88vw;
                 padding: 8px 14px;
-                top: 16px;
-                right: 16px;
-            }
-            #timelineBox {
-                padding: 24px 16px;
-                width: 94%;
-                max-height: 80vh;
-            }
-            .capitulo img {
-                max-width: 200px;
-            }
-            .capitulo h3 {
-                font-size: 15px;
-            }
-            .capitulo p {
                 font-size: 13px;
-                padding: 0 4px;
             }
-            #btnProximo {
-                font-size: 38px;
+
+            .retomar {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            #textoDigitando {
-                font-size: 14px;
+
+            .spotify-progresso {
+                order: 3;
+                width: 100%;
+                flex-basis: 100%;
             }
-            #finalPromessa {
-                padding: 18px 14px;
+
+            #spotify {
+                flex-wrap: wrap;
+                padding: 10px 14px;
+                gap: 10px;
             }
-            #easterEgg {
-                width: 200px;
-                right: 16px;
-                bottom: 80px;
-                padding: 12px;
+
+            .ponyo-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
-            #easterEgg p {
-                font-size: 12px;
+
+            .ponyo-card img {
+                height: 200px;
             }
-            .foto {
-                width: 92%;
+
+            #timelineBox {
+                padding: 22px 16px;
             }
-            .legenda {
-                font-size: 15px;
+
+            .capitulo img {
+                max-width: 210px;
             }
-            #coracao {
-                font-size: 42px;
+
+            .cinema-barco {
+                display: none;
             }
         }
 
         @media (max-width: 400px) {
-            #inicio h1 {
-                font-size: 15px;
+            .inicio-titulo {
+                font-size: 46px;
             }
-            .imginicial {
-                width: 140px;
+
+            .cinema-botoes {
+                flex-direction: column;
             }
+
+            .btn-assistir {
+                min-width: 0;
+            }
+
+            .filme-btn {
+                width: 38px;
+                height: 38px;
+            }
+
             #tempo {
-                font-size: 16px;
-            }
-            #btnTimeline {
-                font-size: 11px;
-                padding: 6px 12px;
+                font-size: 15px;
             }
         }
     </style>
@@ -1003,121 +1688,366 @@
 
 <body>
 
-    <!-- Tela Inicial -->
+    <!-- ===== TELA 1: Capa do filme ===== -->
     <div id="inicio">
-        <img class="imginicial" src="IMAGENS/13.jpg" alt="">
-        <h1>💖 “Se eu pudesse escolher de novo, escolheria você todas as vezes.” 💖</h1>
-        <button onclick="iniciar()">Clica na Carta depois aqui</button>
+        <div class="bg-duo" style="background-image:url('IMAGENS/P1.jpg'),url('IMAGENS/N1.jpeg')"></div>
+        <div class="bg-escuro"></div>
+
+        <div class="estrela" style="--op-min:.2;--op-max:.9;--dur:3s;left:8%;top:20%"></div>
+        <div class="estrela" style="--op-min:.15;--op-max:.8;--dur:4s;left:25%;top:12%"></div>
+        <div class="estrela" style="--op-min:.2;--op-max:1;--dur:2.6s;left:50%;top:26%"></div>
+        <div class="estrela" style="--op-min:.1;--op-max:.7;--dur:3.6s;left:72%;top:15%"></div>
+        <div class="estrela" style="--op-min:.2;--op-max:.9;--dur:4.4s;left:88%;top:30%"></div>
+
+        <svg class="lua" viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="80" fill="#fff7d6"/>
+            <circle cx="72" cy="76" r="26" fill="rgba(240,220,160,0.55)"/>
+            <circle cx="128" cy="120" r="18" fill="rgba(240,220,160,0.5)"/>
+            <circle cx="110" cy="62" r="10" fill="rgba(240,220,160,0.45)"/>
+        </svg>
+
+        <div class="bolhas"><span></span><span></span><span></span></div>
+
+        <svg class="peixinho" viewBox="0 0 100 60">
+            <ellipse cx="34" cy="30" rx="30" ry="18" fill="#ff7a5c"/>
+            <path d="M60,30 L88,10 Q76,30 88,50 Z" fill="#ff9d76"/>
+            <path d="M64,18 Q78,6 88,10 Z" fill="#e85a45"/>
+            <circle cx="22" cy="24" r="4.5" fill="#fff"/>
+            <circle cx="23.5" cy="24" r="2.2" fill="#222"/>
+            <path d="M12,32 Q28,40 44,33" stroke="#e85a45" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            <circle cx="8" cy="22" r="3" fill="#ff5e7a"/>
+            <path d="M30,12 Q34,2 40,8 Q36,10 34,14 Z" fill="#ff8a5c"/>
+        </svg>
+
+        <div class="oceano">
+            <svg class="onda onda-1" viewBox="0 0 1200 220" preserveAspectRatio="none">
+                <path d="M0,120 C150,60 300,180 450,120 C600,60 750,180 900,120 C1050,60 1200,180 1200,120 L1200,220 L0,220 Z" fill="rgba(63,214,201,0.16)"/>
+            </svg>
+            <svg class="onda onda-2" viewBox="0 0 1200 220" preserveAspectRatio="none">
+                <path d="M0,150 C200,90 400,200 600,150 C800,90 1000,200 1200,150 L1200,220 L0,220 Z" fill="rgba(143,211,255,0.13)"/>
+            </svg>
+            <svg class="onda onda-3" viewBox="0 0 1200 220" preserveAspectRatio="none">
+                <path d="M0,175 C180,140 380,210 600,175 C820,140 1020,210 1200,175 L1200,220 L0,220 Z" fill="rgba(255,94,122,0.10)"/>
+            </svg>
+        </div>
+
+        <p class="inicio-estudio"><span>Amor</span> Pictures apresenta</p>
+        <h1 class="inicio-titulo">Ponyo &amp; Sosuke</h1>
+        <p class="inicio-sub">🐟 Uma História de Amor Real ❤️</p>
+        <p class="inicio-tagline">
+            "Quando dois mundos diferentes se encontram — como Ponyo e Sosuke —,
+            o impossível vira a mais linda das histórias. E a nossa começa assim."
+        </p>
+        <p class="inicio-carta">💌 <b>Tem uma cartinha pra você</b> escondida na história…</p>
+
+        <button class="btn-inicio" onclick="iniciar()">▶ Assistir ao Filme</button>
+
+        <p class="inicio-rodape">ESTREIA: 12 DE JANEIRO DE 2025 · DUROU O TEMPO QUE O AMOR QUIS</p>
     </div>
 
+    <!-- ===== TELA 2: Página do filme ===== -->
+    <section id="cinema">
+        <div class="cinema-wrap">
+            <span class="cinema-badge">🎬 FILME ORIGINAL DE NÓS</span>
+            <p class="cinema-categoria">Romance · Fantasia · Inspirado em Ponyo &amp; Sosuke</p>
+            <h2 class="cinema-titulo">Ponyo &amp; Sosuke:<br>Nossa História de Amor</h2>
+            <div class="cinema-meta">
+                <span class="tag star">★ 5.0</span>
+                <span class="tag">2025</span>
+                <span class="tag">Livre</span>
+                <span class="tag">1h 22min</span>
+            </div>
+            <p class="cinema-desc">
+                Uma garotinha chamada Ponyo cruzou o oceano por amor. Sosuke a escolheu
+                todos os dias. E nós — bem, nós fizemos exatamente a mesma coisa.
+                Um filme feito de nós dois, cheio de ondas, abraços e um amor que
+                nem o oceano inteiro consegue separar. 🐟❤️
+            </p>
+            <p class="cinema-tempo" id="tempoCinema">💞 Carregando nosso tempo de amor…</p>
+            <div class="cinema-botoes">
+                <button class="btn-assistir" onclick="assistir()">▶ Assistir</button>
+                <button class="btn-lista" id="btnLista" onclick="toggleLista()">+ Minha Lista</button>
+            </div>
+            <p class="cinema-scroll">▾ deslize para começar ▾</p>
+        </div>
+
+        <div class="cinema-barco">
+            <svg viewBox="0 0 200 100" fill="none">
+                <circle cx="150" cy="30" r="20" fill="rgba(255,247,214,.9)"/>
+                <path d="M30,62 C60,50 140,50 170,62 C150,74 50,74 30,62 Z" fill="rgba(217,64,64,.8)"/>
+                <path d="M100,62 L100,30 L128,44 Z" fill="rgba(245,240,232,.9)"/>
+                <path d="M10,84 q30,-8 60,0 t60,0 t60,0" stroke="rgba(143,211,255,.5)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ===== TELA 3: O Filme (player) ===== -->
+    <div id="filme">
+        <div class="barra-cinema barra-cima"></div>
+        <div class="barra-cinema barra-baixo"></div>
+
+        <img class="filme-cena" id="filmeCena" src="" alt="">
+        <div class="grao"></div>
+        <div class="vinheta"></div>
+
+        <div class="filme-topo" id="filmeTopo">
+            <div>
+                <div class="filme-badge" id="filmeCap">CAPÍTULO 1</div>
+                <div class="filme-titulo-box">Ponyo &amp; Sosuke
+                    <span class="filme-titulo-sub">Nossa História de Amor</span>
+                </div>
+            </div>
+            <button class="filme-btn" onclick="sairFilme()" title="Voltar">✕</button>
+        </div>
+
+        <div class="cartao-cap" id="cartaoCap">
+            <span class="cartao-cap-num" id="cartaoCapNum">CAPÍTULO 1</span>
+            <h2 class="cartao-cap-titulo" id="cartaoCapTitulo">O Encontro</h2>
+            <p class="cartao-cap-sub" id="cartaoCapSub">A onda que trouxe você</p>
+        </div>
+
+        <div class="legenda-filme" id="legendaFilme"></div>
+
+        <div class="fim-card" id="fimCard">
+            <div class="fim-fim">FIM</div>
+            <p class="fim-txt">Obrigado por assistir a nossa história. 💕</p>
+            <p class="fim-sub">O melhor ainda está por vir.</p>
+            <button class="btn-continuar" onclick="sairFilme()">Continuar para os extras ▸</button>
+        </div>
+
+        <div class="controles-filme" id="controlesFilme">
+            <div class="filme-bar" onclick="filmeSeek(event)">
+                <div class="filme-bar-fill" id="filmeFill"></div>
+            </div>
+            <div class="controles-linha">
+                <button class="filme-btn" id="btnPlayFilme" onclick="filmePlayPause()">❚❚</button>
+                <button class="filme-btn" onclick="filmeNav(-1)">⏮</button>
+                <button class="filme-btn" onclick="filmeNav(1)">⏭</button>
+                <span class="filme-tempo" id="filmeTempo">Cena 1/16</span>
+                <span class="filme-spacer"></span>
+                <span class="musica-nome" id="filmeMusicaNome">🎵 Se o mar me levar</span>
+                <button class="filme-btn filme-btn-mini" onclick="spotifyAnterior()">⏮</button>
+                <button class="filme-btn filme-btn-mini" id="filmePlayMusica" onclick="spotifyToggle()">❚❚</button>
+                <button class="filme-btn filme-btn-mini" onclick="spotifyProximo()">⏭</button>
+                <button class="filme-btn" onclick="filmeFullscreen()">⛶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TELA 4: Extras (pós-filme) ===== -->
+    <div id="posFilme">
+
+        <div class="retomar">
+            <div class="retomar-info">
+                <b>▶ Continuar assistindo</b> — Ponyo &amp; Sosuke: Nossa História de Amor
+            </div>
+            <button class="btn-retomar" onclick="retomarFilme()">Retomar o Filme ▸</button>
+        </div>
+
+        <!-- 💕 Contador -->
+        <section id="contador">
+            <div class="bg-duo" style="background-image:url('IMAGENS/P2.jpg'),url('IMAGENS/N2.jpeg')"></div>
+            <div class="bg-escuro"></div>
+
+            <h2>💞 Há quanto tempo nosso amor existe 💞</h2>
+            <p id="tempo">Carregando…</p>
+            <span id="coracao" onclick="mostrarMensagem()">❤️</span>
+            <div id="mensagem">
+                Meu amor,<br><br>
+                Se o tempo fosse uma onda, eu ainda te escolheria
+                pra remar comigo em todas as vidas. 🐟
+            </div>
+        </section>
+
+        <!-- 🖼️ Galeria -->
+        <section id="carrossel">
+            <div class="bg-duo bg-duo-fraco" style="background-image:url('IMAGENS/P4.jpg'),url('IMAGENS/8.jpg')"></div>
+
+            <h2>🐚 Nossos Momentos Ponyo &amp; Sosuke</h2>
+            <div class="fotos">
+                <img src="IMAGENS/1.jpg" class="foto">
+                <img src="IMAGENS/2.jpg" class="foto">
+                <img src="IMAGENS/3.jpg" class="foto">
+                <img src="IMAGENS/4.jpg" class="foto">
+                <img src="IMAGENS/5.jpg" class="foto">
+                <img src="IMAGENS/6.jpg" class="foto">
+                <img src="IMAGENS/7.jpg" class="foto">
+                <img src="IMAGENS/8.jpg" class="foto">
+                <img src="IMAGENS/9.jpg" class="foto">
+                <img src="IMAGENS/10.jpg" class="foto">
+                <img src="IMAGENS/11.jpg" class="foto">
+                <img src="IMAGENS/12.jpg" class="foto">
+                <img src="IMAGENS/martevenus.jpeg" class="foto">
+                <img src="IMAGENS/13.jpg" class="foto">
+                <img src="IMAGENS/14.jpeg" class="foto">
+                <img src="IMAGENS/15.jpeg" class="foto">
+                <img src="IMAGENS/16.jpeg" class="foto">
+                <img src="IMAGENS/F1.jpeg" class="foto">
+                <img src="IMAGENS/F2.jpeg" class="foto">
+                <img src="IMAGENS/F3.jpeg" class="foto">
+                <img src="IMAGENS/F4.jpeg" class="foto">
+                <img src="IMAGENS/F5.jpeg" class="foto">
+                <img src="IMAGENS/F6.jpeg" class="foto">
+                <img src="IMAGENS/F7.jpeg" class="foto">
+                <img src="IMAGENS/F8.jpeg" class="foto">
+                <img src="IMAGENS/F9.jpeg" class="foto">
+                <img src="IMAGENS/F10.jpeg" class="foto">
+            </div>
+            <p class="legenda" id="legenda"></p>
+        </section>
+
+        <!-- Marte & Vênus -->
+        <div class="planeta planeta-marte" id="planeta-marte">
+            <div class="planeta-orb">♂</div>
+            <div class="planeta-nome">MARTE</div>
+        </div>
+        <div class="planeta planeta-venus" id="planeta-venus">
+            <div class="planeta-orb">♀</div>
+            <div class="planeta-nome">VÊNUS</div>
+        </div>
+
+        <!-- 💌 Frase final -->
+        <p id="fraseFinal"><b>“Meu amor,</b>
+            Cada segundo ao seu lado é um presente que eu nunca imaginei receber.
+            Parece que foi ontem que a gente começou essa história, e hoje já temos tantas memórias, risadas e planos juntos.
+
+            Você é minha paz, minha bagunça favorita e o motivo do meu sorriso todos os dias.
+            Obrigado por ser exatamente quem você é — carinhosa, linda, divertida e a pessoa que mais me entende nesse mundo.
+
+            Mal posso esperar pra casar com você, dividir uma vida, uma casa, uma história que vai ser só nossa.
+            Te amo mais do que palavras conseguem explicar. 💍❤️” 💞
+
+            <b>Ei amor, sobe um pouco a tela de novo — reparou no coração pulsando? clica nele. te amo ❤️</b>
+        </p>
+
+        <!-- 🐟 Moments Ponyo -->
+        <section id="ponyo">
+            <div class="bg-duo" style="background-image:url('IMAGENS/P5.jpg'),url('IMAGENS/5.jpg')"></div>
+            <div class="bg-escuro"></div>
+
+            <h2 class="ponyo-titulo">🌊 Nossos Momentos Ponyo</h2>
+            <p class="ponyo-frase">"Ponyo ama Sosuke! E eu, do jeito mais verdadeiro, amo você."</p>
+
+            <div class="ponyo-grid">
+                <div class="ponyo-card">
+                    <img src="IMAGENS/F1.jpeg">
+                    <h3>🏡 O dia que o mar me trouxe você</h3>
+                    <p>Como Ponyo cruzando as ondas, você chegou e virou o centro do meu mundo.</p>
+                </div>
+                <div class="ponyo-card">
+                    <img src="IMAGENS/F2.jpeg">
+                    <h3>🐚 Mundos que se encontram</h3>
+                    <p>Eu, você e a nossa sintonia perfeita — feito água e céu, feito Ponyo e Sosuke.</p>
+                </div>
+                <div class="ponyo-card">
+                    <img src="IMAGENS/F3.jpeg">
+                    <h3>⭐ Eu te escolho todos os dias</h3>
+                    <p>Ponyo escolheu ser humana por amor. Eu escolheria você em todas as vidas.</p>
+                </div>
+                <div class="ponyo-card">
+                    <img src="IMAGENS/F4.jpeg">
+                    <h3>🍲 Casinha com sabor de lar</h3>
+                    <p>Seu abraço é a minha casa. É onde eu quero voltar todos os dias.</p>
+                </div>
+                <div class="ponyo-card">
+                    <img src="IMAGENS/F5.jpeg">
+                    <h3>🌊 A onda que nos uniu</h3>
+                    <p>Nenhuma tempestade separa quem se ama — a gente só se abraça mais forte.</p>
+                </div>
+                <div class="ponyo-card">
+                    <img src="IMAGENS/F6.jpeg">
+                    <h3>🚤 O barquinho que sou eu</h3>
+                    <p>Todo Sosuke tem sua Ponyo. Eu encontrei a minha — e nunca mais solto.</p>
+                </div>
+                <div class="ponyo-card">
+                    <img src="IMAGENS/F7.jpeg">
+                    <h3>🌌 Além do mar e do céu</h3>
+                    <p>Nosso amor é tão grande que cabia até entre Marte e Vênus.</p>
+                </div>
+                <div class="ponyo-card">
+                    <img src="IMAGENS/F8.jpeg">
+                    <h3>🐟 Ponyo de verdade</h3>
+                    <p>Você é a minha Ponyo: pequena, corajosa e dona do meu coração inteiro.</p>
+                </div>
+                <div class="ponyo-card">
+                    <img src="IMAGENS/F9.jpeg">
+                    <h3>💞 Nossa história favorita</h3>
+                    <p>Ela ainda tá só no começo, mas já é a mais linda que eu conheço.</p>
+                </div>
+                <div class="ponyo-card">
+                    <img src="IMAGENS/F10.jpeg">
+                    <h3>🎵 Trilha sonora do nosso amor</h3>
+                    <p>Cada música que toca me lembra você — e é pra você que eu quero ouvir tudo.</p>
+                </div>
+                <div class="ponyo-card">
+                    <img src="IMAGENS/martevenus.jpeg">
+                    <h3>🪐 Os planetas aprovam</h3>
+                    <p>Se até Marte e Vênus se alinham por nós, o universo inteiro sabe que é pra ser.</p>
+                </div>
+            </div>
+
+            <div class="ponyo-fujimoto">
+                <div class="emoji-f">🌊</div>
+                <p>"Fujimoto, o feiticeiro do mar, tentou de tudo pra separar Ponyo do amor dela.
+                    Mas no fim, ele entendeu: quando o sentimento é verdadeiro,
+                    nem o oceano inteiro consegue impedir."</p>
+                <span class="fujimoto-nome">— Assinado: o homem que te ama além de qualquer onda</span>
+            </div>
+        </section>
+
+        <!-- Créditos -->
+        <div id="creditos">
+            <div class="bg-duo bg-duo-fraco" style="background-image:url('IMAGENS/P6.jpg'),url('IMAGENS/7.jpg')"></div>
+
+            <div class="creditos-texto">
+                <b>★ AMOR PICTURES APRESENTA ★</b><br>
+            PONYO &amp; SOSUKE — NOSSA HISTÓRIA DE AMOR<br>
+            Estrelando: Nanda &amp; Seu Neném ❤️<br>
+            Direção: O coração que te escolhe todos os dias<br>
+            Trilha sonora: "Garotinha Nanda" 🎵<br>
+            Eternamente em cartaz nos nossos corações.
+            </div>
+        </div>
+    </div>
+
+    <!-- 🎧 Player Spotify -->
+    <div id="spotify">
+        <div class="spotify-info">
+            <img class="spotify-cover" id="spotifyCapa" src="IMAGENS/P1.jpg">
+            <div>
+                <div class="spotify-titulo" id="spotifyTitulo">Se o mar me levar</div>
+                <div class="spotify-artista" id="spotifyArtista">Nossa música do oceano</div>
+            </div>
+        </div>
+        <div class="spotify-controles">
+            <button class="spotify-btn" onclick="spotifyAnterior()">⏮</button>
+            <button class="spotify-btn spotify-btn-play" id="spotifyPlay" onclick="spotifyToggle()">▶</button>
+            <button class="spotify-btn" onclick="spotifyProximo()">⏭</button>
+        </div>
+        <div class="spotify-progresso">
+            <span id="spotifyAtual">0:00</span>
+            <div class="spotify-bar" onclick="spotifySeek(event)">
+                <div class="spotify-bar-fill" id="spotifyFill"></div>
+            </div>
+            <span id="spotifyTotal">0:00</span>
+        </div>
+    </div>
+
+    <!-- 💌 Cartinha -->
     <button id="cartinha" onclick="abrirCartinha()">💌</button>
     <div id="textoCartinha">
         <p>
             Meu amor,<br>
-            Você me faz acreditar no amor de verdade — aquele que é leve, divertido e forte o bastante pra durar uma
-            vida.<br><br>
+            Você me faz acreditar no amor de verdade — aquele que é leve, divertido e forte o bastante pra durar uma vida.<br><br>
+            Como Ponyo, você cruzou o oceano até mim. E como Sosuke, eu prometo te escolher todos os dias.<br><br>
             Eu sonho com o dia em que vou te ver de branco e poder dizer: “Agora é pra sempre, minha Nanda.” 💍<br><br>
             Eu te amo mais do que palavras podem dizer.
         </p>
     </div>
 
-    <!-- Temporizador -->
-    <div id="contador">
-        <h2>Estamos juntos há...</h2>
-        <div id="tempo"></div>
-        <button id="coracao" onclick="mostrarMensagem()">❤️</button>
-        <div id="mensagem">
-            <p>
-                Nanda,
-                Desde o dia 12 de janeiro de 2025, às 01:24, quando eu assinei aquele “contrato de namoro” que você me
-                mandou (sim, oficialmente registrado 😅), minha vida ficou mais leve, mais bonita e muito mais
-                feliz.<br><br>
-                Eu ainda lembro do nosso primeiro beijo, lá em frente à sua casa… os dois morrendo de vergonha, com medo
-                da sua vó aparecer na janela a qualquer momento 😂. E mesmo com toda aquela timidez, foi um momento
-                perfeito, porque foi o começo de tudo.<br><br>
-                E o primeiro abraço… ah, aquele abraço! Quando te abracei e você saiu correndo pra dentro de casa sem
-                falar nada, eu juro que achei que tinha feito algo errado 😂. Mas o que você não sabe é que aquele
-                abraço foi o melhor da minha vida. Ali, eu senti algo que nunca tinha sentido antes — eu senti meu lar.
-                Foi como se o mundo inteiro tivesse ficado em silêncio só pra eu perceber que o meu lugar é com
-                você.<br><br>
-                Nanda, eu te amo.
-                Você é a minha vida, meu refúgio, minha paz e a razão do meu sorriso.
-                Sou grato por cada momento que a gente vive junto — até pelos silêncios, pelas risadas bobas e pelos
-                abraços demorados que dizem mais do que mil palavras.<br><br>
-                Feliz aniversário, meu amor.
-                Que esse site seja um pedacinho de tudo o que eu sinto por você — e que a cada segundo que o contador
-                marca, o meu amor por você só cresça mais e mais. ❤️
-            </p>
-        </div>
-        <div id="carrossel">
-            <img src="IMAGENS/1.jpg" class="foto">
-            <img src="IMAGENS/2.jpg" class="foto">
-            <img src="IMAGENS/3.jpg" class="foto">
-            <img src="IMAGENS/4.jpg" class="foto">
-            <img src="IMAGENS/5.jpg" class="foto">
-            <img src="IMAGENS/6.jpg" class="foto">
-            <img src="IMAGENS/7.jpg" class="foto">
-            <img src="IMAGENS/8.jpg" class="foto">
-            <img src="IMAGENS/9.jpg" class="foto">
-            <img src="IMAGENS/10.jpg" class="foto">
-            <img src="IMAGENS/11.jpg" class="foto">
-            <img src="IMAGENS/12.jpg" class="foto">
-            <img src="IMAGENS/martevenus.jpeg" class="foto">
-            <img src="IMAGENS/F1.jpeg" class="foto">
-            <img src="IMAGENS/F2.jpeg" class="foto">
-            <img src="IMAGENS/F3.jpeg" class="foto">
-            <img src="IMAGENS/F4.jpeg" class="foto">
-            <img src="IMAGENS/F5.jpeg" class="foto">
-            <img src="IMAGENS/F6.jpeg" class="foto">
-            <img src="IMAGENS/F7.jpeg" class="foto">
-            <img src="IMAGENS/F8.jpeg" class="foto">
-            <img src="IMAGENS/F9.jpeg" class="foto">
-            <img src="IMAGENS/F10.jpeg" class="foto">
-            <div class="legenda" id="legenda"></div>
-        </div>
-
-
-        <!-- Planetas decorativos Marte & Vênus -->
-        <div id="planeta-marte" class="planeta">
-            <div class="planeta-inner"></div>
-            <div class="planeta-simbolo">♂</div>
-            <div class="planeta-nome">MARTE</div>
-        </div>
-        <div id="planeta-venus" class="planeta">
-            <div class="planeta-inner"></div>
-            <div class="planeta-simbolo">♀</div>
-            <div class="planeta-nome">VÊNUS</div>
-        </div>
-
-        <!-- 💌 Texto bonitinho abaixo do carrossel -->
-        <p id="fraseFinal">“Meu amor,
-            Cada segundo ao seu lado é um presente que eu nunca imaginei receber.
-            Parece que foi ontem que a gente começou essa história, e hoje já temos tantas memórias, risadas e planos
-            juntos.
-            Eu me pego sonhando com o nosso futuro, com o dia em que vou te ver vestida de branco, e poder dizer com o
-            coração acelerado: “Agora é pra sempre, minha Nanda.”
-
-            Você é minha paz, minha bagunça favorita e o motivo do meu sorriso todos os dias.
-            Obrigado por ser exatamente quem você é — carinhosa, linda, divertida e a pessoa que mais me entende nesse
-            mundo.
-
-            Mal posso esperar pra casar com você, dividir uma vida, uma casa, uma história que vai ser só nossa.
-            Te amo mais do que palavras conseguem explicar. 💍❤️” 💞
-
-            Ei amor sobe um pouco a tela de novo, reparou no coração pulsando? clica nele. te amo ❤️
-
-
-        </p>
-
-    </div>
-
-    <audio id="musica" src="Musica/Garotinha Nanda.mp3" loop></audio>
-
-    <!-- 🌸 Botão Linha do Tempo -->
+    <!-- 🌷 Linha do Tempo -->
     <button id="btnTimeline" onclick="abrirTimeline()">1 ano com você 💍</button>
 
-
-    <!-- 🌷 Linha do Tempo -->
     <div id="timelineOverlay">
         <div id="timelineBox">
             <button class="fecharTimeline" onclick="fecharTimeline()">×</button>
@@ -1138,43 +2068,36 @@
                 <h3>📜 12/01/2025 — 01:24</h3>
                 <p>Sem saber, naquele momento eu estava começando a melhor fase da minha vida.</p>
             </div>
-
             <div class="capitulo">
                 <img src="IMAGENS/T2.jpeg">
-                <h3>💋 Nosso primeiro beijo</h3>
+                <h3>👋 O primeiro encontro</h3>
                 <p>Tímidos, nervosos… mas perfeitos do nosso jeito.</p>
             </div>
-
             <div class="capitulo">
                 <img src="IMAGENS/T3.jpeg">
                 <h3>🤍 O abraço que virou lar</h3>
                 <p>Ali eu entendi que o meu lugar sempre foi com você.</p>
             </div>
-
             <div class="capitulo">
                 <img src="IMAGENS/T4.jpeg">
                 <h3>🎉 1 ano com você</h3>
                 <p>Um ano te escolhendo todos os dias — e ainda quero uma vida inteira.</p>
             </div>
-
             <div class="capitulo">
                 <img src="IMAGENS/F3.jpeg">
                 <h3>🌸 Memórias que aquecem</h3>
                 <p>Cada instante ao seu lado vira um pedaço doce da nossa história.</p>
             </div>
-
             <div class="capitulo">
                 <img src="IMAGENS/F7.jpeg">
                 <h3>✨ No brilho do seu olhar</h3>
                 <p>Eu me perco e me encontro — você é o meu lugar mais bonito.</p>
             </div>
-
             <div class="capitulo">
                 <img src="IMAGENS/F9.jpeg">
                 <h3>💞 Nossa história favorita</h3>
                 <p>Ela ainda tá só no começo, mas já é a mais linda que eu conheço.</p>
             </div>
-
             <div class="capitulo">
                 <img src="IMAGENS/T5.jpeg">
                 <h3>💍 Nosso futuro</h3>
@@ -1186,267 +2109,514 @@
             <div id="finalPromessa" style="display:none;">
                 <div id="textoDigitando"></div>
             </div>
-
         </div>
+    </div>
 
+    <!-- 🌸 Easter Egg Secreto -->
+    <div id="easterEgg" class="egg-hidden">
+        <button class="fecharEgg" onclick="fecharEgg()">×</button>
+        <img src="IMAGENS/14.jpeg" alt="Nós dois">
+        <p>
+            Esse site não tem fim.<br>
+            Assim como o que eu sinto por você.<br><br>
+            E se um dia você voltar aqui,<br>
+            saiba que eu continuo aqui…<br>
+            te escolhendo todos os dias. 💕
+        </p>
+    </div>
 
-        <!-- 🌸 Easter Egg Secreto -->
-        <div id="easterEgg" class="egg-hidden">
-            <button class="fecharEgg" onclick="fecharEgg()">×</button>
-            <img src="IMAGENS/14.jpeg" alt="Nós dois">
-            <p>
-                Esse site não tem fim.<br>
-                Assim como o que eu sinto por você.<br><br>
-                E se um dia você voltar aqui,<br>
-                saiba que eu continuo aqui…<br>
-                te escolhendo todos os dias.
-            </p>
-        </div>
+    <audio id="musica" src="Musica/Se o mar me levar.mp3" loop></audio>
 
+    <script>
+        /* ===== Início ===== */
+        function iniciar() {
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("cinema").style.display = "block";
+            gerarParticulas();
+            atualizarTempo();
+            setInterval(atualizarTempo, 1000);
+        }
 
-        <script>
-            let index = 0;
-            const fotos = document.querySelectorAll(".foto");
-            const legenda = document.getElementById("legenda");
+        function toggleLista() {
+            const btn = document.getElementById("btnLista");
+            const adicionado = btn.classList.toggle("added");
+            btn.innerHTML = adicionado ? "♥ Adicionado" : "+ Minha Lista";
+        }
 
-            const legendas = [
-                "Sou apaixonado no seu olhar 💖",
-                "Você tentando me impedir de registrar sua beleza",
-                "Nossa foto pro Sipat na empresa 💫",
-                "Sorriso que me encanta 💕",
-                "Meu amor, timida para foto ❤️",
-                "Um registro de nossas idas e vindas 🤗",
-                "Meu neném, amo tanto 😍",
-                "Mais um dia com você = dia perfeito ❤️",
-                "Amo seu jeitinho ❤️",
-                "Eu tentando fazer algo na bateria kkk💞",
-                "Desde que você chegou, a vida tem mais cor e sentido❤️",
-                "Pra sempre nós dois 💍",
-                "Nós dois vendo Marte e Vênus 💖",
-                "A gente junto é tudo de bom 💫",
-                "Instante perfeito ao seu lado ✨",
-                "Seu sorriso é meu sol 🌞",
-                "Te amar é a melhor parte de mim 💕",
-                "Você e eu, sempre ❤️",
-                "A saudade que vira abraço 🤗",
-                "Esse olhar me derrete 🥰",
-                "Nossos dias são poesia 📝",
-                "Minha pessoa favorita no mundo ❤️🌎",
-                "Cada segundo com você é eterno 💖"
-            ];
+        /* ===== O Filme ===== */
+        const cenas = [
+            { img: "IMAGENS/N1.jpeg", cap: 1, legenda: "Era uma vez, numa casinha no alto do morro, um menino chamado Sosuke." },
+            { img: "IMAGENS/N2.jpeg", legenda: "Seu mundo era o mar, o vento e os sonhos de algo maior." },
+            { img: "IMAGENS/N3.jpeg", legenda: "Até que, numa manhã de espuma e luz, o mar trouxe um presente." },
+            { img: "IMAGENS/N4.jpeg", legenda: "Uma menina-peixe chamada Ponyo — e a vida dos dois nunca mais foi a mesma." },
+            { img: "IMAGENS/N5.jpeg", cap: 2, legenda: "Ponyo ama Sosuke!" },
+            { img: "IMAGENS/N6.jpeg", legenda: "E aquele amor era maior que qualquer oceano." },
+            { img: "IMAGENS/N7.jpeg", legenda: "Juntos, descobriram que eram mais fortes que qualquer tempestade." },
+            { img: "IMAGENS/N8.jpeg", legenda: "Uma amizade que virou o amor mais puro e verdadeiro." },
+            { img: "IMAGENS/N9.jpeg", cap: 3, legenda: "Mas o feiticeiro do mar queria Ponyo de volta para o fundo das águas." },
+            { img: "IMAGENS/N10.jpeg", legenda: "As ondas cresceram. Os céus escureceram." },
+            { img: "IMAGENS/N11.jpeg", legenda: "Mas quem ama de verdade não teme nenhuma onda." },
+            { img: "IMAGENS/N12.jpeg", legenda: "Porque o amor verdadeiro sempre encontra o caminho." },
+            { img: "IMAGENS/N13.jpeg", cap: 4, legenda: "Ponyo escolheu ser humana — trocou o mar inteiro por um coração." },
+            { img: "IMAGENS/N14.jpeg", legenda: "E eu, todos os dias, escolho você. Em todas as vidas." },
+            { img: "IMAGENS/N15.jpeg", legenda: "O amor transforma mundos. O nosso mundo é você." },
+            { img: "IMAGENS/N16.jpeg", legenda: "FIM. Essa história mal começou. O melhor ainda está por vir. — Te amo, minha Ponyo. 🐟❤️" }
+        ];
 
-            const INDICE_MARTE_VENUS = 12;
+        const capitulosFilme = {
+            1: { titulo: "O Encontro", sub: "A onda que trouxe você" },
+            2: { titulo: "Ponyo & Sosuke", sub: "O amor cruza mundos" },
+            3: { titulo: "A Tempestade", sub: "Nenhuma onda nos separa" },
+            4: { titulo: "A Escolha", sub: "Pra sempre, em todas as vidas" }
+        };
 
-            let digitando = false;
-            let typingTimeout = null;
+        const DUR_CENA = 6500;
+        const DUR_CARTAO = 3200;
 
-            function gerarEstrelas() {
-                const numEstrelas = 50;
-                const container = document.body;
-                for (let i = 0; i < numEstrelas; i++) {
-                    const estrela = document.createElement("div");
-                    estrela.className = "estrela";
-                    const size = Math.random() * 2.5 + 1;
-                    estrela.style.width = size + "px";
-                    estrela.style.height = size + "px";
-                    estrela.style.left = Math.random() * 100 + "%";
-                    estrela.style.top = Math.random() * 100 + "%";
-                    const opMin = Math.random() * 0.3 + 0.1;
-                    const opMax = Math.random() * 0.6 + 0.4;
-                    estrela.style.setProperty("--op-min", opMin);
-                    estrela.style.setProperty("--op-max", opMax);
-                    estrela.style.setProperty("--dur", (Math.random() * 3 + 2) + "s");
-                    estrela.style.animationDelay = Math.random() * 5 + "s";
-                    container.appendChild(estrela);
+        let filmeIndex = 0;
+        let filmeTimer = null;
+        let filmeReq = 0;
+        let filmeRodando = false;
+        let filmeFim = false;
+        let ultimoCap = 0;
+
+        function entrarFilme(resumir) {
+            document.getElementById("filme").style.display = "block";
+            document.getElementById("spotify").style.display = "none";
+            document.body.classList.remove("com-spotify");
+            document.getElementById("fimCard").classList.remove("mostrar");
+            filmeRodando = true;
+            filmeFim = false;
+            if (!resumir) {
+                filmeIndex = 0;
+                ultimoCap = 0;
+            }
+            mostrarCena(filmeIndex, resumir);
+            const audio = document.getElementById("musica");
+            if (audio.paused) audio.play();
+            atualizarMusicaUI();
+            ativarAutoHide();
+        }
+
+        function assistir() {
+            document.getElementById("cinema").style.display = "none";
+            document.getElementById("posFilme").style.display = "none";
+            entrarFilme(false);
+        }
+
+        function retomarFilme() {
+            document.getElementById("posFilme").style.display = "none";
+            entrarFilme(true);
+        }
+
+        function sairFilme() {
+            clearTimeout(filmeTimer);
+            filmeTimer = null;
+            filmeRodando = false;
+            document.getElementById("filme").style.display = "none";
+            document.getElementById("cinema").style.display = "none";
+            document.getElementById("posFilme").style.display = "block";
+            document.getElementById("spotify").style.display = "flex";
+            document.body.classList.add("com-spotify");
+            atualizarMusicaUI();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function mostrarCena(i, resumir) {
+            const img = document.getElementById("filmeCena");
+            const legenda = document.getElementById("legendaFilme");
+            const req = ++filmeReq;
+            img.classList.remove("mostrar");
+            legenda.classList.remove("visivel");
+            clearTimeout(filmeTimer);
+
+            setTimeout(function () {
+                if (req !== filmeReq) return;
+                filmeIndex = i;
+                const c = cenas[i];
+                img.src = c.img;
+                legenda.textContent = c.legenda;
+                document.getElementById("filmeTempo").textContent = "Cena " + (i + 1) + "/" + cenas.length;
+
+                if (c.cap && c.cap !== ultimoCap && !resumir) {
+                    mostrarCartao(c.cap);
                 }
+                ultimoCap = c.cap || ultimoCap;
+
+                img.classList.add("mostrar");
+                legenda.classList.add("visivel");
+                filmeAtualizarProgresso();
+            }, 420);
+
+            if (i === cenas.length - 1) {
+                filmeTimer = setTimeout(function () {
+                    if (filmeRodando && req === filmeReq) mostrarFim();
+                }, DUR_CENA);
+            } else {
+                filmeTimer = setTimeout(function () {
+                    if (filmeRodando && req === filmeReq) mostrarCena(i + 1, false);
+                }, DUR_CENA);
+            }
+        }
+
+        function mostrarCartao(num) {
+            const cap = capitulosFilme[num];
+            const cartao = document.getElementById("cartaoCap");
+            const capFundo = {
+                1: 'linear-gradient(rgba(4,16,28,.62), rgba(4,16,28,.62)), url("IMAGENS/P7.jpg") center/cover',
+                2: 'linear-gradient(rgba(4,20,34,.62), rgba(4,20,34,.62)), url("IMAGENS/P8.jpg") center/cover',
+                3: 'linear-gradient(rgba(6,12,24,.7), rgba(6,12,24,.7)), url("IMAGENS/P9.jpg") center/cover',
+                4: 'linear-gradient(rgba(26,10,20,.6), rgba(26,10,20,.6)), url("IMAGENS/P10.jpg") center/cover'
+            };
+            cartao.style.background = capFundo[num] || 'rgba(0,0,0,.62)';
+            document.getElementById("cartaoCapNum").textContent = "CAPÍTULO " + num;
+            document.getElementById("cartaoCapTitulo").textContent = cap.titulo;
+            document.getElementById("cartaoCapSub").textContent = cap.sub;
+            cartao.classList.add("visivel");
+            setTimeout(function () {
+                cartao.classList.remove("visivel");
+            }, DUR_CARTAO);
+        }
+
+        function mostrarFim() {
+            filmeFim = true;
+            filmeRodando = false;
+            clearTimeout(filmeTimer);
+            document.getElementById("fimCard").classList.add("mostrar");
+            document.getElementById("btnPlayFilme").textContent = "▶";
+        }
+
+        function filmePlayPause() {
+            if (filmeFim) {
+                document.getElementById("fimCard").classList.remove("mostrar");
+                filmeIndex = 0;
+                ultimoCap = 0;
+                filmeRodando = true;
+                filmeFim = false;
+                mostrarCena(0, false);
+                document.getElementById("btnPlayFilme").textContent = "❚❚";
+                return;
+            }
+            filmeRodando = !filmeRodando;
+            document.getElementById("btnPlayFilme").textContent = filmeRodando ? "❚❚" : "▶";
+            if (filmeRodando) {
+                mostrarCena(filmeIndex, true);
+            } else {
+                clearTimeout(filmeTimer);
+                filmeTimer = null;
+            }
+        }
+
+        function filmeNav(dir) {
+            const novo = filmeIndex + dir;
+            if (novo < 0 || novo >= cenas.length) return;
+            filmeFim = false;
+            filmeRodando = true;
+            document.getElementById("fimCard").classList.remove("mostrar");
+            mostrarCena(novo, true);
+            document.getElementById("btnPlayFilme").textContent = "❚❚";
+        }
+
+        function filmeSeek(event) {
+            const bar = event.currentTarget;
+            const rect = bar.getBoundingClientRect();
+            const pct = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+            const novo = Math.floor(pct * cenas.length);
+            filmeNav(novo - filmeIndex);
+        }
+
+        function filmeAtualizarProgresso() {
+            const fill = document.getElementById("filmeFill");
+            fill.style.width = (filmeIndex / (cenas.length - 1) * 100) + "%";
+        }
+
+        function filmeFullscreen() {
+            const el = document.getElementById("filme");
+            if (!document.fullscreenElement) {
+                if (el.requestFullscreen) el.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        let autoHideTimer = null;
+
+        function ativarAutoHide() {
+            const filme = document.getElementById("filme");
+            const topo = document.getElementById("filmeTopo");
+            const controles = document.getElementById("controlesFilme");
+
+            function mostrar() {
+                topo.classList.add("visivel");
+                controles.classList.add("visivel");
+                clearTimeout(autoHideTimer);
+                autoHideTimer = setTimeout(function () {
+                    if (filmeRodando && !filmeFim) {
+                        topo.classList.remove("visivel");
+                        controles.classList.remove("visivel");
+                    }
+                }, 3000);
             }
 
-            function criarDots() {
-                const container = document.getElementById("carrossel");
-                const dotsDiv = document.createElement("div");
-                dotsDiv.className = "carrossel-dots";
-                for (let i = 0; i < fotos.length; i++) {
-                    const dot = document.createElement("button");
-                    dot.className = "carrossel-dot" + (i === 0 ? " active" : "");
-                    dot.setAttribute("data-index", i);
-                    dot.addEventListener("click", function () {
-                        index = parseInt(this.getAttribute("data-index"));
-                        mostrarFoto();
-                    });
-                    dotsDiv.appendChild(dot);
-                }
-                container.appendChild(dotsDiv);
-            }
+            mostrar();
+            filme.onmousemove = mostrar;
+            filme.onclick = function (e) {
+                if (e.target.closest("button") || e.target.closest(".filme-bar")) return;
+                topo.classList.toggle("visivel");
+                controles.classList.toggle("visivel");
+                clearTimeout(autoHideTimer);
+            };
+        }
 
-            function atualizarDots() {
-                const dots = document.querySelectorAll(".carrossel-dot");
-                dots.forEach((d, i) => {
-                    d.classList.toggle("active", i === index);
+        /* ===== Música ===== */
+        const playlistSpotify = [
+            { titulo: "Se o mar me levar", artista: "Nossa música do oceano", src: "Musica/Se o mar me levar.mp3", capa: "IMAGENS/P1.jpg" },
+            { titulo: "Garotinha Nanda", artista: "Pra você, meu amor", src: "Musica/Garotinha Nanda.mp3", capa: "IMAGENS/13.jpg" },
+            { titulo: "Nosso Clima", artista: "Músicas que lembram você", src: "Musica/Music.mp3", capa: "IMAGENS/F1.jpeg" }
+        ];
+        let musicaAtual = 0;
+
+        function atualizarMusicaUI() {
+            const audio = document.getElementById("musica");
+            const faixa = playlistSpotify[musicaAtual];
+            const simbolo = audio.paused ? "▶" : "❚❚";
+            document.getElementById("spotifyTitulo").textContent = faixa.titulo;
+            document.getElementById("spotifyArtista").textContent = faixa.artista;
+            document.getElementById("spotifyCapa").src = faixa.capa;
+            document.getElementById("spotifyPlay").textContent = simbolo;
+            document.getElementById("filmePlayMusica").textContent = simbolo;
+            document.getElementById("filmeMusicaNome").textContent = "🎵 " + faixa.titulo;
+        }
+
+        function spotifyToggle() {
+            const audio = document.getElementById("musica");
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+            atualizarMusicaUI();
+        }
+
+        function spotifyTocarFaixa(i) {
+            const audio = document.getElementById("musica");
+            musicaAtual = (i + playlistSpotify.length) % playlistSpotify.length;
+            audio.src = playlistSpotify[musicaAtual].src;
+            audio.loop = true;
+            audio.play();
+            atualizarMusicaUI();
+        }
+
+        function spotifyProximo() {
+            spotifyTocarFaixa(musicaAtual + 1);
+        }
+
+        function spotifyAnterior() {
+            const audio = document.getElementById("musica");
+            if (audio.currentTime > 3) {
+                audio.currentTime = 0;
+            } else {
+                spotifyTocarFaixa(musicaAtual - 1);
+            }
+        }
+
+        function spotifySeek(event) {
+            const audio = document.getElementById("musica");
+            const bar = event.currentTarget;
+            const rect = bar.getBoundingClientRect();
+            const pct = (event.clientX - rect.left) / rect.width;
+            if (!isNaN(audio.duration)) {
+                audio.currentTime = pct * audio.duration;
+            }
+        }
+
+        document.getElementById("musica").addEventListener("timeupdate", function () {
+            const audio = this;
+            const atual = document.getElementById("spotifyAtual");
+            const total = document.getElementById("spotifyTotal");
+            const fill = document.getElementById("spotifyFill");
+            if (!isNaN(audio.duration)) {
+                const at = Math.floor(audio.currentTime);
+                const tt = Math.floor(audio.duration);
+                atual.textContent = Math.floor(at / 60) + ":" + String(at % 60).padStart(2, "0");
+                total.textContent = Math.floor(tt / 60) + ":" + String(tt % 60).padStart(2, "0");
+                fill.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+            }
+        });
+
+        document.getElementById("musica").addEventListener("play", atualizarMusicaUI);
+        document.getElementById("musica").addEventListener("pause", atualizarMusicaUI);
+
+        /* ===== Contador ===== */
+        function atualizarTempo() {
+            const inicio = new Date("2025-01-12T01:24:00");
+            const agora = new Date();
+            const diff = agora - inicio;
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / (1000 * 60)) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
+            const texto = `💞 ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos de amor 💞`;
+            const el = document.getElementById("tempo");
+            if (el) el.textContent = texto;
+            const elCinema = document.getElementById("tempoCinema");
+            if (elCinema) elCinema.textContent = texto;
+        }
+
+        /* ===== Carrossel ===== */
+        let index = 0;
+        const fotos = document.querySelectorAll(".foto");
+        const legendaEl = document.getElementById("legenda");
+
+        const legendas = [
+            "Sou apaixonado no seu olhar 💖",
+            "Você tentando me impedir de registrar sua beleza",
+            "Nossa foto pro Sipat na empresa 💫",
+            "Sorriso que me encanta 💕",
+            "Meu amor, tímida para foto ❤️",
+            "Um registro de nossas idas e vindas 🤗",
+            "Meu neném, amo tanto 😍",
+            "Mais um dia com você = dia perfeito ❤️",
+            "Amo seu jeitinho ❤️",
+            "Eu tentando fazer algo na bateria kkk 💞",
+            "Desde que você chegou, a vida tem mais cor e sentido ❤️",
+            "Pra sempre nós dois 💍",
+            "Nós dois vendo Marte e Vênus 💖",
+            "A gente junto é tudo de bom 💫",
+            "Instante perfeito ao seu lado ✨",
+            "Seu sorriso é meu sol 🌞",
+            "Te amar é a melhor parte de mim 💕",
+            "Você e eu, sempre ❤️",
+            "A saudade que vira abraço 🤗",
+            "Esse olhar me derrete 🥰",
+            "Nossos dias são poesia 📝",
+            "Minha pessoa favorita no mundo ❤️🌎",
+            "Cada segundo com você é eterno 💖",
+            "O amor da minha vida 🐟",
+            "Minha Ponyo, pra sempre 💕",
+            "Coração batendo forte por você 💓",
+            "Eu e você, contra qualquer mar 🌊"
+        ];
+
+        const INDICE_MARTE_VENUS = 12;
+
+        function criarDots() {
+            const container = document.getElementById("carrossel");
+            const dotsDiv = document.createElement("div");
+            dotsDiv.className = "carrossel-dots";
+            for (let i = 0; i < fotos.length; i++) {
+                const dot = document.createElement("button");
+                dot.className = "carrossel-dot" + (i === 0 ? " active" : "");
+                dot.setAttribute("data-index", i);
+                dot.addEventListener("click", function () {
+                    index = parseInt(this.getAttribute("data-index"));
+                    mostrarFoto();
                 });
+                dotsDiv.appendChild(dot);
             }
+            container.appendChild(dotsDiv);
+        }
 
-            function togglePlanetas(mostrar) {
-                const marte = document.getElementById("planeta-marte");
-                const venus = document.getElementById("planeta-venus");
-                if (marte && venus) {
-                    marte.classList.toggle("visivel", mostrar);
-                    venus.classList.toggle("visivel", mostrar);
+        function atualizarDots() {
+            const dots = document.querySelectorAll(".carrossel-dot");
+            dots.forEach(function (d, i) {
+                d.classList.toggle("active", i === index);
+            });
+        }
+
+        function togglePlanetas(mostrar) {
+            const marte = document.getElementById("planeta-marte");
+            const venus = document.getElementById("planeta-venus");
+            if (marte && venus) {
+                marte.classList.toggle("visivel", mostrar);
+                venus.classList.toggle("visivel", mostrar);
+            }
+        }
+
+        function mostrarFoto() {
+            const isMarteVenus = (index === INDICE_MARTE_VENUS);
+            fotos.forEach(function (f) { f.style.display = "none"; });
+            fotos[index].style.display = "block";
+            legendaEl.textContent = legendas[index];
+            atualizarDots();
+            togglePlanetas(isMarteVenus);
+            index = (index + 1) % fotos.length;
+        }
+
+        /* ===== Coração ===== */
+        let cliquesCoracao = 0;
+
+        function mostrarMensagem() {
+            const msg = document.getElementById("mensagem");
+            const carrossel = document.getElementById("carrossel");
+            const visivel = msg.style.display === "none";
+            msg.style.display = visivel ? "block" : "none";
+            carrossel.style.opacity = visivel ? "0.4" : "1";
+            cliquesCoracao++;
+            if (cliquesCoracao === 3) {
+                document.getElementById("easterEgg").classList.add("mostrar");
+            }
+        }
+
+        function fecharEgg() {
+            document.getElementById("easterEgg").classList.remove("mostrar");
+        }
+
+        /* ===== Cartinha ===== */
+        function abrirCartinha() {
+            const carta = document.getElementById("textoCartinha");
+            carta.style.display = carta.style.display === "none" ? "block" : "none";
+        }
+
+        /* ===== Linha do Tempo ===== */
+        let capituloAtual = 0;
+        let digitando = false;
+        let typingTimeout = null;
+        const capitulos = document.querySelectorAll(".capitulo");
+        const btnProximo = document.getElementById("btnProximo");
+
+        function abrirTimeline() {
+            document.getElementById("timelineOverlay").style.display = "flex";
+        }
+
+        function fecharTimeline() {
+            document.getElementById("timelineOverlay").style.display = "none";
+            capituloAtual = 0;
+            capitulos.forEach(function (c, i) {
+                c.classList.remove("ativo");
+                if (i === 0) c.classList.add("ativo");
+            });
+            btnProximo.style.display = "block";
+            btnProximo.innerHTML = "❤️";
+            document.getElementById("finalPromessa").style.display = "none";
+            document.getElementById("textoDigitando").innerHTML = "";
+            digitando = false;
+            atualizarProgressoBarras();
+        }
+
+        function atualizarProgressoBarras() {
+            const barras = document.querySelectorAll(".capitulo-progresso .barra");
+            barras.forEach(function (b, i) {
+                b.classList.toggle("active", i <= capituloAtual && i < capitulos.length);
+            });
+        }
+
+        function proximoCapitulo() {
+            capitulos[capituloAtual].classList.remove("ativo");
+            capituloAtual++;
+            if (capituloAtual < capitulos.length) {
+                capitulos[capituloAtual].classList.add("ativo");
+                if (capituloAtual === capitulos.length - 1) {
+                    btnProximo.innerHTML = "💍";
                 }
-            }
-
-            function mostrarFoto() {
-                const isMarteVenus = (index === INDICE_MARTE_VENUS);
-                fotos.forEach(f => f.style.display = "none");
-                fotos[index].style.display = "block";
-                legenda.textContent = legendas[index];
-                atualizarDots();
-                togglePlanetas(isMarteVenus);
-                index = (index + 1) % fotos.length;
-            }
-
-            function iniciar() {
-                document.getElementById("inicio").style.display = "none";
-                document.getElementById("contador").style.display = "flex";
-                document.getElementById("carrossel").style.display = "block";
-                document.getElementById("musica").play();
-                gerarParticulas();
-                atualizarTempo();
-                setInterval(atualizarTempo, 1000);
-                mostrarFoto();
-                setInterval(mostrarFoto, 3000);
-            }
-
-            function atualizarTempo() {
-                const inicio = new Date("2025-01-12T01:24:00");
-                const agora = new Date();
-                const diff = agora - inicio;
-                const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                const minutos = Math.floor((diff / (1000 * 60)) % 60);
-                const segundos = Math.floor((diff / 1000) % 60);
-                document.getElementById("tempo").innerHTML =
-                    `💞 ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos de amor 💞`;
-            }
-
-            let cliquesCoracao = 0;
-
-            function mostrarMensagem() {
-                const msg = document.getElementById("mensagem");
-                const carrossel = document.getElementById("carrossel");
-
-                const visivel = msg.style.display === "none";
-                msg.style.display = visivel ? "block" : "none";
-                carrossel.style.opacity = visivel ? "0.4" : "1";
-
-                cliquesCoracao++;
-
-                if (cliquesCoracao === 3) {
-                    const egg = document.getElementById("easterEgg");
-                    egg.classList.add("mostrar");
-                }
-            }
-
-            function abrirCartinha() {
-                const carta = document.getElementById("textoCartinha");
-                carta.style.display = carta.style.display === "none" ? "block" : "none";
-            }
-
-            function gerarParticulas() {
-                const emojis = ["❤️", "💕", "✨", "🌸", "💖", "🩷"];
-                setInterval(() => {
-                    if (document.querySelectorAll(".particula").length > 15) return;
-                    const el = document.createElement("div");
-                    el.className = "particula";
-                    el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-                    el.style.left = Math.random() * 100 + "%";
-                    const size = Math.random() * 14 + 10;
-                    el.style.fontSize = size + "px";
-                    const dur = Math.random() * 6 + 5;
-                    el.style.setProperty("--dur", dur + "s");
-                    el.style.setProperty("--delay", "0s");
-                    el.style.setProperty("--op", (Math.random() * 0.4 + 0.5));
-                    el.style.setProperty("--rot", (Math.random() * 360 - 180) + "deg");
-                    document.body.appendChild(el);
-                    setTimeout(() => el.remove(), dur * 1000);
-                }, 600);
-            }
-
-            function fecharEgg() {
-                const egg = document.getElementById("easterEgg");
-                egg.classList.remove("mostrar");
-            }
-
-            function abrirTimeline() {
-                document.getElementById("timelineOverlay").style.display = "flex";
-            }
-
-            function fecharTimeline() {
-                document.getElementById("timelineOverlay").style.display = "none";
-                capituloAtual = 0;
-                capitulos.forEach((c, i) => {
-                    c.classList.remove("ativo");
-                    if (i === 0) c.classList.add("ativo");
-                });
-                btnProximo.style.display = "block";
-                btnProximo.innerHTML = "❤️";
-                document.getElementById("finalPromessa").style.display = "none";
-                document.getElementById("textoDigitando").innerHTML = "";
-                digitando = false;
                 atualizarProgressoBarras();
+            } else {
+                btnProximo.style.display = "none";
+                mostrarTextoFinal();
             }
+        }
 
-            let capituloAtual = 0;
-            const capitulos = document.querySelectorAll(".capitulo");
-            const btnProximo = document.getElementById("btnProximo");
-
-            function atualizarProgressoBarras() {
-                const barras = document.querySelectorAll(".capitulo-progresso .barra");
-                barras.forEach((b, i) => {
-                    b.classList.toggle("active", i <= capituloAtual && i < capitulos.length);
-                });
-            }
-
-            function proximoCapitulo() {
-                capitulos[capituloAtual].classList.remove("ativo");
-                capituloAtual++;
-
-                if (capituloAtual < capitulos.length) {
-                    capitulos[capituloAtual].classList.add("ativo");
-                    if (capituloAtual === capitulos.length - 1) {
-                        btnProximo.innerHTML = "💍";
-                    }
-                    atualizarProgressoBarras();
-                } else {
-                    btnProximo.style.display = "none";
-                    mostrarTextoFinal();
-                }
-            }
-
-            function mostrarTextoFinal() {
-                if (digitando) return;
-                const box = document.getElementById("finalPromessa");
-                const areaTexto = document.getElementById("textoDigitando");
-                box.style.display = "block";
-                areaTexto.innerHTML = "";
-                let i = 0;
-                digitando = true;
-                function digitar() {
-                    if (i < textoFinal.length) {
-                        areaTexto.innerHTML += textoFinal.charAt(i);
-                        i++;
-                        typingTimeout = setTimeout(digitar, 40);
-                    } else {
-                        digitando = false;
-                    }
-                }
-                digitar();
-            }
-
-            gerarEstrelas();
-            criarDots();
-
-
-            const textoFinal = `
+        const textoFinal = `
 Nanda, meu amor…
 
 Eu não te escolhi por acaso.
@@ -1459,14 +2629,12 @@ onde você se sente protegida, amada e nunca sozinha.
 Eu vim pra ficar.
 Nos dias bons, eu vou sorrir com você.
 Nos dias difíceis, eu vou segurar sua mão ainda mais forte.
-Eu prometo estar presente — de corpo, alma e coração.
 
 Quero curar cada ferida que um dia tentaram te deixar.
 Quero construir um amor que não machuca, não some e não falha.
 Um amor que cuida, protege e permanece.
 
 Meu sonho é formar uma família com você.
-Dividir uma vida, uma casa, planos, risadas, desafios e vitórias.
 Te ver vestida de branco e poder dizer:
 “Agora é pra sempre, meu amor.”
 
@@ -1474,10 +2642,75 @@ Eu te amo com tudo o que sou.
 E vou te amar com tudo o que ainda vamos ser.
 `;
 
+        function mostrarTextoFinal() {
+            if (digitando) return;
+            const box = document.getElementById("finalPromessa");
+            const areaTexto = document.getElementById("textoDigitando");
+            box.style.display = "block";
+            areaTexto.innerHTML = "";
+            let i = 0;
+            digitando = true;
+            function digitar() {
+                if (i < textoFinal.length) {
+                    areaTexto.innerHTML += textoFinal.charAt(i);
+                    i++;
+                    typingTimeout = setTimeout(digitar, 30);
+                } else {
+                    digitando = false;
+                }
+            }
+            digitar();
+        }
 
+        /* ===== Partículas / Estrelas ===== */
+        function gerarParticulas() {
+            const emojis = ["❤️", "💕", "✨", "🌸", "💖", "🐟", "🌊"];
+            setInterval(function () {
+                if (document.querySelectorAll(".particula").length > 15) return;
+                const el = document.createElement("div");
+                el.className = "particula";
+                el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                el.style.left = Math.random() * 100 + "%";
+                const size = Math.random() * 14 + 10;
+                el.style.fontSize = size + "px";
+                const dur = Math.random() * 6 + 5;
+                el.style.setProperty("--dur", dur + "s");
+                el.style.setProperty("--delay", "0s");
+                el.style.setProperty("--op", (Math.random() * 0.4 + 0.5));
+                el.style.setProperty("--rot", (Math.random() * 360 - 180) + "deg");
+                document.body.appendChild(el);
+                setTimeout(function () { el.remove(); }, dur * 1000);
+            }, 600);
+        }
 
+        function gerarEstrelas() {
+            const numEstrelas = 50;
+            const container = document.body;
+            for (let i = 0; i < numEstrelas; i++) {
+                const estrela = document.createElement("div");
+                estrela.className = "estrela";
+                const size = Math.random() * 2.5 + 1;
+                estrela.style.width = size + "px";
+                estrela.style.height = size + "px";
+                estrela.style.left = Math.random() * 100 + "%";
+                estrela.style.top = Math.random() * 100 + "%";
+                const opMin = Math.random() * 0.3 + 0.1;
+                const opMax = Math.random() * 0.6 + 0.4;
+                estrela.style.setProperty("--op-min", opMin);
+                estrela.style.setProperty("--op-max", opMax);
+                estrela.style.setProperty("--dur", (Math.random() * 3 + 2) + "s");
+                estrela.style.animationDelay = Math.random() * 5 + "s";
+                container.appendChild(estrela);
+            }
+        }
 
-        </script>
+        /* ===== Init ===== */
+        gerarEstrelas();
+        criarDots();
+        mostrarFoto();
+        setInterval(mostrarFoto, 4000);
+        atualizarMusicaUI();
+    </script>
 </body>
 
 </html>
