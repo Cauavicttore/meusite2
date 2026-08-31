@@ -4,6 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ponyo & Sosuke — Nossa História de Amor. Um filme feito de nós dois, cheio de ondas, abraços e um amor que nem o oceano inteiro consegue separar. 🐟❤️">
+    <meta name="theme-color" content="#040b16">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐟</text></svg>">
+
+    <!-- Open Graph (compartilhamento no WhatsApp / redes sociais) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ponyo & Sosuke — Nossa História de Amor 🐟❤️">
+    <meta property="og:description" content="Um filme feito de nós dois — um amor que nem o oceano inteiro consegue separar. 💌">
+    <meta property="og:image" content="https://Cauavicttore.github.io/meusite2/IMAGENS/P1.jpg">
+    <meta property="og:image:alt" content="Ponyo & Sosuke — Nossa História de Amor">
+    <meta name="twitter:card" content="summary_large_image">
+
     <title>Ponyo &amp; Sosuke — Nossa História de Amor 🐟❤️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -133,6 +147,20 @@
             10% { opacity: var(--op); }
             90% { opacity: var(--op); }
             100% { transform: translateY(-110vh) rotate(var(--rot)); opacity: 0; }
+        }
+
+        /* ===== Confetes de Amor ===== */
+        .confete {
+            position: fixed;
+            top: -20px;
+            z-index: 100;
+            pointer-events: none;
+            animation: cairConfete linear forwards;
+        }
+
+        @keyframes cairConfete {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(var(--rot-c)); opacity: 0.7; }
         }
 
         /* ===== Ondas ===== */
@@ -1024,7 +1052,70 @@
             display: none;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: zoom-in;
+            transition: transform 0.3s;
         }
+
+        .foto:hover { transform: scale(1.01); }
+
+        /* Lightbox da galeria */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            touch-action: manipulation;
+        }
+
+        .lightbox.ativo { display: flex; }
+
+        .lightbox img {
+            max-width: 92vw;
+            max-height: 88vh;
+            border-radius: 14px;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .lightbox-fechar {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 34px;
+            color: rgba(255, 255, 255, 0.85);
+            z-index: 2;
+        }
+
+        .lightbox-fechar:hover { color: var(--coral); }
+
+        .lightbox-legenda {
+            position: absolute;
+            bottom: 22px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: var(--gold);
+        }
+
+        .lightbox-setas {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 34px;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            z-index: 2;
+        }
+
+        .lightbox-setas.anterior { left: 12px; }
+        .lightbox-setas.proximo { right: 12px; }
+        .lightbox-setas:hover { color: var(--coral); }
 
         .legenda {
             margin-top: 14px;
@@ -1603,6 +1694,40 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 24px;
+        }
+
+        .msg-do-dia {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0 auto 26px;
+            padding: 20px 22px;
+            background: linear-gradient(135deg, rgba(63, 214, 201, 0.1), rgba(255, 94, 122, 0.1));
+            border: 1px solid rgba(63, 214, 201, 0.25);
+            border-radius: 18px;
+            box-shadow: 0 10px 34px rgba(0, 0, 0, 0.25);
+        }
+
+        .msg-do-dia .msg-emoji {
+            font-size: 30px;
+            display: block;
+            animation: boiar 4s ease-in-out infinite;
+        }
+
+        .msg-do-dia .msg-texto {
+            margin-top: 10px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(238, 247, 255, 0.9);
+        }
+
+        .msg-do-dia .msg-data {
+            display: block;
+            margin-top: 10px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--sky);
+            text-transform: uppercase;
         }
 
         .extras-grid {
@@ -2535,6 +2660,14 @@
             <div class="bg-escuro"></div>
 
             <h2 class="extras-titulo">🌟 Os Extras da Nossa História</h2>
+
+            <!-- 💌 Mensagem do Dia -->
+            <div class="msg-do-dia" id="msgDoDia">
+                <span class="msg-emoji">💌</span>
+                <p class="msg-texto" id="msgDoDiaTexto">Carregando a frase de hoje…</p>
+                <span class="msg-data" id="msgDoDiaData"></span>
+            </div>
+
             <div class="extras-grid">
                 <div class="extra-card">
                     <span class="extra-emoji">🍾</span>
@@ -2804,6 +2937,15 @@
     </div>
 
     <audio id="musica" src="Musica/Se o mar me levar.mp3" loop></audio>
+
+    <!-- 🔍 Lightbox da galeria -->
+    <div class="lightbox" id="lightbox" onclick="fecharLightbox()">
+        <button class="lightbox-fechar" onclick="event.stopPropagation();fecharLightbox()">×</button>
+        <button class="lightbox-setas anterior" onclick="event.stopPropagation();navegarLightbox(-1)">‹</button>
+        <img id="lightboxImg" src="" alt="Nossos momentos">
+        <button class="lightbox-setas proximo" onclick="event.stopPropagation();navegarLightbox(1)">›</button>
+        <p class="lightbox-legenda" id="lightboxLegenda"></p>
+    </div>
 
     <script>
         /* ===== Início ===== */
@@ -3178,6 +3320,42 @@
 
         const INDICE_MARTE_VENUS = 12;
 
+        /* ===== Lightbox da galeria ===== */
+        function abrirLightbox() {
+            let idxVisivel = -1;
+            fotos.forEach(function (f, i) {
+                if (f.style.display === "block") idxVisivel = i;
+            });
+            if (idxVisivel >= 0) index = idxVisivel;
+            const lb = document.getElementById("lightbox");
+            lb.classList.add("ativo");
+            atualizarLightbox();
+            document.body.style.overflow = "hidden";
+        }
+
+        function fecharLightbox() {
+            const lb = document.getElementById("lightbox");
+            lb.classList.remove("ativo");
+            document.body.style.overflow = "";
+        }
+
+        function atualizarLightbox() {
+            const img = document.getElementById("lightboxImg");
+            const leg = document.getElementById("lightboxLegenda");
+            const fotoAtual = fotos[index];
+            if (fotoAtual) {
+                img.src = fotoAtual.getAttribute("src");
+                img.alt = fotoAtual.alt || "Nossos momentos";
+            }
+            leg.textContent = legendas[index] || "";
+        }
+
+        function navegarLightbox(dir) {
+            index = (index + dir + fotos.length) % fotos.length;
+            atualizarDots();
+            atualizarLightbox();
+        }
+
         function criarDots() {
             const container = document.getElementById("carrossel");
             const dotsDiv = document.createElement("div");
@@ -3230,6 +3408,7 @@
             const visivel = msg.style.display === "none";
             msg.style.display = visivel ? "block" : "none";
             carrossel.style.opacity = visivel ? "0.4" : "1";
+            if (visivel) soltarConfete(40);
             cliquesCoracao++;
             if (cliquesCoracao === 3) {
                 document.getElementById("easterEgg").classList.add("mostrar");
@@ -3238,6 +3417,36 @@
 
         function fecharEgg() {
             document.getElementById("easterEgg").classList.remove("mostrar");
+        }
+
+        /* ===== Confete de Amor ===== */
+        const CORES_CONFETE = ["#ff5e7a", "#ffc24b", "#3fd6c9", "#8fd3ff", "#ff8a5c", "#ffffff"];
+        const EMOJIS_CONFETE = ["❤️", "💖", "🐟", "🌊", "💕", "✨", "🐚"];
+
+        function soltarConfete(quantidade) {
+            if (quantidade === undefined) quantidade = 30;
+            for (let i = 0; i < quantidade; i++) {
+                const el = document.createElement("span");
+                const ehEmoji = Math.random() < 0.4;
+                el.className = "confete";
+                if (ehEmoji) {
+                    el.textContent = EMOJIS_CONFETE[Math.floor(Math.random() * EMOJIS_CONFETE.length)];
+                    el.style.fontSize = (Math.random() * 16 + 14) + "px";
+                } else {
+                    el.style.width = (Math.random() * 8 + 5) + "px";
+                    el.style.height = (Math.random() * 8 + 5) + "px";
+                    el.style.background = CORES_CONFETE[Math.floor(Math.random() * CORES_CONFETE.length)];
+                    el.style.borderRadius = Math.random() < 0.5 ? "50%" : "2px";
+                }
+                el.style.left = (Math.random() * 100) + "vw";
+                const dur = Math.random() * 2.5 + 2;
+                el.style.setProperty("--dur", dur + "s");
+                el.style.setProperty("--rot-c", (Math.random() * 720 - 360) + "deg");
+                el.style.animation = "cairConfete " + dur + "s linear forwards";
+                el.style.animationDelay = (Math.random() * 0.6) + "s";
+                document.body.appendChild(el);
+                setTimeout(function () { el.remove(); }, (dur + 1) * 1000);
+            }
         }
 
         /* ===== Cartinha ===== */
@@ -3418,6 +3627,61 @@ E vou te amar com tudo o que ainda vamos ser.
             let alvo = new Date(hoje.getFullYear(), 0, 12, 0, 0, 0);
             if (alvo < hoje) alvo = new Date(hoje.getFullYear() + 1, 0, 12, 0, 0, 0);
             return alvo;
+        }
+
+        /* ===== Mensagem do Dia ===== */
+        const mensagensDoDia = [
+            "Cada dia com você é o meu dia favorito. 💖",
+            "Você é a onda que me trouxe paz onde antes era mar revolto. 🌊",
+            "Se eu tivesse que escolher uma pessoa pra tudo, seria você — em todas as vidas. 🐟",
+            "Seu abraço é o único lugar onde eu quero ficar pra sempre. 🤗",
+            "Amar você é fácil. Acordar sabendo que existo no seu coração é o presente. ✨",
+            "Entre todas as conchas do mar, eu sempre vou escolher você. 🐚",
+            "O melhor de mim só existe porque você existe. 💕",
+            "Hoje, amanhã e sempre: meu coração bate por você. 💓",
+            "Você é a minha história favorita, a que eu quero ler todos os dias. 📖",
+            "Nem o oceano inteiro cabe o amor que eu sinto por você. 🌊❤️",
+            "Se eu for a sua Ponyo, pode ter certeza: eu cruzaria o mar inteiro por você. 🐟",
+            "O seu riso é a música mais linda que eu já ouvi. 🎵",
+            "Eu te escolhi ontem, te escolho hoje e te escolho amanhã — para sempre. 💍",
+            "Nosso amor é a prova de que os mundos diferentes podem se encaixar. 🌍",
+            "Você é o meu lugar mais bonito. Onde o mundo inteiro faz sentido. 🏡"
+        ];
+
+        function atualizarMensagemDoDia() {
+            const el = document.getElementById("msgDoDiaTexto");
+            const elData = document.getElementById("msgDoDiaData");
+            if (!el) return;
+            const hoje = new Date();
+            const diaDoAno = Math.floor((hoje - new Date(hoje.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+            el.textContent = '"' + mensagensDoDia[diaDoAno % mensagensDoDia.length] + '"';
+            const dataFormatada = hoje.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+            elData.textContent = "Mensagem de hoje, " + dataFormatada;
+        }
+
+        /* ===== Surpresas em Datas Especiais ===== */
+        function hojeEDiaEspecial() {
+            const hoje = new Date();
+            const m = hoje.getMonth() + 1;
+            const d = hoje.getDate();
+            if (m === 1 && d === 12) return "🎉 Feliz aniversário de amor! Que maravilhoso comemorar esse dia com você! 💍";
+            if (m === 2 && d === 14) return "💖 Feliz Dia dos Namorados, meu amor! Você é o melhor presente da minha vida.";
+            if (m === 12 && d === 25) return "🎄 Feliz Natal, meu amor! Que a gente passe todos os natais juntinhos.";
+            if (m === 12 && d === 31) return "🎆 Feliz Ano Novo! Mais um ano com você é o meu melhor desejo.";
+            return null;
+        }
+
+        function checarDataEspecial() {
+            const msg = hojeEDiaEspecial();
+            if (msg) {
+                setTimeout(function () {
+                    soltarConfete(60);
+                    const status = document.getElementById("garrafaStatus");
+                    if (status && document.querySelector("#extraGarrafa.ativo")) {
+                        status.innerHTML = '<span class="splash">✨</span>' + msg;
+                    }
+                }, 3000);
+            }
         }
 
         /* ===== Quiz ===== */
@@ -4118,6 +4382,20 @@ E vou te amar com tudo o que ainda vamos ser.
         mostrarFoto();
         setInterval(mostrarFoto, 4000);
         atualizarMusicaUI();
+        atualizarMensagemDoDia();
+        checarDataEspecial();
+        setTimeout(function () { soltarConfete(12); }, 1200);
+
+        fotos.forEach(function (f) {
+            f.addEventListener("click", abrirLightbox);
+            f.setAttribute("alt", "Nossos momentos");
+        });
+        document.addEventListener("keydown", function (e) {
+            if (!document.getElementById("lightbox").classList.contains("ativo")) return;
+            if (e.key === "Escape") fecharLightbox();
+            if (e.key === "ArrowLeft") navegarLightbox(-1);
+            if (e.key === "ArrowRight") navegarLightbox(1);
+        });
     </script>
 </body>
 
