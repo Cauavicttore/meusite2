@@ -2936,13 +2936,13 @@
         </p>
     </div>
 
-    <audio id="musica" src="Musica/Se o mar me levar.mp3" loop></audio>
+    <audio id="musica" src="Musica/Se o mar me levar.mp3" loop preload="metadata"></audio>
 
     <!-- 🔍 Lightbox da galeria -->
     <div class="lightbox" id="lightbox" onclick="fecharLightbox()">
         <button class="lightbox-fechar" onclick="event.stopPropagation();fecharLightbox()">×</button>
         <button class="lightbox-setas anterior" onclick="event.stopPropagation();navegarLightbox(-1)">‹</button>
-        <img id="lightboxImg" src="" alt="Nossos momentos">
+        <img id="lightboxImg" src="" alt="Nossos momentos" onclick="event.stopPropagation()">
         <button class="lightbox-setas proximo" onclick="event.stopPropagation();navegarLightbox(1)">›</button>
         <p class="lightbox-legenda" id="lightboxLegenda"></p>
     </div>
@@ -3013,9 +3013,16 @@
             }
             mostrarCena(filmeIndex, resumir);
             const audio = document.getElementById("musica");
-            if (audio.paused) audio.play();
+            if (audio.paused && !musicaPausadaManual) tocarMusica();
             atualizarMusicaUI();
             ativarAutoHide();
+        }
+
+        function tocarMusica() {
+            const audio = document.getElementById("musica");
+            if (!audio) return;
+            const p = audio.play();
+            if (p && p.catch) p.catch(function () {});
         }
 
         function assistir() {
@@ -3141,7 +3148,7 @@
             const bar = event.currentTarget;
             const rect = bar.getBoundingClientRect();
             const pct = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-            const novo = Math.floor(pct * cenas.length);
+            const novo = Math.min(cenas.length - 1, Math.floor(pct * cenas.length));
             filmeNav(novo - filmeIndex);
         }
 
@@ -3152,10 +3159,13 @@
 
         function filmeFullscreen() {
             const el = document.getElementById("filme");
-            if (!document.fullscreenElement) {
-                if (el.requestFullscreen) el.requestFullscreen();
+            const doc = document;
+            const exitFS = doc.exitFullscreen || doc.webkitExitFullscreen || doc.mozCancelFullScreen;
+            const rq = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+            if (!(doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement)) {
+                if (rq) rq.call(el);
             } else {
-                if (document.exitFullscreen) document.exitFullscreen();
+                if (exitFS) exitFS.call(doc);
             }
         }
 
@@ -3195,6 +3205,7 @@
             { titulo: "Die With A Smile", artista: "Nossa música (Nosso Clima)", src: "Musica/Music.mp3", capa: "IMAGENS/F1.jpeg" }
         ];
         let musicaAtual = 0;
+        let musicaPausadaManual = false;
 
         function atualizarMusicaUI() {
             const audio = document.getElementById("musica");
@@ -3211,8 +3222,10 @@
         function spotifyToggle() {
             const audio = document.getElementById("musica");
             if (audio.paused) {
-                audio.play();
+                musicaPausadaManual = false;
+                tocarMusica();
             } else {
+                musicaPausadaManual = true;
                 audio.pause();
             }
             atualizarMusicaUI();
@@ -3223,7 +3236,8 @@
             musicaAtual = (i + playlistSpotify.length) % playlistSpotify.length;
             audio.src = playlistSpotify[musicaAtual].src;
             audio.loop = true;
-            audio.play();
+            musicaPausadaManual = false;
+            tocarMusica();
             atualizarMusicaUI();
         }
 
@@ -3321,6 +3335,16 @@
         const INDICE_MARTE_VENUS = 12;
 
         /* ===== Lightbox da galeria ===== */
+        let carrosselTimer = null;
+
+        function pausarCarrossel() {
+            if (carrosselTimer) { clearInterval(carrosselTimer); carrosselTimer = null; }
+        }
+
+        function retomarCarrossel() {
+            if (!carrosselTimer) carrosselTimer = setInterval(mostrarFoto, 4000);
+        }
+
         function abrirLightbox() {
             let idxVisivel = -1;
             fotos.forEach(function (f, i) {
@@ -3331,12 +3355,14 @@
             lb.classList.add("ativo");
             atualizarLightbox();
             document.body.style.overflow = "hidden";
+            pausarCarrossel();
         }
 
         function fecharLightbox() {
             const lb = document.getElementById("lightbox");
             lb.classList.remove("ativo");
             document.body.style.overflow = "";
+            retomarCarrossel();
         }
 
         function atualizarLightbox() {
@@ -4116,6 +4142,7 @@ E vou te amar com tudo o que ainda vamos ser.
             clearInterval(jogoElapsedTimer);
             clearTimeout(jogoSpawnTimer);
             clearInterval(jogoLoopTimer);
+            clearTimeout(flashTimer);
             jogoTimerInt = null;
             jogoElapsedTimer = null;
             jogoSpawnTimer = null;
@@ -4380,7 +4407,7 @@ E vou te amar com tudo o que ainda vamos ser.
         gerarEstrelas();
         criarDots();
         mostrarFoto();
-        setInterval(mostrarFoto, 4000);
+        retomarCarrossel();
         atualizarMusicaUI();
         atualizarMensagemDoDia();
         checarDataEspecial();
