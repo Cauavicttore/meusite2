@@ -1588,6 +1588,523 @@
             letter-spacing: 4px;
         }
 
+        /* ===== Seção Extras ===== */
+        #extras {
+            position: relative;
+            z-index: 1;
+            padding: 20px 5% 10px;
+        }
+
+        .extras-titulo {
+            font-size: clamp(22px, 4.5vw, 34px);
+            font-weight: 700;
+            background: linear-gradient(120deg, var(--coral), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 24px;
+        }
+
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .extra-card {
+            background: rgba(15, 30, 48, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 26px 22px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .extra-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .extra-emoji {
+            font-size: 44px;
+            display: inline-block;
+            animation: boiar 4s ease-in-out infinite;
+        }
+
+        .extra-card h3 {
+            margin-top: 12px;
+            font-size: 17px;
+            color: var(--gold);
+        }
+
+        .extra-card p {
+            margin-top: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(238, 247, 255, 0.75);
+        }
+
+        .btn-extra {
+            margin-top: 16px;
+            padding: 10px 22px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, var(--coral), var(--coral2));
+            border-radius: 40px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 18px rgba(255, 94, 122, 0.35);
+        }
+
+        .btn-extra:hover {
+            transform: scale(1.05);
+        }
+
+        /* Overlay dos extras */
+        .extra-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 8, 16, 0.88);
+            backdrop-filter: blur(8px);
+            z-index: 85;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+        }
+
+        .extra-overlay.ativo { display: flex; }
+
+        .extra-box {
+            position: relative;
+            max-width: 620px;
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 30px 26px;
+            text-align: center;
+            background: linear-gradient(160deg, #0e1d30, #081422);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65);
+        }
+
+        .extra-fechar {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 26px;
+            color: rgba(255, 255, 255, 0.6);
+            z-index: 2;
+        }
+
+        .extra-fechar:hover { color: var(--coral); }
+
+        .extra-box h2 {
+            font-size: clamp(20px, 4vw, 28px);
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .extra-box .sub {
+            font-size: 13px;
+            color: var(--sky);
+            margin-bottom: 20px;
+        }
+
+        /* Garrafa */
+        .garrafa-status {
+            font-size: 15px;
+            color: rgba(238, 247, 255, 0.85);
+            min-height: 4.5em;
+            line-height: 1.7;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .garrafa-status .splash { font-size: 30px; }
+
+        /* Data especial */
+        #tempoDataEspecial {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--teal);
+            margin-bottom: 16px;
+        }
+
+        .data-grid {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .data-cell {
+            min-width: 72px;
+            padding: 12px 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+        }
+
+        .data-cell b {
+            display: block;
+            font-size: 26px;
+            color: var(--coral);
+        }
+
+        .data-cell span {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: rgba(238, 247, 255, 0.6);
+            text-transform: uppercase;
+        }
+
+        /* Quiz */
+        .quiz-pergunta {
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .quiz-opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .quiz-opcao {
+            padding: 13px 16px;
+            font-size: 14px;
+            color: #fff;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .quiz-opcao:hover { background: rgba(255, 255, 255, 0.12); }
+        .quiz-opcao.certa {
+            background: rgba(63, 214, 201, 0.22);
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+        .quiz-opcao.errada {
+            background: rgba(255, 94, 122, 0.22);
+            border-color: var(--coral);
+            opacity: 0.7;
+        }
+
+        .quiz-feedback {
+            font-size: 14px;
+            min-height: 1.6em;
+            color: var(--gold);
+            margin: 8px 0 4px;
+        }
+
+        .quiz-progresso {
+            font-size: 13px;
+            color: rgba(238, 247, 255, 0.6);
+            margin-bottom: 12px;
+        }
+
+        .quiz-resultado {
+            display: none;
+        }
+
+        .quiz-resultado .splash { font-size: 56px; animation: batida 1.3s ease-in-out infinite; }
+        .quiz-resultado p { font-size: 15px; line-height: 1.7; color: rgba(238, 247, 255, 0.9); margin-top: 14px; }
+        .quiz-resultado .nota { font-size: 26px; color: var(--gold); margin-top: 10px; }
+
+        /* Jogo */
+        .jogo-area {
+            position: relative;
+            width: 100%;
+            height: clamp(300px, 52vh, 420px);
+            background:
+                radial-gradient(circle at 20% 70%, rgba(63, 214, 201, 0.12), transparent 40%),
+                radial-gradient(circle at 80% 30%, rgba(143, 211, 255, 0.12), transparent 40%),
+                radial-gradient(circle at 50% 40%, #12304b, #060f1c);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            overflow: hidden;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: none;
+        }
+
+        .jogo-placar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--sky);
+        }
+
+        #jogoPontos, #jogoTempo {
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .jogo-peixe {
+            position: absolute;
+            width: 56px;
+            height: 56px;
+            font-size: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            pointer-events: none;
+            filter: drop-shadow(0 6px 14px rgba(255, 94, 122, 0.55));
+            transition: transform 0.05s;
+        }
+
+        .jogo-item {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            user-select: none;
+            filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
+        }
+
+        .jogo-item.ouro {
+            font-size: 38px;
+            animation: brilho 0.6s ease-in-out infinite;
+        }
+
+        @keyframes brilho {
+            0%, 100% { filter: drop-shadow(0 0 4px rgba(255, 194, 75, 0.4)); }
+            50% { filter: drop-shadow(0 0 16px rgba(255, 194, 75, 0.95)); }
+        }
+
+        .jogo-item.ruim {
+            font-size: 34px;
+            filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.5)) hue-rotate(-40deg);
+        }
+
+        .jogo-flash {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--gold);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+            z-index: 6;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .jogo-flash.mostrar { opacity: 1; }
+
+        .jogo-dica {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: rgba(238, 247, 255, 0.7);
+            text-align: center;
+            padding: 16px;
+            line-height: 1.6;
+            z-index: 2;
+        }
+
+        .jogo-recorde {
+            margin-top: 12px;
+            font-size: 13px;
+            color: rgba(238, 247, 255, 0.6);
+        }
+
+        .jogo-recorde b { color: var(--gold); }
+
+        .jogo-level {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 5px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #04101c;
+            background: var(--teal);
+            border-radius: 40px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .jogo-level.medio { background: var(--gold); }
+        .jogo-level.dificil { background: var(--coral); color: #fff; }
+
+        .btn-jogo-restart {
+            display: none;
+            margin: 16px auto 0;
+            padding: 11px 26px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #04101c;
+            background: var(--teal);
+            border-radius: 40px;
+        }
+
+        /* Jogo da Memória */
+        .memoria-placar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: var(--sky);
+            margin-bottom: 16px;
+        }
+
+        .memoria-placar b, .memoria-placar span { font-weight: 700; }
+        #memTentativas, #memTempo, #memRecorde { color: var(--gold); }
+
+        .memoria-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .mem-carta {
+            position: relative;
+            aspect-ratio: 3 / 4;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--coral), var(--coral2));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            transition: transform 0.25s;
+            perspective: 600px;
+        }
+
+        .mem-carta:hover { transform: scale(1.03); }
+
+        .mem-carta .face {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            backface-visibility: hidden;
+            transition: transform 0.35s;
+            overflow: hidden;
+        }
+
+        .mem-carta .frente {
+            background: linear-gradient(135deg, var(--coral), var(--coral2));
+            color: #fff;
+            font-size: 28px;
+        }
+
+        .mem-carta .tras {
+            background: rgba(255, 255, 255, 0.08);
+            transform: rotateY(180deg);
+        }
+
+        .mem-carta .tras img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mem-carta.virar .frente { transform: rotateY(180deg); }
+        .mem-carta.virar .tras { transform: rotateY(0deg); }
+        .mem-carta.acertou .tras { outline: 3px solid var(--teal); }
+        .mem-carta.acertou { cursor: default; transform: scale(0.97); opacity: 0.85; }
+
+        /* Mural */
+        .mural-entrada {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .mural-entrada input {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-family: inherit;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 12px;
+            outline: none;
+        }
+
+        .mural-entrada input::placeholder { color: rgba(238, 247, 255, 0.4); }
+
+        .mural-add {
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, var(--coral), var(--coral2));
+            border-radius: 12px;
+        }
+
+        .mural-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .mural-item {
+            position: relative;
+            padding: 14px 14px 34px;
+            background: linear-gradient(160deg, rgba(255, 194, 75, 0.12), rgba(255, 94, 122, 0.1));
+            border: 1px solid rgba(255, 194, 75, 0.2);
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: rgba(238, 247, 255, 0.9);
+            text-align: left;
+            word-break: break-word;
+            min-height: 80px;
+        }
+
+        .mural-item .del {
+            position: absolute;
+            bottom: 6px;
+            right: 10px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .mural-item .del:hover { color: var(--coral); }
+
+        .mural-vazio {
+            font-size: 14px;
+            color: rgba(238, 247, 255, 0.5);
+            text-align: center;
+            padding: 20px;
+        }
+
         /* ===== Responsivo ===== */
         @media (max-width: 768px) {
             .filme-topo {
@@ -1642,6 +2159,23 @@
             .ponyo-grid {
                 grid-template-columns: 1fr;
                 gap: 16px;
+            }
+
+            .memoria-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .extra-box {
+                padding: 24px 16px;
+            }
+
+            .memoria-placar {
+                font-size: 12px;
+                gap: 6px;
+            }
+
+            .memoria-grid {
+                gap: 8px;
             }
 
             .ponyo-card img {
@@ -1994,6 +2528,150 @@
                 <span class="fujimoto-nome">— Assinado: o homem que te ama além de qualquer onda</span>
             </div>
         </section>
+
+        <!-- 🌟 Extras -->
+        <section id="extras">
+            <div class="bg-duo bg-duo-fraco" style="background-image:url('IMAGENS/P3.jpg'),url('IMAGENS/N3.jpeg')"></div>
+            <div class="bg-escuro"></div>
+
+            <h2 class="extras-titulo">🌟 Os Extras da Nossa História</h2>
+            <div class="extras-grid">
+                <div class="extra-card">
+                    <span class="extra-emoji">🍾</span>
+                    <h3>Garrafa de Mensagens</h3>
+                    <p>Uma garrafa boiando no mar com uma mensagem de amor só pra você.</p>
+                    <button class="btn-extra" onclick="abrirExtra('garrafa')">Abrir Garrafa 🏝️</button>
+                </div>
+                <div class="extra-card">
+                    <span class="extra-emoji">💍</span>
+                    <h3>Próximo Marco</h3>
+                    <p>Contagem regressiva até a nossa próxima data especial.</p>
+                    <button class="btn-extra" onclick="abrirExtra('data')">Ver Contagem ⏳</button>
+                </div>
+                <div class="extra-card">
+                    <span class="extra-emoji">🧠</span>
+                    <h3>Quiz "Nós Dois"</h3>
+                    <p>Será que você acerta tudo sobre a nossa história?</p>
+                    <button class="btn-extra" onclick="abrirExtra('quiz')">Aceitar o Desafio 🎯</button>
+                </div>
+                <div class="extra-card">
+                    <span class="extra-emoji">🐟</span>
+                    <h3>Jogo da Ponyo</h3>
+                    <p>Ajude a Ponyo a pegar os corações no mar. Quantos você consegue?</p>
+                    <button class="btn-extra" onclick="abrirExtra('jogo')">Jogar 🕹️</button>
+                </div>
+                <div class="extra-card">
+                    <span class="extra-emoji">🧩</span>
+                    <h3>Jogo da Memória</h3>
+                    <p>Encontre os pares com as nossas fotos e da Ponyo!</p>
+                    <button class="btn-extra" onclick="abrirExtra('memoria')">Jogar 🧠</button>
+                </div>
+                <div class="extra-card">
+                    <span class="extra-emoji">💌</span>
+                    <h3>Mural de Notinhas</h3>
+                    <p>Deixe pequenas mensagens que ficarão guardadas aqui para sempre.</p>
+                    <button class="btn-extra" onclick="abrirExtra('mural')">Abrir Mural 📝</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overlay: Extras -->
+        <div id="extraGarrafa" class="extra-overlay">
+            <div class="extra-box">
+                <button class="extra-fechar" onclick="fecharExtra('garrafa')">×</button>
+                <h2>🍾 Garrafa de Mensagens</h2>
+                <p class="sub">As ondas trouxeram uma mensagem pra você…</p>
+                <div class="garrafa-status" id="garrafaStatus">
+                    <span class="splash">🌊</span>
+                </div>
+                <button class="btn-extra" onclick="abrirGarrafa()">🎲 Abrir outra mensagem</button>
+            </div>
+        </div>
+
+        <div id="extraData" class="extra-overlay">
+            <div class="extra-box">
+                <button class="extra-fechar" onclick="fecharExtra('data')">×</button>
+                <h2>💍 Nosso Próximo Marco</h2>
+                <p class="sub">Contagem regressiva até o nosso aniversário de amor</p>
+                <p id="tempoDataEspecial">Carregando…</p>
+                <div class="data-grid" id="dataGrid">
+                    <div class="data-cell"><b id="dDias">--</b><span>dias</span></div>
+                    <div class="data-cell"><b id="dHoras">--</b><span>horas</span></div>
+                    <div class="data-cell"><b id="dMin">--</b><span>min</span></div>
+                    <div class="data-cell"><b id="dSeg">--</b><span>seg</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="extraQuiz" class="extra-overlay">
+            <div class="extra-box">
+                <button class="extra-fechar" onclick="fecharExtra('quiz')">×</button>
+                <h2>🧠 Quiz "Nós Dois"</h2>
+                <p class="sub" id="quizProgresso">Pergunta 1 de 15</p>
+                <div id="quizCorpo">
+                    <p class="quiz-pergunta" id="quizPergunta"></p>
+                    <div class="quiz-opcoes" id="quizOpcoes"></div>
+                    <p class="quiz-feedback" id="quizFeedback"></p>
+                    <button class="btn-extra" id="btnQuizAvancar" style="display:none" onclick="quizAvancar()">Próxima ➜</button>
+                </div>
+                <div class="quiz-resultado" id="quizResultado">
+                    <span class="splash">🎉</span>
+                    <p id="quizResultadoTexto"></p>
+                    <div class="nota" id="quizNota"></div>
+                    <button class="btn-extra" onclick="reiniciarQuiz()" style="margin-top:18px">Jogar de novo 🔄</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="extraJogo" class="extra-overlay">
+            <div class="extra-box">
+                <button class="extra-fechar" onclick="fecharExtra('jogo')">×</button>
+                <h2>🐟 Jogo da Ponyo</h2>
+                <p class="sub">Nade com a Ponyo e pegue os corações para ganhar tempo! Cuidado com os polvos 🦑</p>
+                <div class="jogo-placar">
+                    <span>❤️ <span id="jogoPontos">0</span></span>
+                    <span>🔥 <span id="jogoCombo">0</span>x</span>
+                    <span>⏱ <span id="jogoTempo">30</span>s</span>
+                </div>
+                <div class="jogo-level" id="jogoLevel">🌊 Nível Fácil</div>
+                <div class="jogo-area" id="jogoArea">
+                    <div class="jogo-flash" id="jogoFlash"></div>
+                    <p class="jogo-dica" id="jogoDica">🐟 Mova a Ponyo e nade até os corações!<br>💖 coração +2s · 🌟 estrela +4s<br>🦑 polvo -4s</p>
+                </div>
+                <p class="jogo-recorde">Recorde: <b id="jogoRecorde">0</b> corações</p>
+                <button class="btn-extra" id="jogoBtn" onclick="iniciarJogo()">▶ Começar Jogo</button>
+                <button class="btn-jogo-restart" id="jogoRestart" onclick="iniciarJogo()">🔄 Jogar de novo</button>
+            </div>
+        </div>
+
+        <div id="extraMemoria" class="extra-overlay">
+            <div class="extra-box">
+                <button class="extra-fechar" onclick="fecharExtra('memoria')">×</button>
+                <h2>🧩 Jogo da Memória</h2>
+                <p class="sub">Encontre todos os pares de fotos nossas e da Ponyo!</p>
+                <div class="memoria-placar">
+                    <span>👣 <span id="memTentativas">0</span> tentativas</span>
+                    <span>⏱ <span id="memTempo">0</span>s</span>
+                    <span>🥇 <span id="memRecorde">--</span></span>
+                </div>
+                <div class="memoria-grid" id="memoriaGrid"></div>
+                <button class="btn-extra" id="memoriaBtn" onclick="iniciarMemoria()" style="margin-top:18px">▶ Começar</button>
+                <button class="btn-jogo-restart" id="memoriaReiniciar" onclick="iniciarMemoria()">🔄 Jogar de novo</button>
+            </div>
+        </div>
+
+        <div id="extraMural" class="extra-overlay">
+            <div class="extra-box">
+                <button class="extra-fechar" onclick="fecharExtra('mural')">×</button>
+                <h2>💌 Mural de Notinhas</h2>
+                <p class="sub">Deixe aqui uma mensagem que fica guardada pra sempre</p>
+                <div class="mural-entrada">
+                    <input id="muralInput" placeholder="Escreva uma notinha…" maxlength="120">
+                    <button class="mural-add" onclick="adicionarNota()">+</button>
+                </div>
+                <div class="mural-lista" id="muralLista"></div>
+            </div>
+        </div>
 
         <!-- Créditos -->
         <div id="creditos">
@@ -2372,7 +3050,7 @@
         const playlistSpotify = [
             { titulo: "Se o mar me levar", artista: "Nossa música do oceano", src: "Musica/Se o mar me levar.mp3", capa: "IMAGENS/P1.jpg" },
             { titulo: "Garotinha Nanda", artista: "Pra você, meu amor", src: "Musica/Garotinha Nanda.mp3", capa: "IMAGENS/13.jpg" },
-            { titulo: "Nosso Clima", artista: "Músicas que lembram você", src: "Musica/Music.mp3", capa: "IMAGENS/F1.jpeg" }
+            { titulo: "Die With A Smile", artista: "Nossa música (Nosso Clima)", src: "Musica/Music.mp3", capa: "IMAGENS/F1.jpeg" }
         ];
         let musicaAtual = 0;
 
@@ -2661,6 +3339,736 @@ E vou te amar com tudo o que ainda vamos ser.
             }
             digitar();
         }
+
+        /* ===== Extras: abrir/fechar overlays ===== */
+        const EXTRA_IDS = { garrafa: "extraGarrafa", data: "extraData", quiz: "extraQuiz", jogo: "extraJogo", memoria: "extraMemoria", mural: "extraMural" };
+
+        function abrirExtra(nome) {
+            const id = EXTRA_IDS[nome];
+            const el = document.getElementById(id);
+            el.classList.add("ativo");
+            document.body.style.overflow = "hidden";
+            if (nome === "garrafa") abrirGarrafa();
+            if (nome === "data") atualizarDataEspecial();
+            if (nome === "quiz") iniciarQuiz();
+            if (nome === "jogo") resetarJogoUI();
+            if (nome === "memoria") resetarMemoriaUI();
+            if (nome === "mural") renderizarMural();
+        }
+
+        function fecharExtra(nome) {
+            const id = EXTRA_IDS[nome];
+            document.getElementById(id).classList.remove("ativo");
+            document.body.style.overflow = "";
+            if (nome === "quiz") resetarQuizUI();
+            if (nome === "jogo") encerrarJogo();
+            if (nome === "memoria") pararMemoria();
+        }
+
+        /* ===== Garrafa de Mensagens ===== */
+        const mensagensGarrafa = [
+            "Cada onda que chega à praia, traz um pedacinho de você pra mim. 🌊",
+            "Se o mar me levasse até você todo dia, eu nadaria pra sempre. 🐟",
+            "Você é a minha Ponyo: pequena, corajosa e dona do meu coração. 💖",
+            "Entre todas as conchas do mundo, eu escolhi você. E escolheria de novo. 🐚",
+            "O oceano é imenso, mas o que eu sinto por você é ainda maior. 🌊❤️",
+            "Nada nesse mundo é mais bonito que o seu sorriso chegando até mim. ✨",
+            "Se eu pudesse, atravessaria qualquer mar, só pra te ver mais uma vez. 🏝️",
+            "Meu porto seguro sempre foi você — e sempre será. ⚓",
+            "Você é o meu lugar mais bonito, onde meu coração descansa. 💞"
+        ];
+
+        function abrirGarrafa() {
+            const status = document.getElementById("garrafaStatus");
+            status.innerHTML = '<span class="splash">🌊</span>';
+            setTimeout(function () {
+                const msg = mensagensGarrafa[Math.floor(Math.random() * mensagensGarrafa.length)];
+                status.innerHTML = '"' + msg + '" 💌';
+            }, 500);
+        }
+
+        /* ===== Próxima Data Especial ===== */
+        function atualizarDataEspecial() {
+            const alvo = proximoAniversario();
+            const agora = new Date();
+            const diff = alvo - agora;
+            if (diff <= 0) {
+                document.getElementById("tempoDataEspecial").textContent = "🎉 É HOJE! Feliz aniversário de amor! 💖";
+                document.getElementById("dDias").textContent = "0";
+                document.getElementById("dHoras").textContent = "0";
+                document.getElementById("dMin").textContent = "0";
+                document.getElementById("dSeg").textContent = "0";
+                return;
+            }
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / (1000 * 60)) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
+            document.getElementById("tempoDataEspecial").textContent = "Faltam exatamente um ano de nós dois… 💞";
+            document.getElementById("dDias").textContent = dias;
+            document.getElementById("dHoras").textContent = horas;
+            document.getElementById("dMin").textContent = minutos;
+            document.getElementById("dSeg").textContent = segundos;
+            clearTimeout(atualizarDataEspecial._t);
+            atualizarDataEspecial._t = setTimeout(atualizarDataEspecial, 1000);
+        }
+
+        function proximoAniversario() {
+            const hoje = new Date();
+            let alvo = new Date(hoje.getFullYear(), 0, 12, 0, 0, 0);
+            if (alvo < hoje) alvo = new Date(hoje.getFullYear() + 1, 0, 12, 0, 0, 0);
+            return alvo;
+        }
+
+        /* ===== Quiz ===== */
+        const quizPerguntas = [
+            {
+                pergunta: "Em que data a nossa história começou?",
+                opcoes: ["12/01/2025", "14/02/2024", "25/12/2024", "01/01/2025"],
+                resposta: 0
+            },
+            {
+                pergunta: "A nossa história de amor é inspirada em qual filme?",
+                opcoes: ["Titanic", "Ponyo & Sosuke", "A Pequena Sereia", "Up: Altas Aventuras"],
+                resposta: 1
+            },
+            {
+                pergunta: "O que a Ponyo trocou pelo amor?",
+                opcoes: ["O palácio do rei", "O mar e virar humana", "Sua cauda dourada", "Sua família"],
+                resposta: 1
+            },
+            {
+                pergunta: "Como eu te chamo (qual é o seu apelido)?",
+                opcoes: ["Minha estrela", "Minha garotinha", "Minha sereia", "Minha ondinha"],
+                resposta: 1
+            },
+            {
+                pergunta: "Como você me chama?",
+                opcoes: ["Meu neném", "Meu ursinho", "Meu tesouro", "Meu peixinho"],
+                resposta: 1
+            },
+            {
+                pergunta: "O que eu te prometo fazer todos os dias?",
+                opcoes: ["Te encher de presentes", "Te escolher", "Te fazer rir", "Te contar segredos"],
+                resposta: 1
+            },
+            {
+                pergunta: "Qual é a nossa música especial?",
+                opcoes: ["Se o mar me levar", "Die With A Smile", "Garotinha Nanda", "Nosso Clima"],
+                resposta: 1
+            },
+            {
+                pergunta: "Qual é o melhor lugar do mundo para mim?",
+                opcoes: ["A praia", "Na minha casa", "No abraço dela", "No cinema"],
+                resposta: 2
+            },
+            {
+                pergunta: "Segundo o filme, o que nem o oceano inteiro consegue separar?",
+                opcoes: ["Duas conchas", "Dois barcos", "Quem se ama de verdade", "Duas ondas"],
+                resposta: 2
+            },
+            {
+                pergunta: "No filme, o menino que ama a Ponyo se chama?",
+                opcoes: ["Ren", "Kenji", "Sosuke", "Toto"],
+                resposta: 2
+            },
+            {
+                pergunta: "Qual é o símbolo do nosso amor no site?",
+                opcoes: ["A estrela cadente", "O peixinho Ponyo 🐟", "O coração e as ondas", "O barquinho"],
+                resposta: 2
+            },
+            {
+                pergunta: "Quantos capítulos tem o nosso filme?",
+                opcoes: ["Dois", "Três", "Quatro", "Cinco"],
+                resposta: 2
+            },
+            {
+                pergunta: "O que a Ponyo faz para virar humana por amor?",
+                opcoes: ["Beija o Sosuke", "Usa a magia do pai", "Desiste do mar com a ajuda do amor", "Achava uma concha mágica"],
+                resposta: 2
+            },
+            {
+                pergunta: "Segundo a nossa história, o que eu faço com você?",
+                opcoes: ["Te deixo ir", "Te escolho todos os dias", "Te espero", "Te guardo num cofre"],
+                resposta: 1
+            },
+            {
+                pergunta: "O que a nossa história mostra que o amor verdadeiro faz?",
+                opcoes: ["Sofre pra sempre", "Transforma mundos e cruza mares", "Acaba com o tempo", "Se esconde"],
+                resposta: 1
+            }
+        ];
+
+        let quizIndex = 0;
+        let quizAcertos = 0;
+        let quizRespondida = false;
+
+        function iniciarQuiz() {
+            quizIndex = 0;
+            quizAcertos = 0;
+            quizRespondida = false;
+            document.getElementById("quizResultado").style.display = "none";
+            document.getElementById("quizCorpo").style.display = "block";
+            document.getElementById("btnQuizAvancar").style.display = "none";
+            mostrarQuizPergunta();
+        }
+
+        function mostrarQuizPergunta() {
+            const p = quizPerguntas[quizIndex];
+            document.getElementById("quizPergunta").textContent = p.pergunta;
+            document.getElementById("quizProgresso").textContent = "Pergunta " + (quizIndex + 1) + " de " + quizPerguntas.length;
+            document.getElementById("quizFeedback").textContent = "";
+            const opcoes = document.getElementById("quizOpcoes");
+            opcoes.innerHTML = "";
+            p.opcoes.forEach(function (txt, i) {
+                const b = document.createElement("button");
+                b.className = "quiz-opcao";
+                b.textContent = txt;
+                b.onclick = function () { responderQuiz(i); };
+                opcoes.appendChild(b);
+            });
+            quizRespondida = false;
+            document.getElementById("btnQuizAvancar").style.display = "none";
+        }
+
+        function responderQuiz(i) {
+            if (quizRespondida) return;
+            quizRespondida = true;
+            const p = quizPerguntas[quizIndex];
+            const opcoes = document.querySelectorAll("#quizOpcoes .quiz-opcao");
+            if (i === p.resposta) {
+                quizAcertos++;
+                opcoes[i].classList.add("certa");
+                document.getElementById("quizFeedback").textContent = "Acertou! Você me conhece bem. 😍";
+            } else {
+                opcoes[i].classList.add("errada");
+                opcoes[p.resposta].classList.add("certa");
+                document.getElementById("quizFeedback").textContent = "Quase! A resposta certa está em verde. 💙";
+            }
+            opcoes.forEach(function (o) { o.onclick = null; });
+            document.getElementById("btnQuizAvancar").style.display = "inline-block";
+        }
+
+        function quizAvancar() {
+            quizIndex++;
+            if (quizIndex < quizPerguntas.length) {
+                mostrarQuizPergunta();
+            } else {
+                mostrarQuizResultado();
+            }
+        }
+
+        function mostrarQuizResultado() {
+            document.getElementById("quizCorpo").style.display = "none";
+            const total = quizPerguntas.length;
+            let texto, nota;
+            if (quizAcertos === total) {
+                texto = "Perfeito! Você acertou tudo — claro, é a gente quem tá falando. Nosso amor é a resposta certa de tudo. 💖";
+                nota = "🏆 " + quizAcertos + "/" + total;
+            } else if (quizAcertos >= total - 1) {
+                texto = "Quase perfeito! Você me conhece de verdade. 💕";
+                nota = "⭐ " + quizAcertos + "/" + total;
+            } else {
+                texto = "Você errou algumas… mas tudo bem, o amor erra junto e acerta pra sempre. Te amo do mesmo jeito! 🐟";
+                nota = "💞 " + quizAcertos + "/" + total;
+            }
+            document.getElementById("quizResultadoTexto").textContent = texto;
+            document.getElementById("quizNota").textContent = nota;
+            document.getElementById("quizResultado").style.display = "block";
+        }
+
+        function reiniciarQuiz() { iniciarQuiz(); }
+
+        function resetarQuizUI() {
+            // reset quando fechar para recomeçar limpo na próxima abertura
+        }
+
+        /* ===== Jogo da Ponyo ===== */
+        let jogoAtivo = false;
+        let jogoPontosVal = 0;
+        let jogoSegundos = 30;
+        let jogoCombo = 0;
+        let jogoComboMax = 0;
+        let jogoElapsed = 0;
+        let jogoTimerInt = null;
+        let jogoSpawnTimer = null;
+        let jogoLoopTimer = null;
+        let jogoElapsedTimer = null;
+        let jogoPeixeX = 0;
+        let jogoPeixeY = 0;
+        const ITENS_BONS = ["💖", "💗", "❤️", "🐚", "⭐"];
+        const ITEM_OURO = "🌟";
+        const JOGO_MAX_SEG = 60;
+
+        function resetarJogoUI() {
+            document.getElementById("jogoPontos").textContent = "0";
+            document.getElementById("jogoTempo").textContent = "30";
+            document.getElementById("jogoCombo").textContent = "0";
+            document.getElementById("jogoLevel").textContent = "🌊 Nível Fácil";
+            document.getElementById("jogoLevel").className = "jogo-level";
+            document.getElementById("jogoFlash").classList.remove("mostrar");
+            document.getElementById("jogoDica").style.display = "block";
+            const area = document.getElementById("jogoArea");
+            area.querySelectorAll(".jogo-item, .jogo-peixe").forEach(function (el) { el.remove(); });
+            const peixe = document.createElement("div");
+            peixe.className = "jogo-peixe";
+            peixe.id = "jogoPeixe";
+            peixe.textContent = "🐟";
+            area.appendChild(peixe);
+            const fim = area.querySelector(".jogo-fim");
+            if (fim) fim.remove();
+            document.getElementById("jogoBtn").style.display = "inline-block";
+            document.getElementById("jogoRestart").style.display = "none";
+            document.getElementById("jogoRecorde").textContent = lerRecorde();
+        }
+
+        function posicaoInicialPeixe(area) {
+            jogoPeixeX = area.clientWidth / 2;
+            jogoPeixeY = area.clientHeight / 2;
+            atualizarPeixe(false);
+        }
+
+        function atualizarPeixe(rotacionar) {
+            const peixe = document.getElementById("jogoPeixe");
+            if (!peixe) return;
+            peixe.style.left = jogoPeixeX + "px";
+            peixe.style.top = jogoPeixeY + "px";
+            if (rotacionar) {
+                peixe.style.transform = "translate(-50%,-50%) scaleX(-1)";
+            } else {
+                peixe.style.transform = "translate(-50%,-50%)";
+            }
+        }
+
+        function prenderControles() {
+            const area = document.getElementById("jogoArea");
+            const ehToque = window.matchMedia("(pointer: coarse)").matches;
+            function mover(e) {
+                if (!jogoAtivo) return;
+                const rect = area.getBoundingClientRect();
+                let cx, cy, ehTouch = false;
+                if (e.touches) {
+                    cx = e.touches[0].clientX - rect.left;
+                    cy = e.touches[0].clientY - rect.top;
+                    ehTouch = true;
+                    e.preventDefault();
+                } else {
+                    cx = e.clientX - rect.left;
+                    cy = e.clientY - rect.top;
+                }
+                const virou = cx < jogoPeixeX;
+                let px = cx;
+                let py = cy;
+                if (ehTouch || ehToque) {
+                    py = cy - 60;
+                }
+                jogoPeixeX = Math.max(30, Math.min(rect.width - 30, px));
+                jogoPeixeY = Math.max(30, Math.min(rect.height - 30, py));
+                atualizarPeixe(virou);
+            }
+            area.onmousemove = mover;
+            area.ontouchmove = mover;
+            area.ontouchstart = function (e) { e.preventDefault(); mover(e); };
+            area.onmousedown = function (e) { mover(e); };
+        }
+
+        function iniciarJogo() {
+            if (jogoAtivo) return;
+            encerrarJogo();
+            const area = document.getElementById("jogoArea");
+            jogoAtivo = true;
+            jogoPontosVal = 0;
+            jogoSegundos = 30;
+            jogoCombo = 0;
+            jogoComboMax = 0;
+            jogoElapsed = 0;
+            document.getElementById("jogoDica").style.display = "none";
+            document.getElementById("jogoPontos").textContent = "0";
+            document.getElementById("jogoTempo").textContent = "30";
+            document.getElementById("jogoCombo").textContent = "0";
+            atualizarNivel();
+            document.getElementById("jogoBtn").style.display = "none";
+            document.getElementById("jogoRestart").style.display = "none";
+            const itens = area.querySelectorAll(".jogo-item, .jogo-fim");
+            itens.forEach(function (it) { it.remove(); });
+            document.getElementById("jogoFlash").classList.remove("mostrar");
+            posicaoInicialPeixe(area);
+            prenderControles();
+
+            jogoTimerInt = setInterval(function () {
+                jogoSegundos--;
+                document.getElementById("jogoTempo").textContent = jogoSegundos;
+                if (jogoSegundos <= 0) fimJogo();
+            }, 1000);
+
+            jogoElapsedTimer = setInterval(function () {
+                jogoElapsed++;
+                atualizarNivel();
+            }, 1000);
+
+            spawnItem();
+            programarSpawn();
+            jogoLoopTimer = setInterval(moverItens, 35);
+        }
+
+        function programarSpawn() {
+            clearTimeout(jogoSpawnTimer);
+            if (!jogoAtivo) return;
+            const intervalo = Math.max(430, 900 - jogoElapsed * 14);
+            jogoSpawnTimer = setTimeout(function () {
+                spawnItem();
+                programarSpawn();
+            }, intervalo);
+        }
+
+        function atualizarNivel() {
+            const el = document.getElementById("jogoLevel");
+            if (jogoElapsed < 15) {
+                el.textContent = "🌊 Nível Fácil";
+                el.className = "jogo-level";
+            } else if (jogoElapsed < 30) {
+                el.textContent = "🌙 Nível Médio";
+                el.className = "jogo-level medio";
+            } else {
+                el.textContent = "⛈ Nível Difícil";
+                el.className = "jogo-level dificil";
+            }
+        }
+
+        function spawnItem() {
+            if (!jogoAtivo) return;
+            const area = document.getElementById("jogoArea");
+            const w = area.clientWidth;
+            const h = area.clientHeight;
+            const ehOuro = Math.random() < (0.12);
+            const probRuim = Math.min(0.42, 0.16 + jogoElapsed * 0.01);
+            const item = document.createElement("div");
+            item.className = "jogo-item";
+            if (Math.random() < probRuim) {
+                item.classList.add("ruim");
+                item.textContent = Math.random() < 0.5 ? "🪼" : "🦑";
+            } else {
+                item.textContent = ehOuro ? ITEM_OURO : ITENS_BONS[Math.floor(Math.random() * ITENS_BONS.length)];
+                if (ehOuro) item.classList.add("ouro");
+            }
+            item.style.left = (Math.random() * (w - 44)) + "px";
+            item.style.top = h + "px";
+            const velExtra = Math.min(2.6, jogoElapsed * 0.05);
+            item.dataset.speed = (Math.random() * 1.3 + 1.6 + velExtra) + "";
+            item.dataset.ouro = ehOuro ? "1" : "0";
+            area.appendChild(item);
+        }
+
+        function moverItens() {
+            if (!jogoAtivo) return;
+            const peixe = document.getElementById("jogoPeixe");
+            if (!peixe) return;
+            const area = document.getElementById("jogoArea");
+            const itens = area.querySelectorAll(".jogo-item");
+            const pH = peixe.offsetWidth || 52;
+
+            itens.forEach(function (item) {
+                const y = parseFloat(item.style.top) - parseFloat(item.dataset.speed);
+                item.style.top = y + "px";
+                if (y < -40) {
+                    if (!item.classList.contains("ruim") && !item.classList.contains("pegado")) jogoCombo = 0;
+                    item.remove();
+                    atualizarCombo();
+                    return;
+                }
+
+                const ix = parseFloat(item.style.left) + 22;
+                const iy = y + 22;
+                if (Math.abs(ix - jogoPeixeX) < pH + 6 && Math.abs(iy - jogoPeixeY) < pH + 6) {
+                    pegar(item);
+                }
+            });
+        }
+
+        function pegar(item) {
+            if (!jogoAtivo) return;
+            item.classList.add("pegado");
+            if (item.classList.contains("ruim")) {
+                jogoCombo = 0;
+                atualizarCombo();
+                jogoSegundos = Math.max(0, jogoSegundos - 4);
+                document.getElementById("jogoTempo").textContent = jogoSegundos;
+                flash("🦑 Que peixe ruim! -4s");
+            } else {
+                jogoCombo++;
+                atualizarCombo();
+                const ehOuro = item.classList.contains("ouro");
+                let pontos = ehOuro ? 5 : 1;
+                if (jogoCombo >= 8) pontos *= 2;
+                jogoPontosVal += pontos;
+                document.getElementById("jogoPontos").textContent = jogoPontosVal;
+                const bonus = ehOuro ? 4 : 2;
+                jogoSegundos = Math.min(JOGO_MAX_SEG, jogoSegundos + bonus);
+                document.getElementById("jogoTempo").textContent = jogoSegundos;
+                flash(ehOuro ? "🌟 +5 pts, +4s!" : "+" + pontos + " 💖 +" + bonus + "s" + (jogoCombo >= 8 ? " FOGO 🔥" : ""));
+            }
+            item.remove();
+        }
+
+        function atualizarCombo() {
+            if (jogoCombo > jogoComboMax) jogoComboMax = jogoCombo;
+            const el = document.getElementById("jogoCombo");
+            if (el) el.textContent = jogoCombo;
+        }
+
+        let flashTimer = null;
+        function flash(texto) {
+            const el = document.getElementById("jogoFlash");
+            el.textContent = texto;
+            el.classList.add("mostrar");
+            clearTimeout(flashTimer);
+            flashTimer = setTimeout(function () { el.classList.remove("mostrar"); }, 650);
+        }
+
+        function fimJogo() {
+            encerrarJogo();
+            const area = document.getElementById("jogoArea");
+            area.querySelectorAll(".jogo-item").forEach(function (it) { it.remove(); });
+            document.getElementById("jogoFlash").classList.remove("mostrar");
+            const fim = document.createElement("div");
+            fim.className = "jogo-fim";
+            fim.style.cssText = "color:var(--gold);font-size:18px;margin-top:110px;text-align:center;line-height:1.9;padding:0 14px;position:relative;z-index:4";
+            fim.innerHTML = "⏰ A onda se acalmou!<br>Você pegou <b>" + jogoPontosVal + "</b> corações 🐟<br>" +
+                "Melhor combo: <b>" + jogoComboMax + "</b>x 🔥<br>" +
+                (jogoPontosVal > 0 ? "Como a Ponyo, você NADOU até o amor! 💖" : "Tente de novo, meu amor! 💙");
+            area.appendChild(fim);
+            const rec = lerRecorde();
+            if (jogoPontosVal > rec) {
+                salvarRecorde(jogoPontosVal);
+                flash("🏆 Novo recorde!");
+            }
+            document.getElementById("jogoRecorde").textContent = lerRecorde();
+            document.getElementById("jogoRestart").style.display = "block";
+        }
+
+        function encerrarJogo() {
+            jogoAtivo = false;
+            clearInterval(jogoTimerInt);
+            clearInterval(jogoElapsedTimer);
+            clearTimeout(jogoSpawnTimer);
+            clearInterval(jogoLoopTimer);
+            jogoTimerInt = null;
+            jogoElapsedTimer = null;
+            jogoSpawnTimer = null;
+            jogoLoopTimer = null;
+            flashTimer = null;
+        }
+
+        function lerRecorde() {
+            return parseInt(localStorage.getItem("ponyoRecorde") || "0");
+        }
+
+        function salvarRecorde(v) {
+            localStorage.setItem("ponyoRecorde", String(v));
+        }
+
+        /* ===== Jogo da Memória ===== */
+        const memoriaImagens = [
+            "IMAGENS/1.jpg",
+            "IMAGENS/2.jpg",
+            "IMAGENS/5.jpg",
+            "IMAGENS/F1.jpeg",
+            "IMAGENS/F3.jpeg",
+            "IMAGENS/N5.jpeg",
+            "IMAGENS/martevenus.jpeg",
+            "IMAGENS/7.jpg"
+        ];
+
+        let memAtivo = false;
+        let memCartas = [];
+        let memVirouA = null;
+        let memVirouB = null;
+        let memBloqueado = false;
+        let memPares = 0;
+        let memTentativas = 0;
+        let memTempoVal = 0;
+        let memTimer = null;
+        let memFlipTimer = null;
+
+        function resetarMemoriaUI() {
+            document.getElementById("memTentativas").textContent = "0";
+            document.getElementById("memTempo").textContent = "0";
+            document.getElementById("memRecorde").textContent = lerMelhorMemoria() || "--";
+            document.getElementById("memoriaBtn").style.display = "inline-block";
+            document.getElementById("memoriaReiniciar").style.display = "none";
+            document.getElementById("memoriaGrid").innerHTML = "";
+        }
+
+        function iniciarMemoria() {
+            pararMemoria();
+            memAtivo = true;
+            memTentativas = 0;
+            memPares = 0;
+            memTempoVal = 0;
+            memVirouA = null;
+            memVirouB = null;
+            memBloqueado = false;
+            document.getElementById("memTentativas").textContent = "0";
+            document.getElementById("memTempo").textContent = "0";
+            document.getElementById("memRecorde").textContent = lerMelhorMemoria() || "--";
+            document.getElementById("memoriaBtn").style.display = "none";
+            document.getElementById("memoriaReiniciar").style.display = "inline-block";
+
+            const baralho = [];
+            memoriaImagens.forEach(function (img, idx) {
+                baralho.push(idx);
+                baralho.push(idx);
+            });
+            baralho.sort(function () { return Math.random() - 0.5; });
+
+            memCartas = baralho;
+            const grid = document.getElementById("memoriaGrid");
+            grid.innerHTML = "";
+            baralho.forEach(function (idx, i) {
+                const carta = document.createElement("div");
+                carta.className = "mem-carta";
+                carta.dataset.idx = idx;
+                carta.dataset.i = i;
+                const frente = document.createElement("div");
+                frente.className = "face frente";
+                frente.textContent = "🐟";
+                const tras = document.createElement("div");
+                tras.className = "face tras";
+                const img = document.createElement("img");
+                img.src = memoriaImagens[idx];
+                img.alt = "";
+                tras.appendChild(img);
+                carta.appendChild(frente);
+                carta.appendChild(tras);
+                carta.onclick = function () { virarMemoria(carta); };
+                grid.appendChild(carta);
+            });
+
+            memTimer = setInterval(function () {
+                memTempoVal++;
+                document.getElementById("memTempo").textContent = memTempoVal;
+            }, 1000);
+        }
+
+        function virarMemoria(carta) {
+            if (!memAtivo || memBloqueado) return;
+            if (carta.classList.contains("acertou")) return;
+            if (carta === memVirouA) return;
+            if (carta.classList.contains("virar")) return;
+
+            carta.classList.add("virar");
+
+            if (!memVirouA) {
+                memVirouA = carta;
+                return;
+            }
+
+            memVirouB = carta;
+            memBloqueado = true;
+            memTentativas++;
+            document.getElementById("memTentativas").textContent = memTentativas;
+
+            const aIdx = memVirouA.dataset.idx;
+            const bIdx = memVirouB.dataset.idx;
+
+            if (aIdx === bIdx) {
+                memVirouA.classList.add("acertou");
+                memVirouB.classList.add("acertou");
+                memVirouA = null;
+                memVirouB = null;
+                memBloqueado = false;
+                memPares++;
+                if (memPares === memoriaImagens.length) fimMemoria();
+            } else {
+                memFlipTimer = setTimeout(function () {
+                    memVirouA.classList.remove("virar");
+                    memVirouB.classList.remove("virar");
+                    memVirouA = null;
+                    memVirouB = null;
+                    memBloqueado = false;
+                }, 700);
+            }
+        }
+
+        function fimMemoria() {
+            pararMemoria();
+            const melhorAntiga = lerMelhorMemoria();
+            let novaMelhor = "";
+            if (!melhorAntiga || memTentativas < parseInt(melhorAntiga)) {
+                novaMelhor = String(memTentativas);
+                localStorage.setItem("memoriaRecorde", novaMelhor);
+            }
+            document.getElementById("memRecorde").textContent = lerMelhorMemoria() || "--";
+            const grid = document.getElementById("memoriaGrid");
+            const aviso = document.createElement("div");
+            aviso.style.cssText = "grid-column:1/-1;color:var(--gold);font-size:16px;text-align:center;padding:20px 0;line-height:1.8";
+            aviso.innerHTML = "🎉 Você encontrou todos os pares!<br>" +
+                "Tentativas: <b>" + memTentativas + "</b> · Tempo: <b>" + memTempoVal + "s</b>" +
+                (novaMelhor ? "<br>🏆 Novo recorde de memória!" : "") +
+                "<br>💖 Assim como a Ponyo, você lembra de tudo o que ama!";
+            grid.appendChild(aviso);
+            document.getElementById("memoriaReiniciar").style.display = "inline-block";
+        }
+
+        function pararMemoria() {
+            memAtivo = false;
+            clearInterval(memTimer);
+            clearTimeout(memFlipTimer);
+            memTimer = null;
+            memFlipTimer = null;
+        }
+
+        function lerMelhorMemoria() {
+            return localStorage.getItem("memoriaRecorde") || "";
+        }
+
+        /* ===== Mural de Notinhas ===== */
+        function lerNotas() {
+            try { return JSON.parse(localStorage.getItem("muralNotas") || "[]"); }
+            catch (e) { return []; }
+        }
+
+        function salvarNotas(notas) {
+            localStorage.setItem("muralNotas", JSON.stringify(notas));
+        }
+
+        function renderizarMural() {
+            const notas = lerNotas();
+            const lista = document.getElementById("muralLista");
+            if (notas.length === 0) {
+                lista.innerHTML = '<div class="mural-vazio">🌊 O mar ainda está vazio… escreva a primeira notinha!</div>';
+                return;
+            }
+            lista.innerHTML = "";
+            notas.forEach(function (n, i) {
+                const item = document.createElement("div");
+                item.className = "mural-item";
+                item.innerHTML = n + '<button class="del" onclick="removerNota(' + i + ')">✕</button>';
+                lista.appendChild(item);
+            });
+        }
+
+        function adicionarNota() {
+            const input = document.getElementById("muralInput");
+            const valor = input.value.trim();
+            if (!valor) return;
+            const notas = lerNotas();
+            notas.unshift(valor);
+            salvarNotas(notas);
+            input.value = "";
+            renderizarMural();
+        }
+
+        function removerNota(i) {
+            const notas = lerNotas();
+            notas.splice(i, 1);
+            salvarNotas(notas);
+            renderizarMural();
+        }
+
+        document.getElementById("muralInput") && document.getElementById("muralInput").addEventListener("keydown", function (e) {
+            if (e.key === "Enter") adicionarNota();
+        });
 
         /* ===== Partículas / Estrelas ===== */
         function gerarParticulas() {
